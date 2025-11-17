@@ -409,6 +409,7 @@
             background: #ffffff;
             border: 1px solid var(--border-subtle);
             box-shadow: var(--shadow-soft);
+            transition: transform 0.18s var(--ease-out), box-shadow 0.18s var(--ease-out), border-color 0.18s ease;
         }
 
         .card h3 {
@@ -465,46 +466,7 @@
             margin-top: 8px;
         }
 
-        
-        /* Testimonials toggle */
-        .testimonials-body {
-            max-height: 0;
-            overflow: hidden;
-            opacity: 0;
-            transform: translateY(-8px);
-            transition: max-height 0.45s var(--ease-out), opacity 0.35s var(--ease-out), transform 0.35s var(--ease-out);
-        }
-
-        .testimonials-open .testimonials-body {
-            max-height: 2000px;
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .testimonials-toggle {
-            margin-bottom: 18px;
-            padding-inline: 18px;
-            font-size: 14px;
-        }
-
-        .testimonials-toggle::after {
-            content: "▼";
-            display: inline-block;
-            margin-left: 8px;
-            font-size: 10px;
-            transition: transform 0.25s var(--ease-out), opacity 0.25s var(--ease-out);
-            opacity: 0.85;
-        }
-
-        .testimonials-open .testimonials-toggle::after {
-            transform: rotate(-180deg);
-        }
-
-        .testimonials-collapsed .testimonials-toggle::after {
-            transform: rotate(0deg);
-        }
-
-/* Experts */
+        /* Experts */
 
         .experts-grid {
             display: grid;
@@ -724,49 +686,6 @@
             color: var(--text-muted);
         }
 
-
-        .event-info {
-            margin-top: 22px;
-            padding: 16px 18px;
-            border-radius: var(--radius-lg);
-            background:
-                radial-gradient(circle at top left, rgba(249,115,22,0.10) 0, transparent 55%),
-                #f9fafb;
-            border: 1px solid rgba(249,115,22,0.35);
-            box-shadow: var(--shadow-soft);
-        }
-
-        .event-info-label {
-            font-size: 11px;
-            letter-spacing: 0.16em;
-            text-transform: uppercase;
-            color: var(--accent);
-            font-weight: 600;
-            margin-bottom: 6px;
-        }
-
-        .event-info-main {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-        }
-
-        .event-info-row {
-            font-size: 14px;
-            color: #374151;
-        }
-
-        .event-info-row span {
-            font-weight: 600;
-            color: #111827;
-        }
-
-        .event-info-price {
-            margin-top: 6px;
-            font-size: 15px;
-        }
-
-
         /* Modal base */
 
         .modal-backdrop {
@@ -884,7 +803,167 @@
             text-align: center;
         }
 
-        /* Scroll animation */
+        
+        /* Event info card */
+        .event-card {
+            margin-bottom: 22px;
+            border-radius: var(--radius-lg);
+            padding: 16px 18px 14px;
+            background:
+                radial-gradient(circle at top left, rgba(249,250,251,0.95) 0, transparent 55%),
+                linear-gradient(135deg, rgba(249,115,22,0.06), rgba(59,130,246,0.04));
+            border: 1px solid rgba(148,163,184,0.5);
+            box-shadow: var(--shadow-soft);
+        }
+
+        .event-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .event-title {
+            font-size: 17px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .event-details {
+            display: grid;
+            gap: 8px;
+            margin-bottom: 6px;
+        }
+
+        .event-detail-row span {
+            display: block;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-muted);
+            margin-bottom: 2px;
+        }
+
+        .event-detail-row strong {
+            font-size: 14px;
+            color: var(--text-main);
+        }
+
+        .event-note {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        /* Testimonials */
+        .testimonials-list {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .testimonial-item {
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-subtle);
+            background: #ffffff;
+            box-shadow: var(--shadow-soft);
+            overflow: hidden;
+            transition: box-shadow 0.2s var(--ease-out), border-color 0.2s ease;
+        }
+
+        .testimonial-item.open {
+            box-shadow: 0 20px 50px rgba(15,23,42,0.12);
+            border-color: rgba(249,115,22,0.6);
+        }
+
+        .testimonial-header {
+            width: 100%;
+            padding: 14px 16px;
+            background: linear-gradient(to right, rgba(249,115,22,0.06), rgba(15,23,42,0.01));
+            border: none;
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 10px;
+            cursor: pointer;
+        }
+
+        .testimonial-header:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 2px;
+        }
+
+        .testimonial-tag {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--accent);
+            margin-bottom: 4px;
+            font-weight: 600;
+        }
+
+        .testimonial-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .testimonial-meta {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .testimonial-toggle-icon {
+            font-size: 18px;
+            line-height: 1;
+            color: var(--text-muted);
+            transition: transform 0.2s var(--ease-out), color 0.2s ease;
+        }
+
+        .testimonial-item.open .testimonial-toggle-icon {
+            transform: rotate(45deg);
+            color: var(--accent);
+        }
+
+        .testimonial-body {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            padding: 0 16px;
+            font-size: 14px;
+            color: #374151;
+            transition: max-height 0.35s var(--ease-out), opacity 0.35s var(--ease-out), padding-top 0.2s ease, padding-bottom 0.2s ease;
+        }
+
+        .testimonial-item.open .testimonial-body {
+            max-height: 600px;
+            opacity: 1;
+            padding-top: 8px;
+            padding-bottom: 14px;
+        }
+
+        .testimonial-body p {
+            margin: 0 0 8px;
+        }
+
+        .testimonial-body p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Card hover */
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 22px 55px rgba(15,23,42,0.12);
+            border-color: rgba(148,163,184,0.9);
+        }
+
+        /* Test modal CTA button */
+        .test-cta-button {
+            margin-top: 10px;
+        }
+
+/* Scroll animation */
 
         [data-animate] {
             opacity: 0;
@@ -969,7 +1048,7 @@
                 <a href="#about">О программе</a>
                 <a href="#who">Для кого</a>
                 <a href="#results">Что получите</a>
-                <a href="#testimonials" onclick="openTestimonials(event)">Отзывы</a>
+                <a href="#testimonials">Отзывы</a>
                 <a href="#experts">Авторы</a>
                 <a href="#registration">Формат</a>
                 <a href="javascript:void(0)" class="nav-cta" onclick="openLeadModal('lead')">
@@ -1171,76 +1250,104 @@
                 </div>
             </div>
         </section>
-
-
-        <!-- Testimonials -->
-        <section class="section section-dark testimonials-collapsed" id="testimonials">
+        <section class="section section-alt" id="testimonials">
             <div class="container" data-animate>
                 <div class="section-header">
-                    <div class="section-kicker">Опыт участников</div>
-                    <h2>Что говорят о программе «Теремок»</h2>
+                    <div class="section-kicker">Опыт клиентов</div>
+                    <h2>Отзывы руководителей и HR после «Теремка»</h2>
                     <p class="section-lead">
-                        Живые кейсы руководителей, собственников и HR-директоров о том, как «Теремок» повлиял
-                        на отделы продаж, управленческие решения и найм.
+                        Реальные кейсы о том, как «Теремок» помогает по‑другому смотреть на сотрудников,
+                        переставать тянуть «минусовых» и принимать решения не по ощущениям, а по понятной системе типажей.
                     </p>
                 </div>
-                <button type="button" class="btn-secondary testimonials-toggle" onclick="toggleTestimonials()">
-                    Показать отзывы
-                </button>
-                <div class="testimonials-body">
-                <div class="grid-3">
-                    <div class="card">
-                        <h3>Отдел продаж: «перестали тянуть за собой минусовых»</h3>
-                        <p><strong>Кто:</strong> руководитель отдела продаж, B2B-компания в сфере поставок оборудования (команда 18 человек).</p>
-                        <p>
-                            «До “Теремка” у меня было ощущение, что я всё время кого-то дотаскиваю. В отчётах все выглядели
-                            “нормально”: кто-то делает план, кто-то чуть не дотягивает, но глобально отличить, кто реально
-                            вытягивает отдел, а кто просто создаёт видимость работы, было сложно.
-                        </p>
-                        <p>
-                            После практикума мы вместе с тренером разложили сотрудников по типажам “Теремка”. Вдруг стало
-                            очевидно, кто у нас Птицы, кто Хомяки, а кто Профи. Мы убрали фокус с спасения минусовых и сделали
-                            ставку на ядро — Профи и сильных Лидеров. За три месяца я убрал двоих хронических “подсаженных на
-                            контроль” и перераспределил мотивацию. План отдела начали выполнять без постоянного “ручного управления”
-                            и переработок по вечерам.»
-                        </p>
+
+                <div class="testimonials-list">
+                    <div class="testimonial-item">
+                        <button class="testimonial-header" type="button">
+                            <div>
+                                <div class="testimonial-tag">Отдел продаж</div>
+                                <div class="testimonial-title">«Перестали тянуть за собой минусовых»</div>
+                                <div class="testimonial-meta">
+                                    Руководитель отдела продаж, b2b‑компания в сфере поставок оборудования (команда 18 человек)
+                                </div>
+                            </div>
+                            <span class="testimonial-toggle-icon" aria-hidden="true">+</span>
+                        </button>
+                        <div class="testimonial-body">
+                            <p>
+                                «До “Теремка” у меня было ощущение, что я всё время кого-то дотаскиваю. В отчётах все выглядели
+                                “нормально”: кто-то делает план, кто-то чуть не дотягивает, но глобально отличить, кто реально
+                                вытягивает отдел, а кто просто создаёт видимость работы, было сложно.
+                            </p>
+                            <p>
+                                После практикума мы вместе с тренером разложили сотрудников по типажам “Теремка”. Вдруг стало очевидно,
+                                кто у нас Птицы, кто Хомяки, а кто Профи. Мы убрали фокус со спасения минусовых и сделали ставку
+                                на ядро — Профи и сильных Лидеров. За три месяца я убрал двоих хронических “подсаженных на контроль”
+                                и перераспределил мотивацию. План отдела начали выполнять без постоянного “ручного управления”
+                                и переработок по вечерам.»
+                            </p>
+                        </div>
                     </div>
-                    <div class="card">
-                        <h3>Собственник: «появились аргументы, а не ощущение “не мой человек”»</h3>
-                        <p><strong>Кто:</strong> собственник сети сервисных компаний, 65+ сотрудников, несколько филиалов.</p>
-                        <p>
-                            «До “Теремка” я часто говорил фразу “что-то не то с этим человеком”, но на совещаниях это звучало
-                            как субъективщина. HR оперировал красивыми словами про вовлечённость, а я в итоге держал в штате
-                            людей, к которым не было доверия, просто потому что не мог нормально объяснить, почему они мне не подходят.
-                        </p>
-                        <p>
-                            После программы у нас появился общий язык: Птицы, Хомяки, Лисы, Профи. Мы прогнали ключевых руководителей
-                            и сотрудников через “Шкалу мотивации” и “Теремок”, увидели, кто реально за результат, а кто — за статус
-                            и деньги “любой ценой”. Часть решений, которые я год откладывал, приняли за две недели: с кем-то расстались,
-                            кому-то поменяли зону ответственности. Команда управления стала понятнее и предсказуемее, исчезло чувство,
-                            что бизнес — заложник настроения отдельных людей.»
-                        </p>
+
+                    <div class="testimonial-item">
+                        <button class="testimonial-header" type="button">
+                            <div>
+                                <div class="testimonial-tag">Собственник бизнеса</div>
+                                <div class="testimonial-title">«Появились аргументы, а не ощущение “не мой человек”»</div>
+                                <div class="testimonial-meta">
+                                    Собственник сети сервисных компаний, 65+ сотрудников, несколько филиалов
+                                </div>
+                            </div>
+                            <span class="testimonial-toggle-icon" aria-hidden="true">+</span>
+                        </button>
+                        <div class="testimonial-body">
+                            <p>
+                                «До “Теремка” я часто говорил фразу “что-то не то с этим человеком”, но на совещаниях это звучало
+                                как субъективщина. HR оперировал красивыми словами про вовлечённость, а я в итоге держал в штате людей,
+                                к которым не было доверия, просто потому что не мог нормально объяснить, почему они мне не подходят.
+                            </p>
+                            <p>
+                                После программы у нас появился общий язык: Птицы, Хомяки, Лисы, Профи. Мы прогнали ключевых
+                                руководителей и сотрудников через “Шкалу мотивации” и “Теремок”, увидели, кто реально за результат,
+                                а кто — за статус и деньги “любой ценой”. Часть решений, которые я год откладывал, приняли за две недели:
+                                с кем-то расстались, кому-то поменяли зону ответственности. Команда управления стала понятнее
+                                и предсказуемее, исчезло чувство, что бизнес — заложник настроения отдельных людей.»
+                            </p>
+                        </div>
                     </div>
-                    <div class="card">
-                        <h3>HR-директор: «перестали брать “красавчиков”, которые потом не тянут»</h3>
-                        <p><strong>Кто:</strong> HR-директор производственной компании, 220 сотрудников.</p>
-                        <p>
-                            «До “Теремка” у нас были приличные воронки найма, но через 3–6 месяцев часть новых людей “сдувалась”.
-                            На собеседованиях кандидаты выглядели отлично: уверенные, разговорчивые, с правильными формулировками.
-                            А в деле оказывалось, что работать надо постоянно подгонять.
-                        </p>
-                        <p>
-                            После обучения мы встроили типажи “Теремка” прямо в интервью: стали целенаправленно отслеживать речевые
-                            маркеры Птиц, Хомяков и Лис. Перестали очаровываться только харизмой и статусной подачей. За полгода доля
-                            “не дотягивающих” новичков заметно снизилась, а количество Профи в ключевых ролях выросло. Руководители
-                            наконец-то увидели разницу между “приятным собеседником” и человеком, у которого реально есть внутренняя
-                            мотивация работать.»
-                        </p>
+
+                    <div class="testimonial-item">
+                        <button class="testimonial-header" type="button">
+                            <div>
+                                <div class="testimonial-tag">HR‑директор</div>
+                                <div class="testimonial-title">«Наконец-то перестали брать “красавчиков”, которые потом не тянут»</div>
+                                <div class="testimonial-meta">
+                                    HR‑директор производственной компании, 220 сотрудников
+                                </div>
+                            </div>
+                            <span class="testimonial-toggle-icon" aria-hidden="true">+</span>
+                        </button>
+                        <div class="testimonial-body">
+                            <p>
+                                «До “Теремка” у нас были приличные воронки найма, но через 3–6 месяцев часть новых людей “сдувалась”.
+                                На собеседованиях кандидаты выглядели отлично: уверенные, разговорчивые, с правильными формулировками.
+                                А в деле оказывалось, что работать надо постоянно подгонять.
+                            </p>
+                            <p>
+                                После обучения мы встроили типажи “Теремка” прямо в интервью: стали целенаправленно отслеживать
+                                речевые маркеры Птиц, Хомяков и Лис. Перестали очаровываться только харизмой и статусной подачей.
+                                За полгода доля “не дотягивающих” новичков заметно снизилась, а количество Профи в ключевых ролях выросло.
+                                Руководители наконец-то увидели разницу между “приятным собеседником” и человеком, у которого
+                                реально есть внутренняя мотивация работать.»
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
-            </div>
         </section>
+
+
+
 
         <!-- Experts -->
         <section class="section section-dark" id="experts">
@@ -1304,7 +1411,27 @@
                     </p>
                 </div>
                 <div class="form-wrapper">
-                    <div class="form-grid">
+                    
+                    <div class="event-card" data-animate>
+                        <div class="event-label">Ближайший поток программы</div>
+                        <div class="event-title">Минск, 20 ноября 2025</div>
+                        <div class="event-details">
+                            <div class="event-detail-row">
+                                <span>Дата и время</span>
+                                <strong>20 ноября 2025, 10:00–18:00</strong>
+                            </div>
+                            <div class="event-detail-row">
+                                <span>Место проведения</span>
+                                <strong>г. Минск, ул. Сурганова, 57Б, офис 143</strong>
+                            </div>
+                            <div class="event-detail-row">
+                                <span>Стоимость участия</span>
+                                <strong>590 BYN за 1 участника</strong>
+                            </div>
+                        </div>
+                        <p class="event-note">Места в группе ограничены: работаем в формате живого практикума с разбором ваших кейсов.</p>
+                    </div>
+<div class="form-grid">
                         <div>
                             <p class="form-secondary">
                                 Нажмите на кнопку ниже, чтобы открыть форму заявки. Мы спросим только то, что действительно
@@ -1344,15 +1471,6 @@
                             </p>
                         </div>
                     </div>
-
-                <div class="event-info">
-                    <div class="event-info-label">Ближайший очный поток</div>
-                    <div class="event-info-main">
-                        <div class="event-info-row"><span>Дата:</span> 20&nbsp;ноября&nbsp;2025, с&nbsp;10:00 до&nbsp;18:00</div>
-                        <div class="event-info-row"><span>Место:</span> г.&nbsp;Минск, ул.&nbsp;Сурганова, 57Б, офис&nbsp;143</div>
-                        <div class="event-info-row event-info-price"><span>Стоимость за 1-го участника:</span> 590,00&nbsp;BYN</div>
-                    </div>
-                </div>
                 </div>
             </div>
         </section>
@@ -1554,9 +1672,12 @@
 
             <p id="testResult" class="modal-result"></p>
             <p id="testNextStep" class="modal-note" style="display:none;">
-                Мы сохранили ваши ответы. При созвоне по программе «Теремок» сможем разобрать этого сотрудника
-                и посмотреть, как его типаж влияет на отдел и бизнес.
+                Сейчас вы видите только одного человека. На программе «Теремок» мы собираем карту всей команды,
+                разбираем риски и точки роста и даём управленческие решения по людям.
             </p>
+            <button type="button" class="btn-secondary btn-full test-cta-button" style="display:none;" id="testCtaButton" onclick="openLeadFromTest()">
+                Обсудить участие в «Теремке»
+            </button>
         </form>
     </div>
 </div>
@@ -1566,40 +1687,6 @@ const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwnQR15r9C6AwTp_eYY3
 
 let leadData = null;
 let testSubmitted = false;
-// Testimonials toggle
-function toggleTestimonials() {
-    const section = document.getElementById('testimonials');
-    if (!section) return;
-
-    const isOpen = section.classList.contains('testimonials-open');
-    const buttons = section.querySelectorAll('.testimonials-toggle');
-
-    if (isOpen) {
-        section.classList.remove('testimonials-open');
-        section.classList.add('testimonials-collapsed');
-        buttons.forEach(btn => btn.textContent = 'Показать отзывы');
-    } else {
-        section.classList.add('testimonials-open');
-        section.classList.remove('testimonials-collapsed');
-        buttons.forEach(btn => btn.textContent = 'Скрыть отзывы');
-        section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-}
-
-function openTestimonials(event) {
-    if (event && event.preventDefault) {
-        event.preventDefault();
-    }
-    const section = document.getElementById('testimonials');
-    if (!section) return;
-
-    if (!section.classList.contains('testimonials-open')) {
-        toggleTestimonials();
-    } else {
-        section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-}
-
 
 // Открыть модал заявки
 function openLeadModal(source) {
@@ -1652,7 +1739,13 @@ function closeTestModal() {
     document.body.style.overflow = '';
 }
 
-// Обработка отправки формы заявки
+
+        function openLeadFromTest() {
+            closeTestModal();
+            openLeadModal('lead');
+        }
+
+        // Обработка отправки формы заявки
 function onLeadFormSubmit(e) {
     e.preventDefault();
 
@@ -1666,6 +1759,7 @@ function onLeadFormSubmit(e) {
 }
 
 // Логика мини-теста
+
 function submitMiniTest() {
     if (testSubmitted) {
         return;
@@ -1683,43 +1777,49 @@ function submitMiniTest() {
 
     let mainType = null;
     let maxScore = -1;
-    for (const [key, value] of Object.entries(types)) {
-        if (value > maxScore) {
-            maxScore = value;
+    for (const key in types) {
+        if (types[key] > maxScore) {
+            maxScore = types[key];
             mainType = key;
         }
     }
 
-    const resultEl = document.getElementById('testResult');
-    const nextStepEl = document.getElementById('testNextStep');
-
-    if (!mainType || maxScore <= 0) {
-        if (resultEl) {
-            resultEl.textContent =
-                'Пожалуйста, ответьте хотя бы на несколько вопросов, чтобы мы могли определить типаж.';
-        }
-        if (nextStepEl) {
-            nextStepEl.style.display = 'none';
-        }
-        return;
-    }
-
-    const labels = {
-        ptica: 'Птица — работает под принуждением, без внешнего контроля «падает» по результату.',
-        homiak: 'Хомяк — сильная ориентация на деньги и личную выгоду, риск «обнуления» при снижении бонусов.',
-        lisa:  'Лиса — про статус, влияние и собственные интересы, важна видимость и позиция.',
-        profi: 'Профи — делает по совести, фокус на задаче, качестве и результате компании.'
+    const typeNames = {
+        ptica: 'Птица',
+        homiak: 'Хомяк',
+        lisa: 'Лиса',
+        profi: 'Профи'
     };
 
-    const resultText = labels[mainType] || mainType;
+    const typeDescriptions = {
+        ptica: 'Он работает в основном под принуждением и быстро «проседает» без внешнего контроля. Результат по нему держится на постоянных напоминаниях и жёстких дедлайнах. Чтобы понять, как такие сотрудники влияют на отдел и бизнес в целом, имеет смысл разложить всю команду по модели «Теремок», а не только одного человека.',
+        homiak: 'Для него в фокусе прежде всего деньги и личная выгода. Пока система бонусов выгодна, он работает, но при изменении условий легко «обнуляется». Полную картину даёт разбор всей команды на программе «Теремок»: кто у вас действительно за результат, а кто только за деньги.',
+        lisa: 'Для него важнее статус, влияние и личная позиция, чем стабильный результат. Ему важно хорошо выглядеть в глазах руководства и иметь «правильные» связи. На «Теремке» мы смотрим, какую роль такие люди играют в вашей системе управления и на кого в итоге лучше делать ставки.',
+        profi: 'Он делает по совести, опирается на задачу, качество и результат компании. Часто именно на таких людях держатся ключевые процессы. Чтобы не перегрузить Профи и правильно выстроить вокруг них команду, полезно посмотреть на всю карту «Теремка» по вашей компании, а не только на одного сотрудника.'
+    };
 
+    const typeName = typeNames[mainType] || 'этот типаж';
+    const description = typeDescriptions[mainType] || '';
+    const resultText = 'По вашим ответам этот сотрудник ближе всего к типажу «' + typeName + '». ' + description;
+
+    const resultEl = document.getElementById('miniTestResult');
     if (resultEl) {
-        resultEl.textContent =
-            'По вашим ответам этот сотрудник ближе всего к типажу: ' + resultText;
+        resultEl.innerHTML = resultText;
     }
 
+    const labelEl = document.querySelector('.mini-test-result-label');
+    if (labelEl) {
+        labelEl.style.display = 'block';
+    }
+
+    const nextStepEl = document.getElementById('testNextStep');
     if (nextStepEl) {
         nextStepEl.style.display = 'block';
+    }
+
+    const ctaBtn = document.getElementById('testCtaButton');
+    if (ctaBtn) {
+        ctaBtn.style.display = 'block';
     }
 
     const submitBtn = document.querySelector('#miniTestForm button[type="submit"]');
@@ -1732,7 +1832,8 @@ function submitMiniTest() {
     testSubmitted = true;
 }
 
-// Отправка данных в Google Script
+
+    // Отправка данных в Google Script
 function sendToGoogleSheet(mainType, types, resultText) {
     const fd = new FormData();
 
@@ -1808,6 +1909,27 @@ document.addEventListener('DOMContentLoaded', function () {
     } else {
         animated.forEach(el => el.classList.add('in-view'));
     }
+
+    // Testimonials accordion
+    const testimonialHeaders = document.querySelectorAll('.testimonial-header');
+    testimonialHeaders.forEach(header => {
+        header.addEventListener('click', function () {
+            const item = header.closest('.testimonial-item');
+            const isOpen = item.classList.contains('open');
+
+            document.querySelectorAll('.testimonial-item.open').forEach(other => {
+                if (other !== item) {
+                    other.classList.remove('open');
+                }
+            });
+
+            if (!isOpen) {
+                item.classList.add('open');
+            } else {
+                item.classList.remove('open');
+            }
+        });
+    });
 });
 </script>
 
