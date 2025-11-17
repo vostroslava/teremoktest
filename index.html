@@ -67,55 +67,45 @@
             gap: 16px;
         }
 
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
+       .logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
 
-        .logo-mark {
-            width: 34px;
-            height: 34px;
-            border-radius: 999px;
-            padding: 4px;
-            background:
-                radial-gradient(circle at 0% 0%, rgba(255,255,255,0.96) 0, transparent 55%),
-                #e5f6f8;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow:
-                0 0 0 1px rgba(15,23,42,0.06),
-                0 14px 30px rgba(15,23,42,0.20);
-            transition: transform 0.18s var(--ease-out), box-shadow 0.18s var(--ease-out);
-        }
+.logo-mark {
+    width: 42px;
+    height: 42px;
+    border-radius: 14px;
+    background: rgba(255,255,255,0.75);
+    backdrop-filter: blur(10px);
+    padding: 6px;
 
-        .logo-mark img {
-            width: 100%;
-            height: 100%;
-            display: block;
-            object-fit: contain;
-        }
+    box-shadow:
+        0 4px 12px rgba(15,23,42,0.15),
+        inset 0 0 0 1px rgba(255,255,255,0.8);
+}
 
-        .logo-mark:hover {
-            transform: translateY(-1px);
-            box-shadow:
-                0 0 0 1px rgba(15,23,42,0.08),
-                0 18px 38px rgba(15,23,42,0.26);
-        }
 
-        .logo-text-primary {
-            font-weight: 700;
-            font-size: 16px;
-            letter-spacing: 0.04em;
-            text-transform: uppercase;
-            color: #0f172a;
-        }
+.logo-mark img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
 
-        .logo-text-secondary {
-            font-size: 12px;
-            color: var(--text-muted);
-        }
+.logo-text-primary {
+    font-weight: 700;
+    font-size: 16px;
+    letter-spacing: 0.04em;
+    color: #0f172a;
+}
+
+.logo-text-secondary {
+    font-size: 12px;
+    color: #6b7280;
+}
+
 
         .nav-links {
             display: flex;
@@ -884,14 +874,15 @@
     <header>
         <div class="nav">
             <div class="logo">
-                <div class="logo-mark">
-                    <img src="logo.png" alt="Теремок — мотивационная модель команды">
-                </div>
-                <div>
-                    <div class="logo-text-primary">Теремок</div>
-                    <div class="logo-text-secondary">мотивационная модель команды</div>
-                </div>
-            </div>
+    <div class="logo-mark">
+        <img src="assets/logo-teremok.jpg" alt="Теремок логотип">
+    </div>
+    <div class="logo-labels">
+        <div class="logo-text-primary">Теремок</div>
+        <div class="logo-text-secondary">мотивационная модель команды</div>
+    </div>
+</div>
+
             <div class="nav-links">
                 <a href="#about">О программе</a>
                 <a href="#who">Для кого</a>
