@@ -7,15 +7,21 @@
     <meta name="description" content="Авторская программа «Теремок» для собственников, руководителей и HR: как понять, на кого в команде делать ставки и перестать кормить минусовых сотрудников.">
     <style>
         :root {
-            --bg: #0f172a;
-            --bg-alt: #020617;
-            --card: #020617;
+            --bg: #f3f4f6;
+            --bg-alt: #ffffff;
+            --card: #ffffff;
             --accent: #f97316;
-            --accent-soft: rgba(249,115,22,0.1);
-            --text-main: #e5e7eb;
-            --text-muted: #9ca3af;
-            --border-subtle: #1f2937;
-            --error: #f97373;
+            --accent-soft: rgba(249,115,22,0.08);
+            --text-main: #0f172a;
+            --text-muted: #6b7280;
+            --border-subtle: #e5e7eb;
+            --shadow-soft: 0 18px 40px rgba(15,23,42,0.06);
+            --shadow-strong: 0 26px 60px rgba(15,23,42,0.12);
+            --radius-lg: 22px;
+            --radius-md: 16px;
+            --ease-out: cubic-bezier(0.22, 0.61, 0.36, 1);
+            --tg-main: #0ea5e9;
+            --tg-main-dark: #0284c7;
         }
 
         * {
@@ -26,9 +32,10 @@
             margin: 0;
             padding: 0;
             font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-            background: radial-gradient(circle at top left, #1f2937 0, transparent 55%),
-                        radial-gradient(circle at bottom right, #111827 0, transparent 55%),
-                        var(--bg);
+            background:
+                radial-gradient(circle at top left, #e5e7eb 0, transparent 52%),
+                radial-gradient(circle at bottom right, #e2e8f0 0, transparent 55%),
+                var(--bg);
             color: var(--text-main);
             line-height: 1.6;
         }
@@ -39,13 +46,15 @@
             flex-direction: column;
         }
 
+        /* Header & nav */
+
         header {
             position: sticky;
             top: 0;
             z-index: 50;
             backdrop-filter: blur(14px);
-            background: linear-gradient(to bottom, rgba(15,23,42,0.97), rgba(15,23,42,0.85), transparent);
-            border-bottom: 1px solid rgba(148,163,184,0.18);
+            background: linear-gradient(to bottom, rgba(249,250,251,0.98), rgba(249,250,251,0.95), transparent);
+            border-bottom: 1px solid rgba(148,163,184,0.25);
         }
 
         .nav {
@@ -65,19 +74,34 @@
         }
 
         .logo-mark {
-            width: 32px;
-            height: 32px;
-            border-radius: 10px;
-            background: radial-gradient(circle at 20% 0, #fed7aa 0, transparent 50%),
-                        radial-gradient(circle at 80% 100%, #f97316 0, transparent 55%),
-                        #111827;
+            width: 34px;
+            height: 34px;
+            border-radius: 999px;
+            padding: 4px;
+            background:
+                radial-gradient(circle at 0% 0%, rgba(255,255,255,0.96) 0, transparent 55%),
+                #e5f6f8;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 0 0 1px rgba(248,250,252,0.06), 0 20px 45px rgba(0,0,0,0.59);
-            font-size: 16px;
-            font-weight: 700;
-            color: #f9fafb;
+            box-shadow:
+                0 0 0 1px rgba(15,23,42,0.06),
+                0 14px 30px rgba(15,23,42,0.20);
+            transition: transform 0.18s var(--ease-out), box-shadow 0.18s var(--ease-out);
+        }
+
+        .logo-mark img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: contain;
+        }
+
+        .logo-mark:hover {
+            transform: translateY(-1px);
+            box-shadow:
+                0 0 0 1px rgba(15,23,42,0.08),
+                0 18px 38px rgba(15,23,42,0.26);
         }
 
         .logo-text-primary {
@@ -85,6 +109,7 @@
             font-size: 16px;
             letter-spacing: 0.04em;
             text-transform: uppercase;
+            color: #0f172a;
         }
 
         .logo-text-secondary {
@@ -104,19 +129,20 @@
             text-decoration: none;
             padding: 6px 10px;
             border-radius: 999px;
-            transition: color 0.15s ease, background-color 0.15s ease;
+            transition: color 0.15s ease, background-color 0.15s ease, transform 0.15s ease;
         }
 
         .nav-links a:hover {
-            color: #f9fafb;
-            background-color: rgba(148,163,184,0.12);
+            color: #111827;
+            background-color: rgba(148,163,184,0.16);
+            transform: translateY(-1px);
         }
 
         .nav-cta {
             padding: 8px 16px;
             border-radius: 999px;
             background: linear-gradient(135deg, #f97316, #fb923c);
-            color: #0f172a;
+            color: #111827;
             font-weight: 600;
             font-size: 14px;
             border: none;
@@ -125,12 +151,19 @@
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            box-shadow: 0 12px 30px rgba(249,115,22,0.45);
+            box-shadow: 0 14px 34px rgba(249,115,22,0.35);
+            transition: transform 0.18s var(--ease-out), box-shadow 0.18s var(--ease-out), filter 0.18s var(--ease-out);
         }
 
         .nav-cta span {
             font-size: 12px;
             opacity: 0.9;
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 20px 45px rgba(249,115,22,0.45);
+            filter: brightness(1.03);
         }
 
         main {
@@ -142,13 +175,15 @@
         }
 
         .section-dark {
-            background: radial-gradient(circle at top right, rgba(55,65,81,0.6) 0, transparent 60%),
-                        rgba(15,23,42,0.98);
+            background:
+                radial-gradient(circle at top right, rgba(249,115,22,0.12) 0, transparent 60%),
+                #f9fafb;
         }
 
         .section-alt {
-            background: radial-gradient(circle at bottom left, rgba(30,64,175,0.35) 0, transparent 60%),
-                        var(--bg-alt);
+            background:
+                radial-gradient(circle at bottom left, rgba(59,130,246,0.10) 0, transparent 60%),
+                #ffffff;
         }
 
         .container {
@@ -157,11 +192,39 @@
         }
 
         /* Hero */
+
         .hero {
             display: grid;
             grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
             gap: 32px;
             align-items: center;
+        }
+
+        .hero-brand-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 12px;
+            border-radius: 999px;
+            background: rgba(255,255,255,0.95);
+            border: 1px solid rgba(148,163,184,0.7);
+            box-shadow: 0 10px 24px rgba(15,23,42,0.12);
+            margin-bottom: 10px;
+        }
+
+        .hero-brand-badge img {
+            width: 22px;
+            height: 22px;
+            display: block;
+            object-fit: contain;
+        }
+
+        .hero-brand-badge span {
+            font-size: 12px;
+            font-weight: 500;
+            color: #4b5563;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
         }
 
         .hero-kicker {
@@ -188,7 +251,7 @@
 
         .hero-text {
             font-size: 16px;
-            color: #e5e7eb;
+            color: #4b5563;
             max-width: 520px;
             margin-bottom: 22px;
         }
@@ -207,24 +270,39 @@
             border: none;
             cursor: pointer;
             background: linear-gradient(135deg, #f97316, #fb923c);
-            color: #0f172a;
+            color: #111827;
             font-weight: 600;
             font-size: 15px;
-            box-shadow: 0 18px 40px rgba(249,115,22,0.45);
+            box-shadow: 0 16px 40px rgba(249,115,22,0.35);
             display: inline-flex;
             align-items: center;
             justify-content: center;
             gap: 6px;
+            transition: transform 0.18s var(--ease-out), box-shadow 0.18s var(--ease-out), filter 0.18s var(--ease-out);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 22px 55px rgba(249,115,22,0.45);
+            filter: brightness(1.02);
         }
 
         .btn-secondary {
             padding: 11px 18px;
             border-radius: 999px;
-            border: 1px solid rgba(148,163,184,0.4);
-            background: rgba(15,23,42,0.8);
-            color: var(--text-main);
+            border: 1px solid rgba(148,163,184,0.8);
+            background: rgba(255,255,255,0.9);
+            color: #111827;
             font-size: 15px;
             cursor: pointer;
+            backdrop-filter: blur(6px);
+            transition: background-color 0.18s var(--ease-out), box-shadow 0.18s var(--ease-out), transform 0.18s var(--ease-out);
+        }
+
+        .btn-secondary:hover {
+            background-color: #ffffff;
+            box-shadow: 0 14px 30px rgba(15,23,42,0.12);
+            transform: translateY(-1px);
         }
 
         .hero-note {
@@ -233,12 +311,34 @@
         }
 
         .hero-card {
-            border-radius: 20px;
+            border-radius: var(--radius-lg);
             padding: 20px 18px;
-            background: radial-gradient(circle at top left, rgba(248,250,252,0.06) 0, transparent 55%),
-                        rgba(15,23,42,0.95);
+            background:
+                radial-gradient(circle at top left, rgba(249,250,251,0.9) 0, transparent 55%),
+                #ffffff;
             border: 1px solid rgba(148,163,184,0.35);
-            box-shadow: 0 20px 45px rgba(0,0,0,0.65);
+            box-shadow: var(--shadow-strong);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-card::before {
+            content: "";
+            position: absolute;
+            inset: -30%;
+            background:
+                radial-gradient(circle at 0% 0%, rgba(249,115,22,0.08) 0, transparent 55%),
+                radial-gradient(circle at 100% 100%, rgba(59,130,246,0.06) 0, transparent 55%);
+            opacity: 0;
+            animation: heroGlow 6s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes heroGlow {
+            0%   { opacity: 0; transform: translate3d(-10px, 10px, 0); }
+            25%  { opacity: 1; transform: translate3d(0, 0, 0); }
+            75%  { opacity: 0.7; transform: translate3d(10px, -10px, 0); }
+            100% { opacity: 0; transform: translate3d(0, 0, 0); }
         }
 
         .hero-card-title {
@@ -259,8 +359,8 @@
             border-radius: 999px;
             font-size: 13px;
             padding: 6px 10px;
-            background: rgba(15,23,42,0.9);
-            border: 1px solid rgba(148,163,184,0.4);
+            background: #f9fafb;
+            border: 1px solid rgba(148,163,184,0.7);
             display: inline-flex;
             align-items: center;
             gap: 6px;
@@ -274,7 +374,7 @@
         }
 
         .hero-chip.bad span {
-            background: #f97373;
+            background: #ef4444;
         }
 
         .hero-card-caption {
@@ -314,11 +414,11 @@
         }
 
         .card {
-            border-radius: 18px;
-            padding: 18px 18px 16px;
-            background: rgba(15,23,42,0.96);
+            border-radius: var(--radius-md);
+            padding: 20px 20px 18px;
+            background: #ffffff;
             border: 1px solid var(--border-subtle);
-            box-shadow: 0 18px 35px rgba(0,0,0,0.6);
+            box-shadow: var(--shadow-soft);
         }
 
         .card h3 {
@@ -329,14 +429,14 @@
         .card p {
             margin: 0 0 10px;
             font-size: 16px;
-            color: #e5e7eb;
+            color: #374151;
         }
 
         .card ul {
             margin: 0;
             padding-left: 18px;
-            font-size: 16px;
-            color: var(--text-main);
+            font-size: 15px;
+            color: #4b5563;
         }
 
         .card ul li + li {
@@ -354,8 +454,8 @@
             font-size: 14px;
             padding: 6px 10px;
             border-radius: 999px;
-            background: rgba(15,23,42,0.9);
-            border: 1px solid rgba(148,163,184,0.4);
+            background: #f9fafb;
+            border: 1px solid rgba(148,163,184,0.7);
             color: var(--text-muted);
         }
 
@@ -366,16 +466,17 @@
         }
 
         .highlight {
-            background: linear-gradient(to right, rgba(249,115,22,0.08), transparent);
+            background: linear-gradient(to right, var(--accent-soft), transparent);
             border-left: 2px solid var(--accent);
             padding: 10px 12px;
             border-radius: 12px;
-            font-size: 15px;
-            color: var(--text-muted);
+            font-size: 14px;
+            color: #4b5563;
             margin-top: 8px;
         }
 
         /* Experts */
+
         .experts-grid {
             display: grid;
             grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.9fr);
@@ -395,7 +496,7 @@
 
         .metrics-list {
             font-size: 15px;
-            color: var(--text-main);
+            color: #374151;
             margin: 8px 0 0;
             padding-left: 16px;
         }
@@ -405,13 +506,15 @@
         }
 
         /* Form / registration */
+
         .form-wrapper {
-            border-radius: 20px;
-            padding: 22px 20px 20px;
-            background: radial-gradient(circle at top left, rgba(248,250,252,0.04) 0, transparent 55%),
-                        rgba(15,23,42,0.96);
+            border-radius: var(--radius-lg);
+            padding: 24px 22px 22px;
+            background:
+                radial-gradient(circle at top left, rgba(248,250,252,0.7) 0, transparent 55%),
+                #ffffff;
             border: 1px solid rgba(148,163,184,0.5);
-            box-shadow: 0 22px 50px rgba(0,0,0,0.7);
+            box-shadow: var(--shadow-strong);
         }
 
         .form-grid {
@@ -438,22 +541,26 @@
             gap: 4px;
         }
 
-        .input, .select, textarea {
+        .input,
+        .select,
+        textarea {
             width: 100%;
             padding: 9px 11px;
             border-radius: 12px;
-            border: 1px solid rgba(148,163,184,0.55);
-            background: rgba(15,23,42,0.96);
+            border: 1px solid rgba(148,163,184,0.75);
+            background: rgba(255,255,255,0.9);
             color: var(--text-main);
-            font-size: 16px;
+            font-size: 15px;
             outline: none;
             transition: border-color 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
         }
 
-        .input:focus, .select:focus, textarea:focus {
+        .input:focus,
+        .select:focus,
+        textarea:focus {
             border-color: var(--accent);
-            box-shadow: 0 0 0 1px rgba(249,115,22,0.4);
-            background-color: #020617;
+            box-shadow: 0 0 0 1px rgba(249,115,22,0.35);
+            background-color: #ffffff;
         }
 
         textarea {
@@ -482,9 +589,9 @@
         }
 
         footer {
-            border-top: 1px solid rgba(148,163,184,0.25);
+            border-top: 1px solid rgba(148,163,184,0.35);
             padding: 16px 20px 22px;
-            background: #020617;
+            background: #f9fafb;
         }
 
         .footer-inner {
@@ -509,11 +616,87 @@
         }
 
         .footer-inner a:hover {
-            color: #e5e7eb;
+            color: #111827;
             text-decoration: underline;
         }
 
+        /* Telegram card */
+
+        .telegram-card {
+            display: flex;
+            gap: 14px;
+            padding: 14px 16px;
+            border-radius: var(--radius-lg);
+            background:
+                radial-gradient(circle at top left, rgba(56,189,248,0.16) 0, transparent 55%),
+                #f9fafb;
+            border: 1px solid rgba(56,189,248,0.45);
+            box-shadow: 0 18px 40px rgba(15,23,42,0.08);
+        }
+
+        .telegram-icon {
+            flex: 0 0 40px;
+            width: 40px;
+            height: 40px;
+            border-radius: 999px;
+            background: linear-gradient(135deg, var(--tg-main), var(--tg-main-dark));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #f9fafb;
+            box-shadow: 0 14px 30px rgba(14,165,233,0.55);
+        }
+
+        .telegram-icon svg {
+            width: 22px;
+            height: 22px;
+            display: block;
+        }
+
+        .telegram-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #0f172a;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 4px;
+        }
+
+        .telegram-content p {
+            margin: 0 0 8px;
+            font-size: 14px;
+            color: #4b5563;
+        }
+
+        .telegram-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8px 14px;
+            border-radius: 999px;
+            background: var(--tg-main);
+            color: #f9fafb;
+            font-weight: 600;
+            font-size: 14px;
+            text-decoration: none;
+            box-shadow: 0 14px 30px rgba(14,165,233,0.45);
+            transition: transform 0.18s var(--ease-out), box-shadow 0.18s var(--ease-out), filter 0.18s var(--ease-out);
+        }
+
+        .telegram-button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 20px 45px rgba(14,165,233,0.6);
+            filter: brightness(1.06);
+        }
+
+        .telegram-note {
+            margin-top: 10px;
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
         /* Modal base */
+
         .modal-backdrop {
             position: fixed;
             inset: 0;
@@ -530,8 +713,8 @@
         .modal-overlay {
             position: absolute;
             inset: 0;
-            background: rgba(15,23,42,0.75);
-            backdrop-filter: blur(6px);
+            background: rgba(15,23,42,0.25);
+            backdrop-filter: blur(8px);
         }
 
         .modal-window {
@@ -540,11 +723,12 @@
             width: 100%;
             margin: 16px;
             padding: 24px 22px 22px;
-            border-radius: 20px;
-            background: radial-gradient(circle at top left, rgba(248,250,252,0.06) 0, transparent 55%),
-                        rgba(15,23,42,0.98);
-            border: 1px solid rgba(148,163,184,0.5);
-            box-shadow: 0 24px 60px rgba(0,0,0,0.85);
+            border-radius: var(--radius-lg);
+            background:
+                radial-gradient(circle at top left, rgba(249,250,251,0.9) 0, transparent 55%),
+                #ffffff;
+            border: 1px solid rgba(148,163,184,0.7);
+            box-shadow: var(--shadow-strong);
             z-index: 101;
             max-height: 90vh;
             overflow-y: auto;
@@ -569,11 +753,14 @@
             height: 28px;
             border-radius: 999px;
             border: 1px solid rgba(148,163,184,0.5);
-            background: rgba(15,23,42,0.9);
-            color: #e5e7eb;
+            background: rgba(255,255,255,0.9);
+            color: #4b5563;
             font-size: 18px;
             line-height: 1;
             cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .btn-full {
@@ -607,7 +794,7 @@
         .test-question label {
             display: block;
             font-size: 13px;
-            color: #e5e7eb;
+            color: #374151;
             margin-bottom: 4px;
         }
 
@@ -621,8 +808,21 @@
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.08em;
-            color: #fed7aa;
+            color: #9a3412;
             text-align: center;
+        }
+
+        /* Scroll animation */
+
+        [data-animate] {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
+        }
+
+        [data-animate].in-view {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         @media (max-width: 900px) {
@@ -640,7 +840,7 @@
 
             header {
                 position: static;
-                background: rgba(15,23,42,0.96);
+                background: rgba(249,250,251,0.98);
             }
 
             .nav {
@@ -656,7 +856,7 @@
             }
 
             .form-wrapper {
-                padding: 18px 16px 18px;
+                padding: 20px 16px 20px;
             }
         }
 
@@ -672,6 +872,10 @@
                 justify-content: center;
                 text-align: center;
             }
+
+            .telegram-card {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
@@ -680,7 +884,9 @@
     <header>
         <div class="nav">
             <div class="logo">
-                <div class="logo-mark">Т</div>
+                <div class="logo-mark">
+                    <img src="logo.png" alt="Теремок — мотивационная модель команды">
+                </div>
                 <div>
                     <div class="logo-text-primary">Теремок</div>
                     <div class="logo-text-secondary">мотивационная модель команды</div>
@@ -704,8 +910,12 @@
         <!-- Hero -->
         <section class="section section-dark" id="top">
             <div class="container">
-                <div class="hero">
+                <div class="hero" data-animate>
                     <div>
+                        <div class="hero-brand-badge">
+                            <img src="logo.png" alt="Теремок">
+                            <span>Авторская модель «Теремок»</span>
+                        </div>
                         <div class="hero-kicker">Программа для собственников, руководителей и HR</div>
                         <h1>«Теремок»: на кого в&nbsp;команде делать ставки</h1>
                         <p class="hero-subtitle">
@@ -730,7 +940,7 @@
                             поможем подобрать удобный формат участия.
                         </div>
                     </div>
-                    <aside class="hero-card" aria-hidden="true">
+                    <aside class="hero-card" aria-hidden="true" data-animate>
                         <div class="hero-card-title">Мотивационный «срез» команды</div>
                         <div class="hero-card-grid">
                             <div class="hero-chip bad">
@@ -761,7 +971,7 @@
 
         <!-- About -->
         <section class="section section-alt" id="about">
-            <div class="container">
+            <div class="container" data-animate>
                 <div class="section-header">
                     <div class="section-kicker">О программе</div>
                     <h2>Что такое мотивационная модель «Теремок»</h2>
@@ -802,7 +1012,7 @@
 
         <!-- Who it's for -->
         <section class="section section-dark" id="who">
-            <div class="container">
+            <div class="container" data-animate>
                 <div class="section-header">
                     <div class="section-kicker">Кому будет полезно</div>
                     <h2>Для кого программа «Теремок»</h2>
@@ -840,7 +1050,7 @@
 
         <!-- Results -->
         <section class="section section-alt" id="results">
-            <div class="container">
+            <div class="container" data-animate>
                 <div class="section-header">
                     <div class="section-kicker">Результат</div>
                     <h2>Что вы получите после «Теремка»</h2>
@@ -890,7 +1100,7 @@
 
         <!-- Experts -->
         <section class="section section-dark" id="experts">
-            <div class="container">
+            <div class="container" data-animate>
                 <div class="section-header">
                     <div class="section-kicker">Кому можно доверять</div>
                     <h2>Кто стоит за «Теремком»</h2>
@@ -940,7 +1150,7 @@
 
         <!-- Registration / CTA -->
         <section class="section section-alt" id="registration">
-            <div class="container">
+            <div class="container" data-animate>
                 <div class="section-header">
                     <div class="section-kicker">Заявка на участие</div>
                     <h2>Оставьте контакты — вышлем программу и обсудим участие</h2>
@@ -967,16 +1177,26 @@
                             </ul>
                         </div>
                         <div class="form-secondary">
-                            <p>
-                                Если вам удобнее написать сами, вы можете просто отправить нам короткое сообщение
-                                в Telegram с пометкой «Теремок» —
-                                <a href="https://t.me/stalkermedia1" target="_blank" rel="noopener noreferrer">
-                                    наш аккаунт @stalkermedia1
-                                </a>.
-                            </p>
-                            <p style="margin-top:10px;">
-                                Но если вы заполните форму, мы заранее подготовимся к разговору: посмотрим на ваш запрос,
-                                масштаб команды и сможем предложить точный формат участия и ориентиры по стоимости.
+                            <div class="telegram-card">
+                                <div class="telegram-icon" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M21.5 4.2c.3-.97-.58-1.84-1.54-1.5L3.3 9.1c-.71.26-.77 1.24-.1 1.6l4.5 2.34 2.1 4.77c.3.68 1.26.71 1.6.05l2.02-3.82 4.24 2.2c.83.43 1.83-.03 2.06-.93l1.78-7.91Z" fill="currentColor"/>
+                                    </svg>
+                                </div>
+                                <div class="telegram-content">
+                                    <div class="telegram-title">Написать в&nbsp;Telegram</div>
+                                    <p>
+                                        Если вам удобнее обсудить запрос в переписке, напишите нам сообщение
+                                        с пометкой «Теремок».
+                                    </p>
+                                    <a class="telegram-button" href="https://t.me/stalkermedia1" target="_blank" rel="noopener noreferrer">
+                                        @stalkermedia1
+                                    </a>
+                                </div>
+                            </div>
+                            <p class="telegram-note">
+                                А если оставите заявку через форму — мы заранее посмотрим ваш запрос, размер команды
+                                и подготовим варианты формата участия и ориентиры по стоимости.
                             </p>
                         </div>
                     </div>
@@ -1012,9 +1232,7 @@
             обсудим формат участия и откроем доступ к мини-тесту по сотруднику.
         </p>
 
-        <form id="leadForm"
-              action="https://script.google.com/macros/s/AKfycbwnQR15r9C6AwTp_eYY3RV6uNKu7FaYt0xSra776uZS70rifwMxLKpfDyW0Ls85f5EQ/exec"
-              method="post" target="_blank">
+        <form id="leadForm">
             <div class="field-group">
                 <label for="name">Имя <span class="required">*</span></label>
                 <input class="input" type="text" id="name" name="name" placeholder="Как к вам обращаться" required>
@@ -1096,7 +1314,7 @@
             По результатам определим, к какому типажу «Теремка» он ближе.
         </p>
 
-        <form id="miniTestForm" onsubmit="event.preventDefault(); submitMiniTest();">
+        <form id="miniTestForm">
             <!-- ВОПРОС 1 -->
             <div class="test-question">
                 <p>1. Как он обычно реагирует на новую задачу?</p>
@@ -1193,8 +1411,8 @@
 <script>
 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwnQR15r9C6AwTp_eYY3RV6uNKu7FaYt0xSra776uZS70rifwMxLKpfDyW0Ls85f5EQ/exec";
 
-let leadData = null;        // сюда сохраняем данные формы регистрации
-let testSubmitted = false;  // флаг, чтобы не отправлять тест несколько раз
+let leadData = null;
+let testSubmitted = false;
 
 // Открыть модал заявки
 function openLeadModal(source) {
@@ -1206,7 +1424,6 @@ function openLeadModal(source) {
 
     const banner = document.getElementById('testAccessBanner');
     if (banner) {
-        // если пришли из кнопки "Пройти мини-тест" — показываем баннер
         banner.style.display = (source === 'test') ? 'block' : 'none';
     }
 }
@@ -1227,7 +1444,6 @@ function openTestModal() {
     modal.classList.add('open');
     document.body.style.overflow = 'hidden';
 
-    // очистка прошлых результатов
     const resultEl = document.getElementById('testResult');
     const nextStepEl = document.getElementById('testNextStep');
     if (resultEl) resultEl.textContent = '';
@@ -1238,7 +1454,7 @@ function openTestModal() {
         testForm.reset();
     }
 
-    testSubmitted = false; // сбрасываем возможность отправки
+    testSubmitted = false;
 }
 
 // Закрыть модал теста
@@ -1262,37 +1478,8 @@ function onLeadFormSubmit(e) {
     openTestModal();
 }
 
-document.addEventListener('DOMContentLoaded', function () {
-    const leadForm = document.getElementById('leadForm');
-    if (leadForm) {
-        // убираем нативную отправку — всё делаем сами
-        leadForm.removeAttribute('action');
-        leadForm.removeAttribute('target');
-        leadForm.removeAttribute('method');
-
-        leadForm.addEventListener('submit', onLeadFormSubmit);
-    }
-
-    const miniTestForm = document.getElementById('miniTestForm');
-    if (miniTestForm) {
-        miniTestForm.addEventListener('submit', function (e) {
-            e.preventDefault();
-            submitMiniTest();
-        });
-    }
-
-    // ESC закрывает модалки
-    document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape') {
-            closeLeadModal();
-            closeTestModal();
-        }
-    });
-});
-
 // Логика мини-теста
 function submitMiniTest() {
-    // защита от повторного нажатия
     if (testSubmitted) {
         return;
     }
@@ -1303,7 +1490,6 @@ function submitMiniTest() {
     for (const q of questions) {
         const checked = document.querySelector('input[name="' + q + '"]:checked');
         if (checked && types.hasOwnProperty(checked.value)) {
-            // считаем только «типажные» варианты, value = none пропускаем
             types[checked.value]++;
         }
     }
@@ -1349,14 +1535,12 @@ function submitMiniTest() {
         nextStepEl.style.display = 'block';
     }
 
-    // визуально фиксируем, что всё отправлено
     const submitBtn = document.querySelector('#miniTestForm button[type="submit"]');
     if (submitBtn) {
         submitBtn.disabled = true;
         submitBtn.textContent = 'Результат сохранён';
     }
 
-    // отправляем данные формы + теста в Google Sheet
     sendToGoogleSheet(mainType, types, resultText);
     testSubmitted = true;
 }
@@ -1365,7 +1549,6 @@ function submitMiniTest() {
 function sendToGoogleSheet(mainType, types, resultText) {
     const fd = new FormData();
 
-    // данные формы регистрации
     if (leadData) {
         fd.append('name',       leadData.name       || '');
         fd.append('role',       leadData.role       || '');
@@ -1376,7 +1559,6 @@ function sendToGoogleSheet(mainType, types, resultText) {
         fd.append('email',      leadData.email      || '');
         fd.append('request',    leadData.request    || '');
     } else {
-        // на всякий случай, если каким-то образом тест прошли без формы
         fd.append('name',      '');
         fd.append('role',      '');
         fd.append('company',   '');
@@ -1387,7 +1569,6 @@ function sendToGoogleSheet(mainType, types, resultText) {
         fd.append('request',   '');
     }
 
-    // данные теста
     fd.append('test_main_type', mainType    || '');
     fd.append('test_main_text', resultText  || '');
     fd.append('test_ptica',     types.ptica || 0);
@@ -1403,6 +1584,44 @@ function sendToGoogleSheet(mainType, types, resultText) {
         console.error('Ошибка отправки в Google Script', err);
     });
 }
+
+document.addEventListener('DOMContentLoaded', function () {
+    const leadForm = document.getElementById('leadForm');
+    if (leadForm) {
+        leadForm.addEventListener('submit', onLeadFormSubmit);
+    }
+
+    const miniTestForm = document.getElementById('miniTestForm');
+    if (miniTestForm) {
+        miniTestForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+            submitMiniTest();
+        });
+    }
+
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') {
+            closeLeadModal();
+            closeTestModal();
+        }
+    });
+
+    const animated = document.querySelectorAll('[data-animate]');
+    if ('IntersectionObserver' in window && animated.length > 0) {
+        const observer = new IntersectionObserver((entries, obs) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('in-view');
+                    obs.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.2 });
+
+        animated.forEach(el => observer.observe(el));
+    } else {
+        animated.forEach(el => el.classList.add('in-view'));
+    }
+});
 </script>
 
 </body>
