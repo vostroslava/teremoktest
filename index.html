@@ -465,7 +465,46 @@
             margin-top: 8px;
         }
 
-        /* Experts */
+        
+        /* Testimonials toggle */
+        .testimonials-body {
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(-8px);
+            transition: max-height 0.45s var(--ease-out), opacity 0.35s var(--ease-out), transform 0.35s var(--ease-out);
+        }
+
+        .testimonials-open .testimonials-body {
+            max-height: 2000px;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .testimonials-toggle {
+            margin-bottom: 18px;
+            padding-inline: 18px;
+            font-size: 14px;
+        }
+
+        .testimonials-toggle::after {
+            content: "▼";
+            display: inline-block;
+            margin-left: 8px;
+            font-size: 10px;
+            transition: transform 0.25s var(--ease-out), opacity 0.25s var(--ease-out);
+            opacity: 0.85;
+        }
+
+        .testimonials-open .testimonials-toggle::after {
+            transform: rotate(-180deg);
+        }
+
+        .testimonials-collapsed .testimonials-toggle::after {
+            transform: rotate(0deg);
+        }
+
+/* Experts */
 
         .experts-grid {
             display: grid;
@@ -930,6 +969,7 @@
                 <a href="#about">О программе</a>
                 <a href="#who">Для кого</a>
                 <a href="#results">Что получите</a>
+                <a href="#testimonials" onclick="openTestimonials(event)">Отзывы</a>
                 <a href="#experts">Авторы</a>
                 <a href="#registration">Формат</a>
                 <a href="javascript:void(0)" class="nav-cta" onclick="openLeadModal('lead')">
@@ -1134,7 +1174,7 @@
 
 
         <!-- Testimonials -->
-        <section class="section section-dark" id="testimonials">
+        <section class="section section-dark testimonials-collapsed" id="testimonials">
             <div class="container" data-animate>
                 <div class="section-header">
                     <div class="section-kicker">Опыт участников</div>
@@ -1144,6 +1184,10 @@
                         на отделы продаж, управленческие решения и найм.
                     </p>
                 </div>
+                <button type="button" class="btn-secondary testimonials-toggle" onclick="toggleTestimonials()">
+                    Показать отзывы
+                </button>
+                <div class="testimonials-body">
                 <div class="grid-3">
                     <div class="card">
                         <h3>Отдел продаж: «перестали тянуть за собой минусовых»</h3>
@@ -1194,6 +1238,7 @@
                         </p>
                     </div>
                 </div>
+            </div>
             </div>
         </section>
 
@@ -1521,6 +1566,40 @@ const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwnQR15r9C6AwTp_eYY3
 
 let leadData = null;
 let testSubmitted = false;
+// Testimonials toggle
+function toggleTestimonials() {
+    const section = document.getElementById('testimonials');
+    if (!section) return;
+
+    const isOpen = section.classList.contains('testimonials-open');
+    const buttons = section.querySelectorAll('.testimonials-toggle');
+
+    if (isOpen) {
+        section.classList.remove('testimonials-open');
+        section.classList.add('testimonials-collapsed');
+        buttons.forEach(btn => btn.textContent = 'Показать отзывы');
+    } else {
+        section.classList.add('testimonials-open');
+        section.classList.remove('testimonials-collapsed');
+        buttons.forEach(btn => btn.textContent = 'Скрыть отзывы');
+        section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+}
+
+function openTestimonials(event) {
+    if (event && event.preventDefault) {
+        event.preventDefault();
+    }
+    const section = document.getElementById('testimonials');
+    if (!section) return;
+
+    if (!section.classList.contains('testimonials-open')) {
+        toggleTestimonials();
+    } else {
+        section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+}
+
 
 // Открыть модал заявки
 function openLeadModal(source) {
