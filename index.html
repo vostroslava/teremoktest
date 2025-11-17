@@ -1255,8 +1255,8 @@
                 <div class="section-header">
                     <div class="section-kicker">Опыт клиентов</div>
                     <h2>Отзывы руководителей и HR после «Теремка»</h2>
-                    <p class="section-lead">
-                        Реальные кейсы о том, как «Теремок» помогает по‑другому смотреть на сотрудников,
+                    <p class="section-leад">
+                        Реальные кейсы о том, как «Теремок» помогает по-другому смотреть на сотрудников,
                         переставать тянуть «минусовых» и принимать решения не по ощущениям, а по понятной системе типажей.
                     </p>
                 </div>
@@ -1268,7 +1268,7 @@
                                 <div class="testimonial-tag">Отдел продаж</div>
                                 <div class="testimonial-title">«Перестали тянуть за собой минусовых»</div>
                                 <div class="testimonial-meta">
-                                    Руководитель отдела продаж, b2b‑компания в сфере поставок оборудования (команда 18 человек)
+                                    Руководитель отдела продаж, b2b-компания в сфере поставок оборудования (команда 18 человек)
                                 </div>
                             </div>
                             <span class="testimonial-toggle-icon" aria-hidden="true">+</span>
@@ -1319,10 +1319,10 @@
                     <div class="testimonial-item">
                         <button class="testimonial-header" type="button">
                             <div>
-                                <div class="testimonial-tag">HR‑директор</div>
+                                <div class="testimonial-tag">HR-директор</div>
                                 <div class="testimonial-title">«Наконец-то перестали брать “красавчиков”, которые потом не тянут»</div>
                                 <div class="testimonial-meta">
-                                    HR‑директор производственной компании, 220 сотрудников
+                                    HR-директор производственной компании, 220 сотрудников
                                 </div>
                             </div>
                             <span class="testimonial-toggle-icon" aria-hidden="true">+</span>
@@ -1672,12 +1672,30 @@
 
             <p id="testResult" class="modal-result"></p>
             <p id="testNextStep" class="modal-note" style="display:none;">
-                Сейчас вы видите только одного человека. На программе «Теремок» мы собираем карту всей команды,
+                Сейчас вы видите картину по одному человеку. На программе «Теремок» мы собираем карту всей команды,
                 разбираем риски и точки роста и даём управленческие решения по людям.
             </p>
-            <button type="button" class="btn-secondary btn-full test-cta-button" style="display:none;" id="testCtaButton" onclick="openLeadFromTest()">
-                Обсудить участие в «Теремке»
-            </button>
+
+            <div id="testTelegramBlock" class="telegram-card" style="display:none; margin-top:12px;">
+                <div class="telegram-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M21.5 4.2c.3-.97-.58-1.84-1.54-1.5L3.3 9.1c-.71.26-.77 1.24-.1 1.6l4.5 2.34 2.1 4.77c.3.68 1.26.71 1.6.05l2.02-3.82 4.24 2.2c.83.43 1.83-.03 2.06-.93l1.78-7.91Z" fill="currentColor"/>
+                    </svg>
+                </div>
+                <div class="telegram-content">
+                    <div class="telegram-title">Видео про модель «Теремок»</div>
+                    <p>
+                        Если хотите получить короткое видео с пояснением модели «Теремок» и примерами типажей,
+                        напишите нам в Telegram фразу «Хочу Теремок видео».
+                    </p>
+                    <a class="telegram-button" href="https://t.me/stalkermedia1" target="_blank" rel="noopener noreferrer">
+                        @stalkermedia1
+                    </a>
+                </div>
+            </div>
+            <p id="testTelegramNote" class="telegram-note" style="display:none;">
+                Вы можете пройти мини-тест ещё раз по другим сотрудникам, чтобы собрать предварительный «срез» по команде.
+            </p>
         </form>
     </div>
 </div>
@@ -1720,12 +1738,23 @@ function openTestModal() {
 
     const resultEl = document.getElementById('testResult');
     const nextStepEl = document.getElementById('testNextStep');
+    const tgBlock = document.getElementById('testTelegramBlock');
+    const tgNote = document.getElementById('testTelegramNote');
+
     if (resultEl) resultEl.textContent = '';
     if (nextStepEl) nextStepEl.style.display = 'none';
+    if (tgBlock) tgBlock.style.display = 'none';
+    if (tgNote) tgNote.style.display = 'none';
 
     const testForm = document.getElementById('miniTestForm');
     if (testForm) {
         testForm.reset();
+    }
+
+    const submitBtn = document.querySelector('#miniTestForm button[type="submit"]');
+    if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Получить результат';
     }
 
     testSubmitted = false;
@@ -1739,13 +1768,7 @@ function closeTestModal() {
     document.body.style.overflow = '';
 }
 
-
-        function openLeadFromTest() {
-            closeTestModal();
-            openLeadModal('lead');
-        }
-
-        // Обработка отправки формы заявки
+// Обработка отправки формы заявки
 function onLeadFormSubmit(e) {
     e.preventDefault();
 
@@ -1759,7 +1782,6 @@ function onLeadFormSubmit(e) {
 }
 
 // Логика мини-теста
-
 function submitMiniTest() {
     if (testSubmitted) {
         return;
@@ -1792,24 +1814,19 @@ function submitMiniTest() {
     };
 
     const typeDescriptions = {
-        ptica: 'Он работает в основном под принуждением и быстро «проседает» без внешнего контроля. Результат по нему держится на постоянных напоминаниях и жёстких дедлайнах. Чтобы понять, как такие сотрудники влияют на отдел и бизнес в целом, имеет смысл разложить всю команду по модели «Теремок», а не только одного человека.',
-        homiak: 'Для него в фокусе прежде всего деньги и личная выгода. Пока система бонусов выгодна, он работает, но при изменении условий легко «обнуляется». Полную картину даёт разбор всей команды на программе «Теремок»: кто у вас действительно за результат, а кто только за деньги.',
-        lisa: 'Для него важнее статус, влияние и личная позиция, чем стабильный результат. Ему важно хорошо выглядеть в глазах руководства и иметь «правильные» связи. На «Теремке» мы смотрим, какую роль такие люди играют в вашей системе управления и на кого в итоге лучше делать ставки.',
-        profi: 'Он делает по совести, опирается на задачу, качество и результат компании. Часто именно на таких людях держатся ключевые процессы. Чтобы не перегрузить Профи и правильно выстроить вокруг них команду, полезно посмотреть на всю карту «Теремка» по вашей компании, а не только на одного сотрудника.'
+        ptica: 'Он работает в основном под принуждением и быстро «проседает», если ослабить контроль. Инициативу почти не проявляет, задачи тянет до последнего, в конфликтных ситуациях уходит от ответственности. При большом количестве таких людей отдел перегружается напоминаниями и «подталкиваниями» вместо результата. На программе «Теремок» мы показываем, как выстроить систему, где Птицы не забирают ресурс у Профи и лидеров, и принимаем решения по таким сотрудникам в контексте всей команды.',
+        homiak: 'Для него в фокусе прежде всего деньги и личная выгода. Пока система бонусов выгодна, он работает, но при малейшем изменении условий может резко «остыть» или начать искать, где платят больше. В клиентах и задачах чаще видит источник дохода, а не ответственность за результат. На «Теремке» мы разбираем, в каких ролях Хомяки допустимы, где они опасны и как не строить систему так, чтобы бизнес стал заложником их аппетитов.',
+        lisa: 'Для него важнее статус, влияние и личная позиция, чем стабильный рабочий результат. Он тонко чувствует, «кто решает», стремится быть ближе к руководству, хорошо выглядит на совещаниях и в переписке, но реальный вклад в общую работу может быть нестабилен. В управленческой команде избыток таких людей создаёт интриги и ощущение хаоса. На программе «Теремок» мы разбираем, как встроить Лис в систему так, чтобы использовать их сильные стороны, не отдавая им ключевой контроль за результатом.',
+        profi: 'Он делает по совести, опирается на задачу, качество и результат компании. Берёт ответственность, стабильно держит уровень, сам следит за сроками и деталями, не перекладывает ошибки на других. Часто именно на таких людях тихо держатся ключевые процессы и клиентские отношения, из-за чего они рискуют выгореть. На «Теремке» мы помогаем увидеть ядро из Профи и лидеров в вашей команде, разгрузить их от лишнего и выстроить вокруг них правильную конфигурацию команды.'
     };
 
     const typeName = typeNames[mainType] || 'этот типаж';
     const description = typeDescriptions[mainType] || '';
     const resultText = 'По вашим ответам этот сотрудник ближе всего к типажу «' + typeName + '». ' + description;
 
-    const resultEl = document.getElementById('miniTestResult');
+    const resultEl = document.getElementById('testResult');
     if (resultEl) {
         resultEl.innerHTML = resultText;
-    }
-
-    const labelEl = document.querySelector('.mini-test-result-label');
-    if (labelEl) {
-        labelEl.style.display = 'block';
     }
 
     const nextStepEl = document.getElementById('testNextStep');
@@ -1817,23 +1834,27 @@ function submitMiniTest() {
         nextStepEl.style.display = 'block';
     }
 
-    const ctaBtn = document.getElementById('testCtaButton');
-    if (ctaBtn) {
-        ctaBtn.style.display = 'block';
+    const tgBlock = document.getElementById('testTelegramBlock');
+    if (tgBlock) {
+        tgBlock.style.display = 'flex';
+    }
+
+    const tgNote = document.getElementById('testTelegramNote');
+    if (tgNote) {
+        tgNote.style.display = 'block';
     }
 
     const submitBtn = document.querySelector('#miniTestForm button[type="submit"]');
     if (submitBtn) {
         submitBtn.disabled = true;
-        submitBtn.textContent = 'Результат сохранён';
+        submitBtn.textContent = 'Результат получен';
     }
 
     sendToGoogleSheet(mainType, types, resultText);
     testSubmitted = true;
 }
 
-
-    // Отправка данных в Google Script
+// Отправка данных в Google Script
 function sendToGoogleSheet(mainType, types, resultText) {
     const fd = new FormData();
 
