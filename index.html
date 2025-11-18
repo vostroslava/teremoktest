@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Теремок — мотивационная модель для команды</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Авторская программа «Теремок» для собственников, руководителей и HR: как понять, на кого в команде делать ставки и перестать кормить минусовых сотрудников.">
+    <meta name="description" content="Живой офлайн-практикум «Теремок» для собственников, руководителей и HR: как увидеть Птиц, Хомяков, Лис и Профи в команде и перестать тянуть минусовых сотрудников.">
     <style>
         :root {
             --bg: #f3f4f6;
@@ -125,60 +125,32 @@
             transform: translateY(-1px);
         }
 
-        /* Верхняя CTA в шапке — премиум-стиль */
         .nav-cta {
-            padding: 8px 18px;
+            padding: 8px 16px;
             border-radius: 999px;
-            border: 1px solid rgba(15, 23, 42, 0.9);
-            background:
-                radial-gradient(circle at 0% 0%, rgba(249, 115, 22, 0.18) 0, transparent 55%),
-                linear-gradient(135deg, #111827, #020617);
-            color: #f9fafb;
+            background: linear-gradient(135deg, #f97316, #fb923c);
+            color: #111827;
             font-weight: 600;
             font-size: 14px;
+            border: none;
             cursor: pointer;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            position: relative;
-            box-shadow: 0 16px 36px rgba(15, 23, 42, 0.55);
-            transition:
-                transform 0.16s var(--ease-out),
-                box-shadow 0.16s var(--ease-out),
-                background 0.18s var(--ease-out),
-                border-color 0.18s ease,
-                filter 0.18s ease;
-        }
-
-        .nav-cta::before {
-            content: "";
-            position: absolute;
-            inset: 1px 1px 10px;
-            border-radius: inherit;
-            background: linear-gradient(to top, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.03));
-            pointer-events: none;
+            box-shadow: 0 14px 34px rgba(249,115,22,0.35);
+            transition: transform 0.18s var(--ease-out), box-shadow 0.18s var(--ease-out), filter 0.18s var(--ease-out);
         }
 
         .nav-cta span {
-            font-size: 11px;
-            opacity: 0.75;
+            font-size: 12px;
+            opacity: 0.9;
         }
 
         .nav-cta:hover {
             transform: translateY(-1px);
-            box-shadow: 0 22px 50px rgba(15, 23, 42, 0.65);
-            background:
-                radial-gradient(circle at 0% 0%, rgba(249, 115, 22, 0.24) 0, transparent 55%),
-                linear-gradient(135deg, #020617, #020617);
-            border-color: rgba(15, 23, 42, 1);
+            box-shadow: 0 20px 45px rgba(249,115,22,0.45);
             filter: brightness(1.03);
-        }
-
-        .nav-cta:active {
-            transform: translateY(0);
-            box-shadow: 0 10px 28px rgba(15, 23, 42, 0.6);
-            filter: brightness(0.99);
         }
 
         main {
@@ -268,14 +240,7 @@
             font-size: 16px;
             color: #4b5563;
             max-width: 520px;
-            margin-bottom: 12px;
-        }
-
-        .hero-persona {
-            font-size: 15px;
-            color: #111827;
-            max-width: 540px;
-            margin-bottom: 20px;
+            margin-bottom: 22px;
         }
 
         .hero-actions {
@@ -286,91 +251,45 @@
             margin-bottom: 18px;
         }
 
-        /* Основная кнопка — премиум */
         .btn-primary {
-            position: relative;
             padding: 12px 22px;
             border-radius: 999px;
-            border: 1px solid rgba(15, 23, 42, 0.9);
-            background:
-                radial-gradient(circle at 0% 0%, rgba(249, 115, 22, 0.22) 0, transparent 55%),
-                linear-gradient(135deg, #111827, #020617);
-            color: #f9fafb;
+            border: none;
+            cursor: pointer;
+            background: linear-gradient(135deg, #f97316, #fb923c);
+            color: #111827;
             font-weight: 600;
             font-size: 15px;
-            cursor: pointer;
+            box-shadow: 0 16px 40px rgba(249,115,22,0.35);
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
-            box-shadow: 0 20px 46px rgba(15, 23, 42, 0.6);
-            transform: translateY(0);
-            transition:
-                transform 0.18s var(--ease-out),
-                box-shadow 0.18s var(--ease-out),
-                background 0.18s var(--ease-out),
-                border-color 0.18s ease,
-                filter 0.18s ease;
-        }
-
-        .btn-primary::before {
-            content: "";
-            position: absolute;
-            inset: 1px 1px 10px;
-            border-radius: inherit;
-            background: linear-gradient(to top, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.02));
-            pointer-events: none;
+            gap: 6px;
+            transition: transform 0.18s var(--ease-out), box-shadow 0.18s var(--ease-out), filter 0.18s var(--ease-out);
         }
 
         .btn-primary:hover {
             transform: translateY(-1px);
-            box-shadow: 0 26px 56px rgba(15, 23, 42, 0.7);
-            background:
-                radial-gradient(circle at 0% 0%, rgba(249, 115, 22, 0.26) 0, transparent 55%),
-                linear-gradient(135deg, #020617, #020617);
-            border-color: rgba(15, 23, 42, 1);
-            filter: brightness(1.03);
+            box-shadow: 0 22px 55px rgba(249,115,22,0.45);
+            filter: brightness(1.02);
         }
 
-        .btn-primary:active {
-            transform: translateY(0);
-            box-shadow: 0 12px 32px rgba(15, 23, 42, 0.65);
-            filter: brightness(0.99);
-        }
-
-        /* Вторичная кнопка */
         .btn-secondary {
-            position: relative;
             padding: 11px 18px;
             border-radius: 999px;
-            border: 1px solid rgba(148, 163, 184, 0.95);
-            background: rgba(249, 250, 251, 0.96);
+            border: 1px solid rgba(148,163,184,0.8);
+            background: rgba(255,255,255,0.9);
             color: #111827;
             font-size: 15px;
             cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            box-shadow: 0 14px 32px rgba(15, 23, 42, 0.12);
-            transition:
-                transform 0.16s var(--ease-out),
-                box-shadow 0.16s var(--ease-out),
-                background 0.18s var(--ease-out),
-                border-color 0.18s ease,
-                color 0.18s ease;
+            backdrop-filter: blur(6px);
+            transition: background-color 0.18s var(--ease-out), box-shadow 0.18s var(--ease-out), transform 0.18s var(--ease-out);
         }
 
         .btn-secondary:hover {
+            background-color: #ffffff;
+            box-shadow: 0 14px 30px rgba(15,23,42,0.12);
             transform: translateY(-1px);
-            background: #ffffff;
-            border-color: rgba(148, 163, 184, 1);
-            box-shadow: 0 20px 40px rgba(15, 23, 42, 0.16);
-        }
-
-        .btn-secondary:active {
-            transform: translateY(0);
-            box-shadow: 0 10px 26px rgba(15, 23, 42, 0.16);
         }
 
         .hero-note {
@@ -417,36 +336,79 @@
             margin-bottom: 10px;
         }
 
+        /* Новый блок типажей в hero-карточке */
+
+        .hero-types {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .hero-type {
+            display: flex;
+            gap: 10px;
+            padding: 10px 12px;
+            border-radius: 14px;
+            background: rgba(249,250,251,0.96);
+            border: 1px solid rgba(148,163,184,0.7);
+            box-shadow: 0 10px 24px rgba(15,23,42,0.06);
+        }
+
+        .hero-type-badge {
+            flex: 0 0 auto;
+            padding: 6px 10px;
+            border-radius: 999px;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, rgba(249,115,22,0.14), rgba(251,146,60,0.24));
+            color: #9a3412;
+        }
+
+        .hero-type-text {
+            font-size: 13px;
+            color: #374151;
+        }
+
+        .hero-type-bad .hero-type-badge {
+            background: linear-gradient(135deg, rgba(248,113,113,0.16), rgba(239,68,68,0.28));
+            color: #991b1b;
+        }
+
+        .hero-type-good .hero-type-badge {
+            background: linear-gradient(135deg, rgba(22,163,74,0.16), rgba(34,197,94,0.3));
+            color: #166534;
+        }
+
+        /* Старые стили сетки и chip оставляем на всякий случай (не используются) */
+
         .hero-card-grid {
             display: grid;
             grid-template-columns: repeat(2, minmax(0, 1fr));
             gap: 10px;
         }
 
-        /* Чипы-типажи — спокойный премиальный стиль */
         .hero-chip {
             border-radius: 999px;
             font-size: 13px;
-            padding: 7px 12px;
-            background: rgba(15, 23, 42, 0.03);
-            border: 1px solid rgba(148, 163, 184, 0.9);
+            padding: 6px 10px;
+            background: #f9fafb;
+            border: 1px solid rgba(148,163,184,0.7);
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            cursor: pointer;
-            position: relative;
-            box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
-            transition:
-                transform 0.16s var(--ease-out),
-                box-shadow 0.16s var(--ease-out),
-                border-color 0.16s ease,
-                background 0.18s ease,
-                color 0.16s ease;
         }
 
         .hero-chip span {
-            width: 9px;
-            height: 9px;
+            width: 8px;
+            height: 8px;
             border-radius: 999px;
             background: #22c55e;
         }
@@ -455,20 +417,10 @@
             background: #ef4444;
         }
 
-        .hero-chip:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 14px 28px rgba(15, 23, 42, 0.12);
-            background: rgba(15, 23, 42, 0.05);
-            border-color: rgba(148, 163, 184, 1);
-        }
-
-        .hero-chip.active {
-            border-color: var(--accent);
-            background:
-                radial-gradient(circle at 0% 0%, rgba(249, 115, 22, 0.16) 0, transparent 55%),
-                #ffffff;
-            box-shadow: 0 18px 40px rgba(249, 115, 22, 0.35);
-            color: #111827;
+        .hero-card-caption {
+            margin-top: 12px;
+            font-size: 13px;
+            color: var(--text-muted);
         }
 
         .section-header {
@@ -757,48 +709,25 @@
             color: #4b5563;
         }
 
-        /* Телеграм-кнопка — премиум */
         .telegram-button {
-            position: relative;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            padding: 8px 16px;
+            padding: 8px 14px;
             border-radius: 999px;
-            background: linear-gradient(135deg, var(--tg-main), var(--tg-main-dark));
+            background: var(--tg-main);
             color: #f9fafb;
             font-weight: 600;
             font-size: 14px;
             text-decoration: none;
-            border: 1px solid rgba(12, 116, 167, 0.9);
-            box-shadow: 0 16px 38px rgba(14, 165, 233, 0.55);
-            transition:
-                transform 0.16s var(--ease-out),
-                box-shadow 0.16s var(--ease-out),
-                filter 0.18s var(--ease-out),
-                border-color 0.18s ease;
-        }
-
-        .telegram-button::before {
-            content: "";
-            position: absolute;
-            inset: 1px 1px 8px;
-            border-radius: inherit;
-            background: linear-gradient(to top, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.04));
-            pointer-events: none;
+            box-shadow: 0 14px 30px rgba(14,165,233,0.45);
+            transition: transform 0.18s var(--ease-out), box-shadow 0.18s var(--ease-out), filter 0.18s var(--ease-out);
         }
 
         .telegram-button:hover {
             transform: translateY(-1px);
-            box-shadow: 0 22px 50px rgba(14, 165, 233, 0.7);
-            filter: brightness(1.05);
-            border-color: rgba(12, 116, 167, 1);
-        }
-
-        .telegram-button:active {
-            transform: translateY(0);
-            box-shadow: 0 12px 30px rgba(14, 165, 233, 0.7);
-            filter: brightness(0.99);
+            box-shadow: 0 20px 45px rgba(14,165,233,0.6);
+            filter: brightness(1.06);
         }
 
         .telegram-note {
@@ -1084,6 +1013,7 @@
         }
 
         /* Scroll animation */
+
         [data-animate] {
             opacity: 0;
             transform: translateY(24px);
@@ -1093,79 +1023,6 @@
         [data-animate].in-view {
             opacity: 1;
             transform: translateY(0);
-        }
-
-        /* Персонализация: inline-кнопка над основными кнопками */
-        .persona-inline {
-            margin-bottom: 14px;
-        }
-
-        .persona-inline .persona-trigger {
-            width: 100%;
-            max-width: 420px;
-            justify-content: flex-start;
-            font-size: 13px;
-        }
-
-        /* Персонализация: модалка выбора роли/боли */
-        .persona-step {
-            margin-bottom: 16px;
-        }
-
-        .persona-step-title {
-            font-size: 13px;
-            text-transform: uppercase;
-            letter-spacing: 0.12em;
-            color: var(--accent);
-            font-weight: 600;
-            margin-bottom: 6px;
-        }
-
-        .persona-options {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 10px;
-            margin-top: 4px;
-        }
-
-        .persona-option {
-            border-radius: 16px;
-            padding: 10px 12px 9px;
-            border: 1px solid rgba(148,163,184,0.7);
-            background: #f9fafb;
-            text-align: left;
-            cursor: pointer;
-            font-size: 14px;
-            color: #111827;
-            display: flex;
-            flex-direction: column;
-            gap: 3px;
-            transition:
-                border-color 0.18s ease,
-                box-shadow 0.18s var(--ease-out),
-                background 0.18s ease,
-                transform 0.16s var(--ease-out);
-        }
-
-        .persona-option-title {
-            font-weight: 600;
-            font-size: 14px;
-        }
-
-        .persona-option-desc {
-            font-size: 13px;
-            color: var(--text-muted);
-        }
-
-        .persona-option.selected {
-            border-color: var(--accent);
-            background: linear-gradient(to bottom right, rgba(249,115,22,0.07), #ffffff);
-            box-shadow: 0 14px 32px rgba(15,23,42,0.12);
-            transform: translateY(-1px);
-        }
-
-        .persona-summary {
-            margin-top: 4px;
         }
 
         @media (max-width: 900px) {
@@ -1261,63 +1118,66 @@
                             <span>Авторская модель «Теремок»</span>
                         </div>
 
-                        <div class="hero-kicker">Программа для собственников, руководителей и HR</div>
-                        <h1>«Теремок»: на кого в&nbsp;команде делать ставки</h1>
+                        <div class="hero-kicker">Живой офлайн-практикум в Минске для собственников, руководителей и HR</div>
+                        <h1>«Теремок»: Птицы, Хомяки, Лисы и Профи в вашей команде</h1>
                         <p class="hero-subtitle">
-                            Разберёмся, кто в вашей компании Птицы, Хомяки, Лисы и Профи,
-                            и как перестать «кормить» одних за счёт других.
+                            Помогаем увидеть, кто в вашей компании работает под принуждением, кто — только «за деньги»,
+                            а кто действительно держит на себе клиентов, процессы и результат.
                         </p>
                         <p class="hero-text">
-                            Практическая программа, которая помогает видеть реальную мотивацию людей,
-                            собирать вокруг себя ядро команды и перестать тратить бюджет и нервы на тех,
-                            кто работает только «за деньги» или «под принуждением».
+                            На офлайн-практикуме вы разбираете своих сотрудников через понятные метафоры Птиц, Хомяков,
+                            Лис и Профи, составляете карту команды и принимаете управленческие решения по людям,
+                            а не по ощущениям и «интуиции о человеке».
                         </p>
-
-                        <!-- Вставка: персонализация -->
-                        <div class="persona-inline" id="personaInlineControl" style="display:none;">
-                            <button type="button" class="btn-secondary persona-trigger" onclick="openPersonaModal(true)">
-                                <span id="personaInlineLabel">Настроить страницу под вашу роль</span>
-                            </button>
-                        </div>
-
-                        <p class="hero-persona" id="heroPersonaText"></p>
-
                         <div class="hero-actions">
                             <button class="btn-primary" onclick="openLeadModal('lead')">
-                                Записаться на программу «Теремок»
+                                Забронировать офлайн-место на «Теремке»
                             </button>
                             <button class="btn-secondary" onclick="openLeadModal('test')">
-                                Пройти мини-тест по сотруднику
+                                Пройти мини-тест по одному сотруднику
                             </button>
                         </div>
                         <div class="hero-note">
-                            Оставьте контакты — вышлем программу и стоимость,
-                            поможем подобрать удобный формат участия.
+                            Оставьте контакты — свяжемся в ближайший рабочий день, подтвердим участие в живом практикуме
+                            и после заявки откроем доступ к мини-тесту по выбранному сотруднику.
                         </div>
                     </div>
                     <aside class="hero-card" aria-hidden="true" data-animate>
-                        <div class="hero-card-title">Мотивационный «срез» команды</div>
-                        <div class="hero-card-grid">
-                            <div class="hero-chip bad">
-                                <span></span>
-                                Птицы — работают под принуждением
-                            </div>
-                            <div class="hero-chip bad">
-                                <span></span>
-                                Хомяки — только деньги и выгода
-                            </div>
-                            <div class="hero-chip">
-                                <span></span>
-                                Профи — любят работу и качество
-                            </div>
-                            <div class="hero-chip">
-                                <span></span>
-                                Лидеры — тянут команду вверх
-                            </div>
-                        </div>
+                        <div class="hero-card-title">Мотивационный «срез» вашей команды</div>
+                        <ul class="hero-types">
+                            <li class="hero-type hero-type-bad">
+                                <div class="hero-type-badge">Птицы</div>
+                                <div class="hero-type-text">
+                                    Работают под принуждением, оживают только под контролем и дедлайнами.
+                                    Если их много, руководитель живёт в режиме вечных напоминаний вместо развития бизнеса.
+                                </div>
+                            </li>
+                            <li class="hero-type hero-type-bad">
+                                <div class="hero-type-badge">Хомяки</div>
+                                <div class="hero-type-text">
+                                    Ставят в центр деньги и личную выгоду. Пока система оплаты выгодна — работают,
+                                    но легко «пересаживаются» туда, где платят больше, а не где важна команда и результат.
+                                </div>
+                            </li>
+                            <li class="hero-type hero-type-bad">
+                                <div class="hero-type-badge">Лисы</div>
+                                <div class="hero-type-text">
+                                    Строят карьеру на статусе и влиянии. Красиво выглядят на совещаниях,
+                                    но реальный вклад в общий результат нестабилен и сильно зависит от личной выгоды.
+                                </div>
+                            </li>
+                            <li class="hero-type hero-type-good">
+                                <div class="hero-type-badge">Профи и лидеры</div>
+                                <div class="hero-type-text">
+                                    Держат клиентов, сложные задачи и репутацию компании. Часто тихо выгорают,
+                                    пока остальные создают видимость бурной деятельности.
+                                </div>
+                            </li>
+                        </ul>
                         <div class="hero-card-caption">
-                            На «Теремке» вы научитесь отличать эти типы по поведению, речевым маркерам и решениям
-                            — на реальных кейсах из вашей компании.
+                            На «Теремке» вы накладываете эту модель на свою команду, выделяете ядро Профи и лидеров,
+                            видите риски по Птицам, Хомякам и Лисам и принимаете решения по людям на реальных кейсах
+                            из вашего бизнеса.
                         </div>
                     </aside>
                 </div>
@@ -1371,7 +1231,7 @@
                 <div class="section-header">
                     <div class="section-kicker">Кому будет полезно</div>
                     <h2>Для кого программа «Теремок»</h2>
-                    <p class="section-lead" id="whoLead">
+                    <p class="section-lead">
                         Программа создана для тех, кто отвечает за людей и результат,
                         а не только за «красивые отчёты» по HR.
                     </p>
@@ -1409,7 +1269,7 @@
                 <div class="section-header">
                     <div class="section-kicker">Результат</div>
                     <h2>Что вы получите после «Теремка»</h2>
-                    <p class="section-lead" id="resultsLead">
+                    <p class="section-lead">
                         Вместо ощущения «все вроде нормальные, но почему-то не летит»
                         у вас появляется карта команды и конкретные решения по людям.
                     </p>
@@ -1605,10 +1465,10 @@
             <div class="container" data-animate>
                 <div class="section-header">
                     <div class="section-kicker">Заявка на участие</div>
-                    <h2>Оставьте контакты — вышлем программу и обсудим участие</h2>
-                    <p class="section-lead" id="registrationLead">
+                    <h2>Оставьте контакты — забронируем офлайн-участие и обсудим детали</h2>
+                    <p class="section-lead">
                         Заполните короткую заявку во всплывающем окне. Мы свяжемся с вами в ближайший рабочий день,
-                        ответим на вопросы и предложим удобный формат участия в «Теремке».
+                        уточним ситуацию по вашей команде и подтвердим участие в ближайшем офлайн-потоке программы «Теремок».
                     </p>
                 </div>
                 <div class="form-wrapper">
@@ -1643,10 +1503,11 @@
                                 Открыть форму заявки
                             </button>
                             <p class="form-note">
-                                После отправки заявки вы получите:
+                                После отправки заявки:
                             </p>
                             <ul class="metrics-list">
-                                <li>связь с консультантом «Сталкер-Медиа» для уточнения деталей под вашу компанию.</li>
+                                <li>мы свяжемся в ближайший рабочий день, уточним вашу ситуацию по людям и подтвердим офлайн-участие в «Теремке»;</li>
+                                <li>на сайте автоматически откроется мини-тест по одному сотруднику — чтобы вы почувствовали, как работает модель.</li>
                             </ul>
                         </div>
                         <div class="form-secondary">
@@ -1668,8 +1529,8 @@
                                 </div>
                             </div>
                             <p class="telegram-note">
-                                А если оставите заявку через форму — мы заранее посмотрим ваш запрос, размер команды
-                                и подготовим варианты формата участия и ориентиры по стоимости.
+                                После заявки и мини-теста вы также можете запросить у нас короткое видео с пояснением модели —
+                                просто напишите в Telegram «Хочу видео по Теремку».
                             </p>
                         </div>
                     </div>
@@ -1680,7 +1541,7 @@
 
     <footer>
         <div class="footer-inner">
-            <small>© «Сталкер-Медиа». Программа «Теремок» — мотивационная модель для управления командой.</small>
+            <small>© «Сталкер-Медиа». Программа «Теремок» — мотивационная модель для управления командой. Офлайн-практикум в Минске.</small>
             <small>
                 <a href="#top">Наверх</a>
             </small>
@@ -1699,10 +1560,11 @@
             ТЕСТ ДОСТУПЕН ТОЛЬКО ПОСЛЕ РЕГИСТРАЦИИ
         </div>
 
-        <h2 id="modalTitle">Заявка на программу «Теремок»</h2>
+        <h2 id="modalTitle">Заявка на офлайн-программу «Теремок»</h2>
         <p class="modal-subtitle">
-            Оставьте контакты и кратко опишите вашу ситуацию. Мы свяжемся в ближайший рабочий день,
-            обсудим формат участия и откроем доступ к мини-тесту по сотруднику.
+            Оставьте контакты и кратко опишите вашу команду. Мы свяжемся в ближайший рабочий день,
+            подтвердим участие в живом практикуме в Минске и зададим несколько вопросов о ваших сотрудниках.
+            После отправки заявки на сайте автоматически откроется мини-тест по одному сотруднику.
         </p>
 
         <form id="leadForm">
@@ -1737,7 +1599,7 @@
                 <label for="phone">Телефон <span class="required">*</span></label>
                 <input class="input" type="tel" id="phone" name="phone" placeholder="+375 (__) ___-__-__" required>
                 <div class="field-hint">
-                    Номер нужен, чтобы связаться с вами в удобном мессенджере.
+                    Номер нужен, чтобы связаться с вами в удобном мессенджере и подтвердить офлайн-участие.
                 </div>
             </div>
 
@@ -1754,7 +1616,7 @@
 
             <div class="field-group">
                 <label for="email">E-mail</label>
-                <input class="input" type="email" id="email" name="email" placeholder="для отправки программы и материалов">
+                <input class="input" type="email" id="email" name="email" placeholder="при необходимости отправки деталей по участию">
             </div>
 
             <div class="field-group">
@@ -1763,12 +1625,12 @@
             </div>
 
             <button type="submit" class="btn-primary btn-full">
-                Отправить и перейти к мини-тесту
+                Отправить заявку и перейти к мини-тесту
             </button>
 
             <p class="form-note">
                 Мы не рассылаем спам и не передаём контакты третьим лицам.
-                Свяжемся только по поводу программы «Теремок».
+                Свяжемся только по поводу офлайн-программы «Теремок».
             </p>
         </form>
     </div>
@@ -1784,7 +1646,8 @@
         <h2 id="testModalTitle">Мини-тест по одному сотруднику</h2>
         <p class="modal-subtitle">
             Выберите одного конкретного сотрудника и отвечайте, как он ведёт себя чаще всего.
-            По результатам определим, к какому типажу «Теремка» он ближе.
+            Это упрощённый мини-тест: по результатам вы увидите, к какому типажу «Теремка» он ближе.
+            На офлайн-программе мы работаем уже со всей вашей командой.
         </p>
 
         <form id="miniTestForm">
@@ -1887,8 +1750,8 @@
                 <div class="telegram-content">
                     <div class="telegram-title">Видео про модель «Теремок»</div>
                     <p>
-                        Если хотите получить короткое видео с пояснением модели «Теремок» и примерами типажей,
-                        напишите нам в Telegram фразу «Хочу Теремок видео».
+                        Если после заявки и мини-теста хотите получить короткое видео с пояснением модели «Теремок» и примерами типажей,
+                        напишите нам в Telegram фразу «Хочу видео по Теремку».
                     </p>
                     <a class="telegram-button" href="https://t.me/stalkermedia1" target="_blank" rel="noopener noreferrer">
                         @stalkermedia1
@@ -1902,113 +1765,13 @@
     </div>
 </div>
 
-<!-- Модальное окно персонализации (роль + запрос) -->
-<div class="modal-backdrop" id="personaModal" aria-hidden="true">
-    <div class="modal-overlay" onclick="closePersonaModal()"></div>
-
-    <div class="modal-window" role="dialog" aria-modal="true" aria-labelledby="personaModalTitle">
-        <button class="modal-close" type="button" onclick="closePersonaModal()">×</button>
-
-        <h2 id="personaModalTitle">Подберём «Теремок» под вашу ситуацию</h2>
-        <p class="modal-subtitle">
-            Выберите, в какой роли вы сейчас заходите на страницу, и что больше всего хотите изменить в работе с людьми.
-            Это поможет настроить текст под вас.
-        </p>
-
-        <div class="persona-step" id="personaStepRole">
-            <div class="persona-step-title">Кто вы по роли</div>
-            <div class="persona-options">
-                <button type="button" class="persona-option" data-role="owner" onclick="selectPersonaRole('owner')">
-                    <div class="persona-option-title">Собственник / генеральный директор</div>
-                    <div class="persona-option-desc">Отвечаю за бизнес в целом, хочу понимать, на кого делать ставки.</div>
-                </button>
-                <button type="button" class="persona-option" data-role="head" onclick="selectPersonaRole('head')">
-                    <div class="persona-option-title">Руководитель отдела / филиала</div>
-                    <div class="persona-option-desc">Отвечаю за свой участок и результат команды.</div>
-                </button>
-                <button type="button" class="persona-option" data-role="hr" onclick="selectPersonaRole('hr')">
-                    <div class="persona-option-title">HR-директор / рекрутер</div>
-                    <div class="persona-option-desc">Отвечаю за найм, адаптацию и систему работы с людьми.</div>
-                </button>
-                <button type="button" class="persona-option" data-role="sales" onclick="selectPersonaRole('sales')">
-                    <div class="persona-option-title">Руководитель по продажам</div>
-                    <div class="persona-option-desc">Отвечаю за план, выручку и работу отдела продаж.</div>
-                </button>
-                <button type="button" class="persona-option" data-role="other" onclick="selectPersonaRole('other')">
-                    <div class="persona-option-title">Другая роль</div>
-                    <div class="persona-option-desc">Руководитель / специалист, влияющий на работу команды.</div>
-                </button>
-            </div>
-        </div>
-
-        <div class="persona-step" id="personaStepPain" style="display:none;">
-            <div class="persona-step-title">Что больше всего болит сейчас</div>
-            <div class="persona-options">
-                <button type="button" class="persona-option" data-pain="minusovye" onclick="selectPersonaPain('minusovye')">
-                    <div class="persona-option-title">«Минусовые» и пассажиры</div>
-                    <div class="persona-option-desc">Держу людей, к которым уже нет доверия, но увольнять страшно или некогда.</div>
-                </button>
-                <button type="button" class="persona-option" data-pain="hiring" onclick="selectPersonaPain('hiring')">
-                    <div class="persona-option-title">Ошибки в найме</div>
-                    <div class="persona-option-desc">Беру «красивых» на собеседовании, а через несколько месяцев не тянут.</div>
-                </button>
-                <button type="button" class="persona-option" data-pain="motivation" onclick="selectPersonaPain('motivation')">
-                    <div class="persona-option-title">Мотивация и вовлечённость</div>
-                    <div class="persona-option-desc">Люди работают только «за деньги» или под давлением, не держат уровень сами.</div>
-                </button>
-                <button type="button" class="persona-option" data-pain="leaders" onclick="selectPersonaPain('leaders')">
-                    <div class="persona-option-title">Управленческая команда</div>
-                    <div class="persona-option-desc">Нужно усилить ключевых руководителей и убрать зависимость от отдельных людей.</div>
-                </button>
-            </div>
-        </div>
-
-        <div id="personaSummary" class="persona-summary" style="display:none;">
-            <p class="modal-note" id="personaSummaryText"></p>
-            <button type="button" class="btn-primary btn-full" onclick="confirmPersonaSelection()">
-                Применить настройки и перейти к странице
-            </button>
-            <p class="modal-note">
-                Вы всегда сможете изменить настройки позже через кнопку вверху страницы.
-            </p>
-        </div>
-    </div>
-</div>
-
 <script>
 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwnQR15r9C6AwTp_eYY3RV6uNKu7FaYt0xSra776uZS70rifwMxLKpfDyW0Ls85f5EQ/exec";
 
 let leadData = null;
 let testSubmitted = false;
 
-/* Персонализация: глобальное состояние */
-let currentPersona = null;
-let personaSelection = { role: null, pain: null };
-
-const personaRoleLabels = {
-    owner: 'собственник или генеральный директор',
-    head: 'руководитель отдела или филиала',
-    hr: 'HR-директор или рекрутер',
-    sales: 'руководитель по продажам',
-    other: 'руководитель или специалист'
-};
-
-const personaRoleShortLabels = {
-    owner: 'Собственник / гендиректор',
-    head: 'Руководитель отдела / филиала',
-    hr: 'HR / рекрутер',
-    sales: 'Руководитель по продажам',
-    other: 'Руководитель / специалист'
-};
-
-const personaPainLabels = {
-    minusovye: 'перестать тянуть «минусовых» и пассажиров за счёт ядра команды',
-    hiring: 'перестать ошибаться в найме и брать «красивых, но слабых» людей',
-    motivation: 'перестроить мотивацию и вовлечённость, чтобы люди работали не только «за деньги»',
-    leaders: 'усилить управленческую команду и лидеров, на которых можно опираться'
-};
-
-/* Открыть модал заявки */
+// Открыть модал заявки
 function openLeadModal(source) {
     const modal = document.getElementById('leadModal');
     if (!modal) return;
@@ -2022,7 +1785,7 @@ function openLeadModal(source) {
     }
 }
 
-/* Закрыть модал заявки */
+// Закрыть модал заявки
 function closeLeadModal() {
     const modal = document.getElementById('leadModal');
     if (!modal) return;
@@ -2030,7 +1793,7 @@ function closeLeadModal() {
     document.body.style.overflow = '';
 }
 
-/* Открыть модал с тестом */
+// Открыть модал с тестом
 function openTestModal() {
     const modal = document.getElementById('testModal');
     if (!modal) return;
@@ -2062,7 +1825,7 @@ function openTestModal() {
     testSubmitted = false;
 }
 
-/* Закрыть модал теста */
+// Закрыть модал теста
 function closeTestModal() {
     const modal = document.getElementById('testModal');
     if (!modal) return;
@@ -2070,7 +1833,7 @@ function closeTestModal() {
     document.body.style.overflow = '';
 }
 
-/* Обработка отправки формы заявки */
+// Обработка отправки формы заявки
 function onLeadFormSubmit(e) {
     e.preventDefault();
 
@@ -2083,7 +1846,7 @@ function onLeadFormSubmit(e) {
     openTestModal();
 }
 
-/* Логика мини-теста */
+// Логика мини-теста
 function submitMiniTest() {
     if (testSubmitted) {
         return;
@@ -2156,7 +1919,7 @@ function submitMiniTest() {
     testSubmitted = true;
 }
 
-/* Отправка данных в Google Script */
+// Отправка данных в Google Script
 function sendToGoogleSheet(mainType, types, resultText) {
     const fd = new FormData();
 
@@ -2196,208 +1959,6 @@ function sendToGoogleSheet(mainType, types, resultText) {
     });
 }
 
-/* Персонализация: открытие модалки */
-function openPersonaModal(fromInline) {
-    const modal = document.getElementById('personaModal');
-    if (!modal) return;
-
-    modal.classList.add('open');
-    document.body.style.overflow = 'hidden';
-
-    // восстановить выбор в интерфейсе, если уже был
-    const roleButtons = modal.querySelectorAll('.persona-option[data-role]');
-    roleButtons.forEach(btn => {
-        const role = btn.getAttribute('data-role');
-        btn.classList.toggle('selected', personaSelection.role === role);
-    });
-
-    const painButtons = modal.querySelectorAll('.persona-option[data-pain]');
-    painButtons.forEach(btn => {
-        const pain = btn.getAttribute('data-pain');
-        btn.classList.toggle('selected', personaSelection.pain === pain);
-    });
-
-    const stepPain = document.getElementById('personaStepPain');
-    const summary = document.getElementById('personaSummary');
-
-    if (personaSelection.role) {
-        if (stepPain) stepPain.style.display = '';
-    } else {
-        if (stepPain) stepPain.style.display = 'none';
-    }
-
-    if (personaSelection.role && personaSelection.pain) {
-        if (summary) summary.style.display = '';
-        updatePersonaSummary();
-    } else if (summary) {
-        summary.style.display = 'none';
-    }
-}
-
-/* Персонализация: закрыть модалку */
-function closePersonaModal() {
-    const modal = document.getElementById('personaModal');
-    if (!modal) return;
-    modal.classList.remove('open');
-    document.body.style.overflow = '';
-}
-
-/* Персонализация: выбор роли */
-function selectPersonaRole(role) {
-    personaSelection.role = role;
-
-    const modal = document.getElementById('personaModal');
-    if (modal) {
-        const roleButtons = modal.querySelectorAll('.persona-option[data-role]');
-        roleButtons.forEach(btn => {
-            const r = btn.getAttribute('data-role');
-            btn.classList.toggle('selected', r === role);
-        });
-
-        const stepPain = document.getElementById('personaStepPain');
-        if (stepPain) {
-            stepPain.style.display = '';
-        }
-    }
-
-    updatePersonaSummary();
-}
-
-/* Персонализация: выбор боли */
-function selectPersonaPain(pain) {
-    personaSelection.pain = pain;
-
-    const modal = document.getElementById('personaModal');
-    if (modal) {
-        const painButtons = modal.querySelectorAll('.persona-option[data-pain]');
-        painButtons.forEach(btn => {
-            const p = btn.getAttribute('data-pain');
-            btn.classList.toggle('selected', p === pain);
-        });
-
-        const summary = document.getElementById('personaSummary');
-        if (summary) {
-            summary.style.display = (personaSelection.role ? '' : 'none');
-        }
-    }
-
-    updatePersonaSummary();
-}
-
-/* Персонализация: текст-саммари в модалке */
-function updatePersonaSummary() {
-    const summaryTextEl = document.getElementById('personaSummaryText');
-    if (!summaryTextEl) return;
-
-    if (!personaSelection.role) {
-        summaryTextEl.textContent = 'Сначала выберите, в какой роли вы сейчас заходите на страницу.';
-        return;
-    }
-
-    const roleLabel = personaRoleLabels[personaSelection.role] || personaRoleLabels.other;
-    const painLabel = personaPainLabels[personaSelection.pain] || null;
-
-    let text = 'Вы заходите на страницу как ' + roleLabel + '.';
-    if (painLabel) {
-        text += ' Основной запрос — ' + painLabel + '.';
-    } else {
-        text += ' Сейчас вы хотите в целом навести порядок в работе с людьми.';
-    }
-    text += ' Мы настроим текст страницы под ваш контекст, чтобы вы сразу видели, как «Теремок» решает именно эти задачи.';
-    summaryTextEl.textContent = text;
-}
-
-/* Персонализация: подтверждение и применение */
-function confirmPersonaSelection() {
-    if (!personaSelection.role) {
-        updatePersonaSummary();
-        return;
-    }
-    setPersona(personaSelection.role, personaSelection.pain || null);
-    closePersonaModal();
-}
-
-/* Персонализация: применить к странице и сохранить */
-function setPersona(role, pain) {
-    currentPersona = { role: role, pain: pain || null };
-    try {
-        localStorage.setItem('teremokPersona', JSON.stringify(currentPersona));
-    } catch (e) {
-        console.warn('Не удалось сохранить персонализацию в localStorage', e);
-    }
-    applyPersona(currentPersona);
-    updatePersonaInlineControl(currentPersona);
-}
-
-/* Персонализация: изменение текстов на странице */
-function applyPersona(persona) {
-    if (!persona || !persona.role) return;
-
-    const roleLabel = personaRoleLabels[persona.role] || personaRoleLabels.other;
-    const painLabel = personaPainLabels[persona.pain] || null;
-
-    const heroPersonaEl = document.getElementById('heroPersonaText');
-    if (heroPersonaEl) {
-        let text = 'Вы сейчас на этой странице как ' + roleLabel + '.';
-        if (painLabel) {
-            text += ' Основной запрос — ' + painLabel + '.';
-        } else {
-            text += ' Важно навести порядок в команде и управленческих решениях по людям.';
-        }
-        text += ' «Теремок» помогает перевести это из ощущений в карту типажей и конкретные управленческие решения по сотрудникам.';
-        heroPersonaEl.textContent = text;
-    }
-
-    const whoLeadEl = document.getElementById('whoLead');
-    if (whoLeadEl) {
-        let text = 'Программа особенно полезна, когда ';
-        if (painLabel) {
-            text += painLabel + ', ';
-        } else {
-            text += 'вы отвечаете за людей и результат, ';
-        }
-        text += 'а вы работаете как ' + roleLabel + ' и хотите опираться не на интуицию, а на понятную модель.';
-        whoLeadEl.textContent = text;
-    }
-
-    const resultsLeadEl = document.getElementById('resultsLead');
-    if (resultsLeadEl) {
-        let text = 'После «Теремка» у вас появляется карта команды и решения по людям именно под ваш формат управления как ';
-        text += roleLabel + '.';
-        if (painLabel) {
-            text += ' Вы увидите, как решить задачу: ' + painLabel + ', не ломая систему и не теряя ключевых людей.';
-        }
-        resultsLeadEl.textContent = text;
-    }
-
-    const regLeadEl = document.getElementById('registrationLead');
-    if (regLeadEl) {
-        let text = 'Заполните короткую заявку, чтобы обсудить формат участия в «Теремке» под вашу ситуацию как ';
-        text += roleLabel;
-        if (painLabel) {
-            text += ', где ключевой запрос — ' + painLabel;
-        }
-        text += '.';
-        regLeadEl.textContent = text;
-    }
-}
-
-/* Персонализация: inline-кнопка в hero */
-function updatePersonaInlineControl(persona) {
-    const wrap = document.getElementById('personaInlineControl');
-    const labelEl = document.getElementById('personaInlineLabel');
-    if (!wrap || !labelEl) return;
-
-    if (!persona || !persona.role) {
-        wrap.style.display = 'none';
-        return;
-    }
-
-    const shortLabel = personaRoleShortLabels[persona.role] || 'ваша роль';
-    wrap.style.display = 'block';
-    labelEl.textContent = 'Сейчас страница настроена под: ' + shortLabel + '. Нажмите, чтобы изменить настройки.';
-}
-
 document.addEventListener('DOMContentLoaded', function () {
     const leadForm = document.getElementById('leadForm');
     if (leadForm) {
@@ -2416,7 +1977,6 @@ document.addEventListener('DOMContentLoaded', function () {
         if (e.key === 'Escape') {
             closeLeadModal();
             closeTestModal();
-            closePersonaModal();
         }
     });
 
@@ -2456,28 +2016,6 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     });
-
-    // Инициализация персонализации: читаем сохранённые настройки, иначе показываем модалку
-    let savedPersona = null;
-    try {
-        const raw = localStorage.getItem('teremokPersona');
-        if (raw) {
-            savedPersona = JSON.parse(raw);
-        }
-    } catch (e) {
-        console.warn('Ошибка чтения персонализации из localStorage', e);
-    }
-
-    if (savedPersona && savedPersona.role) {
-        currentPersona = savedPersona;
-        personaSelection.role = savedPersona.role;
-        personaSelection.pain = savedPersona.pain || null;
-        applyPersona(savedPersona);
-        updatePersonaInlineControl(savedPersona);
-    } else {
-        // Нет сохранённой персонализации — открываем модалку при первом заходе
-        openPersonaModal(false);
-    }
 });
 </script>
 
