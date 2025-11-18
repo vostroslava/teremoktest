@@ -67,45 +67,42 @@
             gap: 16px;
         }
 
-       .logo {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
 
-.logo-mark {
-    width: 42px;
-    height: 42px;
-    border-radius: 14px;
-    background: rgba(255,255,255,0.75);
-    backdrop-filter: blur(10px);
-    padding: 6px;
+        .logo-mark {
+            width: 42px;
+            height: 42px;
+            border-radius: 14px;
+            background: rgba(255,255,255,0.75);
+            backdrop-filter: blur(10px);
+            padding: 6px;
+            box-shadow:
+                0 4px 12px rgba(15,23,42,0.15),
+                inset 0 0 0 1px rgba(255,255,255,0.8);
+        }
 
-    box-shadow:
-        0 4px 12px rgba(15,23,42,0.15),
-        inset 0 0 0 1px rgba(255,255,255,0.8);
-}
+        .logo-mark img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+        }
 
+        .logo-text-primary {
+            font-weight: 700;
+            font-size: 16px;
+            letter-spacing: 0.04em;
+            color: #0f172a;
+        }
 
-.logo-mark img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    display: block;
-}
-
-.logo-text-primary {
-    font-weight: 700;
-    font-size: 16px;
-    letter-spacing: 0.04em;
-    color: #0f172a;
-}
-
-.logo-text-secondary {
-    font-size: 12px;
-    color: #6b7280;
-}
-
+        .logo-text-secondary {
+            font-size: 12px;
+            color: #6b7280;
+        }
 
         .nav-links {
             display: flex;
@@ -141,8 +138,23 @@
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            box-shadow: 0 14px 34px rgba(249,115,22,0.35);
-            transition: transform 0.18s var(--ease-out), box-shadow 0.18s var(--ease-out), filter 0.18s var(--ease-out);
+            position: relative;
+            box-shadow:
+                0 10px 0 rgba(194, 65, 12, 0.42),
+                0 18px 40px rgba(249,115,22,0.55);
+            transition:
+                transform 0.16s var(--ease-out),
+                box-shadow 0.16s var(--ease-out),
+                filter 0.18s var(--ease-out);
+        }
+
+        .nav-cta::before {
+            content: "";
+            position: absolute;
+            inset: 1px 2px 10px;
+            border-radius: inherit;
+            background: linear-gradient(to top, rgba(255,255,255,0.55), rgba(255,255,255,0.1));
+            pointer-events: none;
         }
 
         .nav-cta span {
@@ -151,9 +163,18 @@
         }
 
         .nav-cta:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 20px 45px rgba(249,115,22,0.45);
-            filter: brightness(1.03);
+            transform: translateY(-2px);
+            box-shadow:
+                0 14px 0 rgba(194, 65, 12, 0.46),
+                0 24px 50px rgba(249,115,22,0.65);
+            filter: brightness(1.05);
+        }
+
+        .nav-cta:active {
+            transform: translateY(0);
+            box-shadow:
+                0 6px 0 rgba(180, 83, 9, 0.55),
+                0 12px 28px rgba(194,65,12,0.65);
         }
 
         main {
@@ -255,6 +276,7 @@
         }
 
         .btn-primary {
+            position: relative;
             padding: 12px 22px;
             border-radius: 999px;
             border: none;
@@ -263,36 +285,78 @@
             color: #111827;
             font-weight: 600;
             font-size: 15px;
-            box-shadow: 0 16px 40px rgba(249,115,22,0.35);
+            box-shadow:
+                0 14px 0 rgba(194, 65, 12, 0.42),
+                0 22px 45px rgba(249, 115, 22, 0.55);
             display: inline-flex;
             align-items: center;
             justify-content: center;
             gap: 6px;
-            transition: transform 0.18s var(--ease-out), box-shadow 0.18s var(--ease-out), filter 0.18s var(--ease-out);
+            transform: translateY(0);
+            transition:
+                transform 0.16s var(--ease-out),
+                box-shadow 0.16s var(--ease-out),
+                filter 0.18s var(--ease-out);
+        }
+
+        .btn-primary::before {
+            content: "";
+            position: absolute;
+            inset: 1px 2px 14px;
+            border-radius: inherit;
+            background: linear-gradient(to top, rgba(255,255,255,0.5), rgba(255,255,255,0.08));
+            opacity: 0.9;
+            pointer-events: none;
         }
 
         .btn-primary:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 22px 55px rgba(249,115,22,0.45);
-            filter: brightness(1.02);
+            transform: translateY(-2px);
+            box-shadow:
+                0 18px 0 rgba(194, 65, 12, 0.46),
+                0 28px 55px rgba(249, 115, 22, 0.65);
+            filter: brightness(1.04);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
+            box-shadow:
+                0 6px 0 rgba(180, 83, 9, 0.55),
+                0 14px 30px rgba(194, 65, 12, 0.65);
+            filter: brightness(0.98);
         }
 
         .btn-secondary {
+            position: relative;
             padding: 11px 18px;
             border-radius: 999px;
-            border: 1px solid rgba(148,163,184,0.8);
-            background: rgba(255,255,255,0.9);
+            border: 1px solid rgba(148,163,184,0.9);
+            background: linear-gradient(135deg, #f9fafb, #e5e7eb);
             color: #111827;
             font-size: 15px;
             cursor: pointer;
             backdrop-filter: blur(6px);
-            transition: background-color 0.18s var(--ease-out), box-shadow 0.18s var(--ease-out), transform 0.18s var(--ease-out);
+            box-shadow:
+                0 8px 0 rgba(148,163,184,0.35),
+                0 14px 30px rgba(15,23,42,0.12);
+            transition:
+                transform 0.16s var(--ease-out),
+                box-shadow 0.16s var(--ease-out),
+                background 0.18s var(--ease-out);
         }
 
         .btn-secondary:hover {
-            background-color: #ffffff;
-            box-shadow: 0 14px 30px rgba(15,23,42,0.12);
-            transform: translateY(-1px);
+            transform: translateY(-2px);
+            background: linear-gradient(135deg, #ffffff, #e5e7eb);
+            box-shadow:
+                0 10px 0 rgba(148,163,184,0.4),
+                0 20px 40px rgba(15,23,42,0.16);
+        }
+
+        .btn-secondary:active {
+            transform: translateY(0);
+            box-shadow:
+                0 5px 0 rgba(148,163,184,0.6),
+                0 10px 24px rgba(15,23,42,0.2);
         }
 
         .hero-note {
@@ -345,20 +409,30 @@
             gap: 10px;
         }
 
+        /* обновлённые чипы-типажи */
         .hero-chip {
             border-radius: 999px;
             font-size: 13px;
-            padding: 6px 10px;
-            background: #f9fafb;
-            border: 1px solid rgba(148,163,184,0.7);
+            padding: 7px 12px;
+            background: linear-gradient(135deg, #f9fafb, #e5e7eb);
+            border: 1px solid rgba(148,163,184,0.8);
             display: inline-flex;
             align-items: center;
             gap: 6px;
+            cursor: pointer;
+            position: relative;
+            box-shadow: 0 8px 18px rgba(15,23,42,0.08);
+            transition:
+                transform 0.16s var(--ease-out),
+                box-shadow 0.16s var(--ease-out),
+                border-color 0.16s ease,
+                background 0.18s ease,
+                color 0.16s ease;
         }
 
         .hero-chip span {
-            width: 8px;
-            height: 8px;
+            width: 9px;
+            height: 9px;
             border-radius: 999px;
             background: #22c55e;
         }
@@ -367,10 +441,63 @@
             background: #ef4444;
         }
 
+        .hero-chip:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 26px rgba(15,23,42,0.14);
+            background: linear-gradient(135deg, #ffffff, #e5e7eb);
+        }
+
+        .hero-chip.active {
+            border-color: var(--accent);
+            background: linear-gradient(135deg, rgba(249,115,22,0.1), #ffffff);
+            box-shadow: 0 14px 30px rgba(249,115,22,0.35);
+            color: #111827;
+        }
+
         .hero-card-caption {
             margin-top: 12px;
             font-size: 13px;
             color: var(--text-muted);
+        }
+
+        /* описание выбранного типажа */
+        .hero-type-description {
+            margin-top: 12px;
+            padding: 10px 12px 12px;
+            border-radius: 14px;
+            background: rgba(15,23,42,0.03);
+            border: 1px dashed rgba(148,163,184,0.8);
+            font-size: 13px;
+            color: #374151;
+        }
+
+        .hero-type-title {
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 6px;
+        }
+
+        .hero-type-description p {
+            margin: 0 0 8px;
+        }
+
+        .hero-type-cta {
+            margin-top: 6px;
+        }
+
+        .hero-type-description.animate {
+            animation: fadeInUp 0.28s var(--ease-out);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .section-header {
@@ -660,24 +787,48 @@
         }
 
         .telegram-button {
+            position: relative;
             display: inline-flex;
             align-items: center;
             justify-content: center;
             padding: 8px 14px;
             border-radius: 999px;
-            background: var(--tg-main);
+            background: linear-gradient(135deg, var(--tg-main), var(--tg-main-dark));
             color: #f9fafb;
             font-weight: 600;
             font-size: 14px;
             text-decoration: none;
-            box-shadow: 0 14px 30px rgba(14,165,233,0.45);
-            transition: transform 0.18s var(--ease-out), box-shadow 0.18s var(--ease-out), filter 0.18s var(--ease-out);
+            box-shadow:
+                0 10px 0 rgba(12,116,167,0.55),
+                0 18px 40px rgba(14,165,233,0.65);
+            transition:
+                transform 0.16s var(--ease-out),
+                box-shadow 0.16s var(--ease-out),
+                filter 0.18s var(--ease-out);
+        }
+
+        .telegram-button::before {
+            content: "";
+            position: absolute;
+            inset: 1px 2px 10px;
+            border-radius: inherit;
+            background: linear-gradient(to top, rgba(255,255,255,0.45), rgba(255,255,255,0.08));
+            pointer-events: none;
         }
 
         .telegram-button:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 20px 45px rgba(14,165,233,0.6);
+            transform: translateY(-2px);
+            box-shadow:
+                0 14px 0 rgba(12,116,167,0.6),
+                0 24px 50px rgba(14,165,233,0.75);
             filter: brightness(1.06);
+        }
+
+        .telegram-button:active {
+            transform: translateY(0);
+            box-shadow:
+                0 6px 0 rgba(12,116,167,0.7),
+                0 12px 28px rgba(14,165,233,0.8);
         }
 
         .telegram-note {
@@ -803,7 +954,6 @@
             text-align: center;
         }
 
-        
         /* Event info card */
         .event-card {
             margin-bottom: 22px;
@@ -963,7 +1113,7 @@
             margin-top: 10px;
         }
 
-/* Scroll animation */
+        /* Scroll animation */
 
         [data-animate] {
             opacity: 0;
@@ -1035,14 +1185,14 @@
     <header>
         <div class="nav">
             <div class="logo">
-    <div class="logo-mark">
-        <img src="assets/logo-teremok.jpg" alt="Теремок логотип">
-    </div>
-    <div class="logo-labels">
-        <div class="logo-text-primary">Теремок</div>
-        <div class="logo-text-secondary">мотивационная модель команды</div>
-    </div>
-</div>
+                <div class="logo-mark">
+                    <img src="assets/logo-teremok.jpg" alt="Теремок логотип">
+                </div>
+                <div class="logo-labels">
+                    <div class="logo-text-primary">Теремок</div>
+                    <div class="logo-text-secondary">мотивационная модель команды</div>
+                </div>
+            </div>
 
             <div class="nav-links">
                 <a href="#about">О программе</a>
@@ -1066,8 +1216,8 @@
                 <div class="hero" data-animate>
                     <div>
                         <div class="hero-brand-badge">
-    <span>Авторская модель «Теремок»</span>
-</div>
+                            <span>Авторская модель «Теремок»</span>
+                        </div>
 
                         <div class="hero-kicker">Программа для собственников, руководителей и HR</div>
                         <h1>«Теремок»: на кого в&nbsp;команде делать ставки</h1>
@@ -1093,30 +1243,30 @@
                             поможем подобрать удобный формат участия.
                         </div>
                     </div>
-                    <aside class="hero-card" aria-hidden="true" data-animate>
+                    <aside class="hero-card" data-animate>
                         <div class="hero-card-title">Мотивационный «срез» команды</div>
                         <div class="hero-card-grid">
-                            <div class="hero-chip bad">
+                            <button class="hero-chip bad" type="button" data-type="ptica">
                                 <span></span>
                                 Птицы — работают под принуждением
-                            </div>
-                            <div class="hero-chip bad">
+                            </button>
+                            <button class="hero-chip bad" type="button" data-type="homiak">
                                 <span></span>
                                 Хомяки — только деньги и выгода
-                            </div>
-                            <div class="hero-chip">
+                            </button>
+                            <button class="hero-chip" type="button" data-type="profi">
                                 <span></span>
                                 Профи — любят работу и качество
-                            </div>
-                            <div class="hero-chip">
+                            </button>
+                            <button class="hero-chip" type="button" data-type="leader">
                                 <span></span>
                                 Лидеры — тянут команду вверх
-                            </div>
+                            </button>
                         </div>
-                        <div class="hero-card-caption">
-                            На «Теремке» вы научитесь отличать эти типы по поведению, речевым маркерам и решениям
-                            — на реальных кейсах из вашей компании.
+                        <div class="hero-card-caption" id="heroCardCaption">
+                            Нажмите на типаж, чтобы увидеть, что с ним делать в вашей команде.
                         </div>
+                        <div class="hero-type-description" id="heroTypeDescription"></div>
                     </aside>
                 </div>
             </div>
@@ -1250,12 +1400,14 @@
                 </div>
             </div>
         </section>
+
+        <!-- Testimonials -->
         <section class="section section-alt" id="testimonials">
             <div class="container" data-animate>
                 <div class="section-header">
                     <div class="section-kicker">Опыт клиентов</div>
                     <h2>Отзывы руководителей и HR после «Теремка»</h2>
-                    <p class="section-leад">
+                    <p class="section-lead">
                         Реальные кейсы о том, как «Теремок» помогает по-другому смотреть на сотрудников,
                         переставать тянуть «минусовых» и принимать решения не по ощущениям, а по понятной системе типажей.
                     </p>
@@ -1346,9 +1498,6 @@
             </div>
         </section>
 
-
-
-
         <!-- Experts -->
         <section class="section section-dark" id="experts">
             <div class="container" data-animate>
@@ -1411,7 +1560,7 @@
                     </p>
                 </div>
                 <div class="form-wrapper">
-                    
+
                     <div class="event-card" data-animate>
                         <div class="event-label">Ближайший поток программы</div>
                         <div class="event-title">Минск, 20 ноября 2025</div>
@@ -1431,7 +1580,8 @@
                         </div>
                         <p class="event-note">Места в группе ограничены: работаем в формате живого практикума с разбором ваших кейсов.</p>
                     </div>
-<div class="form-grid">
+
+                    <div class="form-grid">
                         <div>
                             <p class="form-secondary">
                                 Нажмите на кнопку ниже, чтобы открыть форму заявки. Мы спросим только то, что действительно
@@ -1951,6 +2101,73 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     });
+
+    // === Интерактивные типажи в hero-карте «Мотивационный срез команды» ===
+    const heroChips = document.querySelectorAll('.hero-card .hero-chip');
+    const heroTypeBox = document.getElementById('heroTypeDescription');
+    const heroCardCaption = document.getElementById('heroCardCaption');
+
+    const heroTypes = {
+        ptica: {
+            title: 'Птицы — работают под принуждением',
+            text: 'Такие сотрудники двигаются в основном за счёт внешнего контроля: напоминаний, дедлайнов, постоянных «пинков». Без жёсткого присутствия руководителя задачи легко «проседают». На «Теремке» разбираем, как ограничивать ущерб от Птиц и не тратить на них ресурс Профи и лидеров.'
+        },
+        homiak: {
+            title: 'Хомяки — только деньги и выгода',
+            text: 'Фокус на личной выгоде и деньгах. Пока система бонусов выгодна — работают, при изменении условий быстро «остывают» или уходят туда, где платят больше. На «Теремке» показываем, в каких ролях Хомяки допустимы, а где они делают бизнес заложником своих аппетитов.'
+        },
+        profi: {
+            title: 'Профи — любят работу и качество',
+            text: 'Держат фокус на задаче и результате, сами контролируют сроки и качество, часто тихо вытягивают на себе ключевые процессы и клиентов. На «Теремке» помогаем увидеть Профи как ядро команды и выстроить вокруг них правильную конфигурацию, чтобы они не выгорали.'
+        },
+        leader: {
+            title: 'Лидеры — тянут команду вверх',
+            text: 'Лидеры задают планку, тянут людей за собой и влияют на управленческие решения. Если ставка сделана не на тех, лидеры уводят команду в сторону. На «Теремке» учимся отличать надёжных лидеров от статусных и опираться на первых в развитии компании.'
+        }
+    };
+
+    function renderHeroType(typeKey, clickedChip) {
+        if (!heroTypeBox || !heroTypes[typeKey]) return;
+
+        heroChips.forEach(chip => chip.classList.remove('active'));
+        if (clickedChip) {
+            clickedChip.classList.add('active');
+        }
+
+        const data = heroTypes[typeKey];
+
+        if (heroCardCaption) {
+            heroCardCaption.textContent = data.title;
+        }
+
+        heroTypeBox.classList.remove('animate');
+        void heroTypeBox.offsetWidth;
+        heroTypeBox.classList.add('animate');
+
+        heroTypeBox.innerHTML =
+            '<div class="hero-type-title">' + data.title + '</div>' +
+            '<p>' + data.text + '</p>' +
+            '<div class="hero-type-cta">' +
+                '<button type="button" class="btn-primary" onclick="openLeadModal(\'lead\')">' +
+                    'Разобрать мою команду по «Теремку»' +
+                '</button>' +
+            '</div>';
+    }
+
+    if (heroChips.length && heroTypeBox) {
+        heroChips.forEach(chip => {
+            chip.addEventListener('click', function () {
+                const typeKey = chip.getAttribute('data-type');
+                if (!typeKey) return;
+                renderHeroType(typeKey, chip);
+            });
+        });
+
+        const defaultChip = document.querySelector('.hero-card .hero-chip[data-type="profi"]');
+        if (defaultChip) {
+            renderHeroType('profi', defaultChip);
+        }
+    }
 });
 </script>
 
