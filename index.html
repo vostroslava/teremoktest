@@ -614,25 +614,6 @@
             color: var(--text-muted);
         }
 
-        /* чекбокс согласия с политикой */
-        .checkbox-label {
-            display: flex;
-            align-items: flex-start;
-            gap: 8px;
-            font-size: 13px;
-            color: #374151;
-        }
-
-        .checkbox-label input {
-            margin-top: 3px;
-        }
-
-        .checkbox-label a {
-            color: var(--accent);
-            text-decoration: underline;
-            cursor: pointer;
-        }
-
         .form-note {
             font-size: 14px;
             color: var(--text-muted);
@@ -792,11 +773,6 @@
             z-index: 101;
             max-height: 90vh;
             overflow-y: auto;
-        }
-
-        /* широкое окно для политики */
-        .modal-window-wide {
-            max-width: 900px;
         }
 
         .modal-window h2 {
@@ -1049,6 +1025,64 @@
             transform: translateY(0);
         }
 
+        /* Privacy checkbox & link */
+
+        .checkbox-label {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            font-size: 13px;
+            color: #374151;
+            cursor: pointer;
+        }
+
+        .checkbox-label input[type="checkbox"] {
+            margin-top: 3px;
+        }
+
+        .checkbox-text {
+            line-height: 1.4;
+        }
+
+        .link-button {
+            background: none;
+            border: none;
+            padding: 0;
+            margin: 0;
+            font: inherit;
+            color: #0f766e;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+        .link-button:hover {
+            color: #115e59;
+        }
+
+        /* Privacy policy modal */
+
+        .policy-window {
+            max-width: 960px;
+            width: calc(100% - 32px);
+            max-height: calc(100vh - 32px);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .policy-window h2 {
+            margin-bottom: 12px;
+        }
+
+        .policy-frame {
+            flex: 1 1 auto;
+            width: 100%;
+            border: none;
+            border-radius: 12px;
+            background: #f9fafb;
+            margin-top: 8px;
+            min-height: 0;
+        }
+
         @media (max-width: 900px) {
             .hero,
             .two-cols,
@@ -1255,7 +1289,7 @@
                 <div class="section-header">
                     <div class="section-kicker">Кому будет полезно</div>
                     <h2>Для кого программа «Теремок»</h2>
-                    <p class="section-lead">
+                    <p class="section-leад">
                         Программа создана для тех, кто отвечает за людей и результат,
                         а не только за «красивые отчёты» по HR.
                     </p>
@@ -1569,11 +1603,24 @@
             <small>
                 <a href="#top">Наверх</a>
             </small>
-            <small>
-                <a href="javascript:void(0)" onclick="openPolicyModal()">Политика конфиденциальности</a>
-            </small>
         </div>
     </footer>
+</div>
+
+<!-- Модальное окно с политикой конфиденциальности -->
+<div class="modal-backdrop" id="privacyModal" aria-hidden="true">
+    <div class="modal-overlay" onclick="closePrivacyModal()"></div>
+
+    <div class="modal-window policy-window" role="dialog" aria-modal="true" aria-labelledby="privacyModalTitle">
+        <button class="modal-close" type="button" onclick="closePrivacyModal()">×</button>
+
+        <h2 id="privacyModalTitle">Политика конфиденциальности</h2>
+        <p class="modal-subtitle">
+            Ниже открывается полный текст политики конфиденциальности из файла <code>privacy-policy.html</code>.
+        </p>
+
+        <iframe class="policy-frame" src="privacy-policy.html" title="Политика конфиденциальности"></iframe>
+    </div>
 </div>
 
 <!-- Модальное окно заявки -->
@@ -1649,6 +1696,22 @@
             <div class="field-group">
                 <label for="request">Ваш запрос (кратко)</label>
                 <textarea id="request" name="request" placeholder="С чем хотите поработать на «Теремке» — команда, вовлечённость, подбор, управленческие решения и т.п."></textarea>
+            </div>
+
+            <div class="field-group">
+                <label class="checkbox-label">
+                    <input type="checkbox" id="privacyConsent" name="privacyConsent" required>
+                    <span class="checkbox-text">
+                        Я даю согласие на обработку моих персональных данных
+                        и ознакомился(лась) с
+                        <button type="button" class="link-button" onclick="openPrivacyModal()">
+                            политикой конфиденциальности
+                        </button>.
+                    </span>
+                </label>
+                <div class="field-hint">
+                    Без согласия на обработку персональных данных мы не сможем принять заявку.
+                </div>
             </div>
 
             <button type="submit" class="btn-primary btn-full">
@@ -1758,21 +1821,6 @@
                 <label><input type="radio" name="q8" value="none"> От клиента к клиенту — по-разному, общей линии нет.</label>
             </div>
 
-            <!-- Согласие с политикой конфиденциальности -->
-            <div class="field-group">
-                <label class="checkbox-label">
-                    <input type="checkbox" id="testPolicy" name="testPolicy" required>
-                    <span>
-                        Я ознакомился с
-                        <a href="javascript:void(0)" onclick="openPolicyModal()">Политикой конфиденциальности</a>
-                        и даю согласие на обработку персональных данных.
-                    </span>
-                </label>
-                <div class="field-hint">
-                    Без согласия с политикой конфиденциальности результат теста не будет отправлен.
-                </div>
-            </div>
-
             <button type="submit" class="btn-primary btn-full">
                 Получить результат
             </button>
@@ -1807,100 +1855,11 @@
     </div>
 </div>
 
-<!-- Модальное окно политики конфиденциальности -->
-<div class="modal-backdrop" id="policyModal" aria-hidden="true">
-    <div class="modal-overlay" onclick="closePolicyModal()"></div>
-
-    <div class="modal-window modal-window-wide" role="dialog" aria-modal="true" aria-labelledby="policyModalTitle">
-        <button class="modal-close" type="button" onclick="closePolicyModal()">×</button>
-
-        <h2 id="policyModalTitle">Политика конфиденциальности</h2>
-        <p class="modal-subtitle">
-            Настоящая политика описывает, какие данные вы оставляете на этой странице программы «Теремок» и как мы их используем.
-        </p>
-
-        <h3>1. Кто мы</h3>
-        <p>
-            Организатор программы «Теремок» — консалтинговая компания «Сталкер-Медиа», оказывающая услуги по обучению и развитию персонала.
-        </p>
-
-        <h3>2. Какие данные мы обрабатываем</h3>
-        <p>Через формы заявки и мини-теста мы можем получать и обрабатывать следующие данные:</p>
-        <ul>
-            <li>имя и должность;</li>
-            <li>название компании и размер команды;</li>
-            <li>контактные данные (телефон, мессенджер, e-mail);</li>
-            <li>ваш запрос по программе («с чем хотите поработать»);</li>
-            <li>ответы на вопросы мини-теста по сотруднику (без ФИО сотрудника).</li>
-        </ul>
-
-        <h3>3. Цели обработки данных</h3>
-        <p>Данные используются для:</p>
-        <ul>
-            <li>связи с вами по поводу участия в офлайн-программе «Теремок»;</li>
-            <li>уточнения вашей ситуации по команде и подбора формата работы;</li>
-            <li>подготовки материалов консультации и практикума под ваш запрос;</li>
-            <li>агрегации обезличенной статистики по интересу к программе и типажам.</li>
-        </ul>
-
-        <h3>4. Правовые основания обработки</h3>
-        <p>
-            Основанием для обработки является ваше добровольное согласие, выраженное при заполнении формы заявки
-            и/или мини-теста, а также наш законный интерес — связаться с вами по поводу запрошенной услуги.
-        </p>
-
-        <h3>5. Хранение и защита данных</h3>
-        <p>
-            Данные хранятся в защищённых сервисах, которые мы используем для учёта заявок и проведения программы.
-            Доступ к данным имеют только сотрудники и привлечённые специалисты, непосредственно работающие с программой «Теремок».
-        </p>
-
-        <h3>6. Передача третьим лицам</h3>
-        <p>
-            Мы не продаём и не передаём ваши контактные данные третьим лицам в рекламных целях.
-            Передача возможна только в случаях, предусмотренных законом, либо при технической обработке данных
-            сервисами-операторами (например, системами учёта заявок), которые обеспечивают конфиденциальность информации.
-        </p>
-
-        <h3>7. Сроки хранения</h3>
-        <p>
-            Данные хранятся в течение срока, необходимого для подготовки и проведения программы, а также последующего
-            взаимодействия по теме управления персоналом, но не дольше, чем это требуется для целей обработки.
-        </p>
-
-        <h3>8. Ваши права</h3>
-        <p>Вы можете:</p>
-        <ul>
-            <li>запросить информацию о том, какие данные о вас у нас есть;</li>
-            <li>попросить уточнить или обновить данные;</li>
-            <li>потребовать ограничить обработку или удалить данные, если это не противоречит требованиям закона.</li>
-        </ul>
-
-        <h3>9. Как связаться по вопросам данных</h3>
-        <p>
-            Если у вас есть вопросы по обработке персональных данных или вы хотите отозвать согласие,
-            вы можете связаться с нами через контактные данные, указанные в наших материалах и на основном сайте,
-            либо написать в Telegram по адресу <a href="https://t.me/stalkermedia1" target="_blank" rel="noopener noreferrer">@stalkermedia1</a>.
-        </p>
-
-        <p class="modal-note">
-            Продолжая заполнять формы на этой странице, вы подтверждаете, что ознакомились с настоящей Политикой конфиденциальности
-            и согласны с условиями обработки ваших персональных данных.
-        </p>
-    </div>
-</div>
-
 <script>
 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwnQR15r9C6AwTp_eYY3RV6uNKu7FaYt0xSra776uZS70rifwMxLKpfDyW0Ls85f5EQ/exec";
 
 let leadData = null;
 let testSubmitted = false;
-
-// общий хелпер блокировки скролла для всех модалок
-function updateBodyScrollLock() {
-    const anyOpen = document.querySelector('.modal-backdrop.open');
-    document.body.style.overflow = anyOpen ? 'hidden' : '';
-}
 
 // Открыть модал заявки
 function openLeadModal(source) {
@@ -1908,7 +1867,7 @@ function openLeadModal(source) {
     if (!modal) return;
 
     modal.classList.add('open');
-    updateBodyScrollLock();
+    document.body.style.overflow = 'hidden';
 
     const banner = document.getElementById('testAccessBanner');
     if (banner) {
@@ -1921,7 +1880,7 @@ function closeLeadModal() {
     const modal = document.getElementById('leadModal');
     if (!modal) return;
     modal.classList.remove('open');
-    updateBodyScrollLock();
+    document.body.style.overflow = '';
 }
 
 // Открыть модал с тестом
@@ -1930,7 +1889,7 @@ function openTestModal() {
     if (!modal) return;
 
     modal.classList.add('open');
-    updateBodyScrollLock();
+    document.body.style.overflow = 'hidden';
 
     const resultEl = document.getElementById('testResult');
     const nextStepEl = document.getElementById('testNextStep');
@@ -1961,23 +1920,25 @@ function closeTestModal() {
     const modal = document.getElementById('testModal');
     if (!modal) return;
     modal.classList.remove('open');
-    updateBodyScrollLock();
+    document.body.style.overflow = '';
 }
 
-// Открыть модал политики
-function openPolicyModal() {
-    const modal = document.getElementById('policyModal');
+// Открыть модал политики конфиденциальности
+function openPrivacyModal() {
+    const modal = document.getElementById('privacyModal');
     if (!modal) return;
+
     modal.classList.add('open');
-    updateBodyScrollLock();
+    document.body.style.overflow = 'hidden';
 }
 
-// Закрыть модал политики
-function closePolicyModal() {
-    const modal = document.getElementById('policyModal');
+// Закрыть модал политики конфиденциальности
+function closePrivacyModal() {
+    const modal = document.getElementById('privacyModal');
     if (!modal) return;
+
     modal.classList.remove('open');
-    updateBodyScrollLock();
+    document.body.style.overflow = '';
 }
 
 // Обработка отправки формы заявки
@@ -2124,7 +2085,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (e.key === 'Escape') {
             closeLeadModal();
             closeTestModal();
-            closePolicyModal();
+            closePrivacyModal();
         }
     });
 
