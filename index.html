@@ -125,60 +125,61 @@
             transform: translateY(-1px);
         }
 
+        /* Верхняя CTA в шапке — премиум-стиль */
         .nav-cta {
-    padding: 8px 18px;
-    border-radius: 999px;
-    border: 1px solid rgba(15, 23, 42, 0.9);
-    background:
-        radial-gradient(circle at 0% 0%, rgba(249, 115, 22, 0.18) 0, transparent 55%),
-        linear-gradient(135deg, #111827, #020617);
-    color: #f9fafb;
-    font-weight: 600;
-    font-size: 14px;
-    cursor: pointer;
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    position: relative;
-    box-shadow: 0 16px 36px rgba(15, 23, 42, 0.55);
-    transition:
-        transform 0.16s var(--ease-out),
-        box-shadow 0.16s var(--ease-out),
-        background 0.18s var(--ease-out),
-        border-color 0.18s ease,
-        filter 0.18s ease;
-}
+            padding: 8px 18px;
+            border-radius: 999px;
+            border: 1px solid rgba(15, 23, 42, 0.9);
+            background:
+                radial-gradient(circle at 0% 0%, rgba(249, 115, 22, 0.18) 0, transparent 55%),
+                linear-gradient(135deg, #111827, #020617);
+            color: #f9fafb;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            position: relative;
+            box-shadow: 0 16px 36px rgba(15, 23, 42, 0.55);
+            transition:
+                transform 0.16s var(--ease-out),
+                box-shadow 0.16s var(--ease-out),
+                background 0.18s var(--ease-out),
+                border-color 0.18s ease,
+                filter 0.18s ease;
+        }
 
-.nav-cta::before {
-    content: "";
-    position: absolute;
-    inset: 1px 1px 10px;
-    border-radius: inherit;
-    background: linear-gradient(to top, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.03));
-    pointer-events: none;
-}
+        .nav-cta::before {
+            content: "";
+            position: absolute;
+            inset: 1px 1px 10px;
+            border-radius: inherit;
+            background: linear-gradient(to top, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.03));
+            pointer-events: none;
+        }
 
-.nav-cta span {
-    font-size: 11px;
-    opacity: 0.75;
-}
+        .nav-cta span {
+            font-size: 11px;
+            opacity: 0.75;
+        }
 
-.nav-cta:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 22px 50px rgba(15, 23, 42, 0.65);
-    background:
-        radial-gradient(circle at 0% 0%, rgba(249, 115, 22, 0.24) 0, transparent 55%),
-        linear-gradient(135deg, #020617, #020617);
-    border-color: rgba(15, 23, 42, 1);
-    filter: brightness(1.03);
-}
+        .nav-cta:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 22px 50px rgba(15, 23, 42, 0.65);
+            background:
+                radial-gradient(circle at 0% 0%, rgba(249, 115, 22, 0.24) 0, transparent 55%),
+                linear-gradient(135deg, #020617, #020617);
+            border-color: rgba(15, 23, 42, 1);
+            filter: brightness(1.03);
+        }
 
-.nav-cta:active {
-    transform: translateY(0);
-    box-shadow: 0 10px 28px rgba(15, 23, 42, 0.6);
-    filter: brightness(0.99);
-}
+        .nav-cta:active {
+            transform: translateY(0);
+            box-shadow: 0 10px 28px rgba(15, 23, 42, 0.6);
+            filter: brightness(0.99);
+        }
 
         main {
             flex: 1;
@@ -267,7 +268,14 @@
             font-size: 16px;
             color: #4b5563;
             max-width: 520px;
-            margin-bottom: 22px;
+            margin-bottom: 12px;
+        }
+
+        .hero-persona {
+            font-size: 15px;
+            color: #111827;
+            max-width: 540px;
+            margin-bottom: 20px;
         }
 
         .hero-actions {
@@ -278,91 +286,92 @@
             margin-bottom: 18px;
         }
 
-       .btn-primary {
-    position: relative;
-    padding: 12px 22px;
-    border-radius: 999px;
-    border: 1px solid rgba(15, 23, 42, 0.9);
-    background:
-        radial-gradient(circle at 0% 0%, rgba(249, 115, 22, 0.22) 0, transparent 55%),
-        linear-gradient(135deg, #111827, #020617);
-    color: #f9fafb;
-    font-weight: 600;
-    font-size: 15px;
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    box-shadow: 0 20px 46px rgba(15, 23, 42, 0.6);
-    transform: translateY(0);
-    transition:
-        transform 0.18s var(--ease-out),
-        box-shadow 0.18s var(--ease-out),
-        background 0.18s var(--ease-out),
-        border-color 0.18s ease,
-        filter 0.18s ease;
-}
+        /* Основная кнопка — премиум */
+        .btn-primary {
+            position: relative;
+            padding: 12px 22px;
+            border-radius: 999px;
+            border: 1px solid rgba(15, 23, 42, 0.9);
+            background:
+                radial-gradient(circle at 0% 0%, rgba(249, 115, 22, 0.22) 0, transparent 55%),
+                linear-gradient(135deg, #111827, #020617);
+            color: #f9fafb;
+            font-weight: 600;
+            font-size: 15px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            box-shadow: 0 20px 46px rgba(15, 23, 42, 0.6);
+            transform: translateY(0);
+            transition:
+                transform 0.18s var(--ease-out),
+                box-shadow 0.18s var(--ease-out),
+                background 0.18s var(--ease-out),
+                border-color 0.18s ease,
+                filter 0.18s ease;
+        }
 
-.btn-primary::before {
-    content: "";
-    position: absolute;
-    inset: 1px 1px 10px;
-    border-radius: inherit;
-    background: linear-gradient(to top, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.02));
-    pointer-events: none;
-}
+        .btn-primary::before {
+            content: "";
+            position: absolute;
+            inset: 1px 1px 10px;
+            border-radius: inherit;
+            background: linear-gradient(to top, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.02));
+            pointer-events: none;
+        }
 
-.btn-primary:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 26px 56px rgba(15, 23, 42, 0.7);
-    background:
-        radial-gradient(circle at 0% 0%, rgba(249, 115, 22, 0.26) 0, transparent 55%),
-        linear-gradient(135deg, #020617, #020617);
-    border-color: rgba(15, 23, 42, 1);
-    filter: brightness(1.03);
-}
+        .btn-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 26px 56px rgba(15, 23, 42, 0.7);
+            background:
+                radial-gradient(circle at 0% 0%, rgba(249, 115, 22, 0.26) 0, transparent 55%),
+                linear-gradient(135deg, #020617, #020617);
+            border-color: rgba(15, 23, 42, 1);
+            filter: brightness(1.03);
+        }
 
-.btn-primary:active {
-    transform: translateY(0);
-    box-shadow: 0 12px 32px rgba(15, 23, 42, 0.65);
-    filter: brightness(0.99);
-}
+        .btn-primary:active {
+            transform: translateY(0);
+            box-shadow: 0 12px 32px rgba(15, 23, 42, 0.65);
+            filter: brightness(0.99);
+        }
 
-/* Вторичная кнопка (обводка, спокойная) */
-.btn-secondary {
-    position: relative;
-    padding: 11px 18px;
-    border-radius: 999px;
-    border: 1px solid rgba(148, 163, 184, 0.95);
-    background: rgba(249, 250, 251, 0.96);
-    color: #111827;
-    font-size: 15px;
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    box-shadow: 0 14px 32px rgba(15, 23, 42, 0.12);
-    transition:
-        transform 0.16s var(--ease-out),
-        box-shadow 0.16s var(--ease-out),
-        background 0.18s var(--ease-out),
-        border-color 0.18s ease,
-        color 0.18s ease;
-}
+        /* Вторичная кнопка */
+        .btn-secondary {
+            position: relative;
+            padding: 11px 18px;
+            border-radius: 999px;
+            border: 1px solid rgba(148, 163, 184, 0.95);
+            background: rgba(249, 250, 251, 0.96);
+            color: #111827;
+            font-size: 15px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            box-shadow: 0 14px 32px rgba(15, 23, 42, 0.12);
+            transition:
+                transform 0.16s var(--ease-out),
+                box-shadow 0.16s var(--ease-out),
+                background 0.18s var(--ease-out),
+                border-color 0.18s ease,
+                color 0.18s ease;
+        }
 
-.btn-secondary:hover {
-    transform: translateY(-1px);
-    background: #ffffff;
-    border-color: rgba(148, 163, 184, 1);
-    box-shadow: 0 20px 40px rgba(15, 23, 42, 0.16);
-}
+        .btn-secondary:hover {
+            transform: translateY(-1px);
+            background: #ffffff;
+            border-color: rgba(148, 163, 184, 1);
+            box-shadow: 0 20px 40px rgba(15, 23, 42, 0.16);
+        }
 
-.btn-secondary:active {
-    transform: translateY(0);
-    box-shadow: 0 10px 26px rgba(15, 23, 42, 0.16);
-}
+        .btn-secondary:active {
+            transform: translateY(0);
+            box-shadow: 0 10px 26px rgba(15, 23, 42, 0.16);
+        }
 
         .hero-note {
             font-size: 14px;
@@ -414,19 +423,19 @@
             gap: 10px;
         }
 
-        /* обновлённые чипы-типажи */
+        /* Чипы-типажи — спокойный премиальный стиль */
         .hero-chip {
             border-radius: 999px;
             font-size: 13px;
             padding: 7px 12px;
-            background: linear-gradient(135deg, #f9fafb, #e5e7eb);
-            border: 1px solid rgba(148,163,184,0.8);
+            background: rgba(15, 23, 42, 0.03);
+            border: 1px solid rgba(148, 163, 184, 0.9);
             display: inline-flex;
             align-items: center;
             gap: 6px;
             cursor: pointer;
             position: relative;
-            box-shadow: 0 8px 18px rgba(15,23,42,0.08);
+            box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
             transition:
                 transform 0.16s var(--ease-out),
                 box-shadow 0.16s var(--ease-out),
@@ -435,97 +444,31 @@
                 color 0.16s ease;
         }
 
-        .hero-chip {
-    border-radius: 999px;
-    font-size: 13px;
-    padding: 7px 12px;
-    background: rgba(15, 23, 42, 0.03);
-    border: 1px solid rgba(148, 163, 184, 0.9);
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    cursor: pointer;
-    position: relative;
-    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
-    transition:
-        transform 0.16s var(--ease-out),
-        box-shadow 0.16s var(--ease-out),
-        border-color 0.16s ease,
-        background 0.18s ease,
-        color 0.16s ease;
-}
-
-.hero-chip span {
-    width: 9px;
-    height: 9px;
-    border-radius: 999px;
-    background: #22c55e;
-}
-
-.hero-chip.bad span {
-    background: #ef4444;
-}
-
-.hero-chip:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 14px 28px rgba(15, 23, 42, 0.12);
-    background: rgba(15, 23, 42, 0.05);
-    border-color: rgba(148, 163, 184, 1);
-}
-
-.hero-chip.active {
-    border-color: var(--accent);
-    background:
-        radial-gradient(circle at 0% 0%, rgba(249, 115, 22, 0.16) 0, transparent 55%),
-        #ffffff;
-    box-shadow: 0 18px 40px rgba(249, 115, 22, 0.35);
-    color: #111827;
-}
-
-        .hero-card-caption {
-            margin-top: 12px;
-            font-size: 13px;
-            color: var(--text-muted);
+        .hero-chip span {
+            width: 9px;
+            height: 9px;
+            border-radius: 999px;
+            background: #22c55e;
         }
 
-        /* описание выбранного типажа */
-        .hero-type-description {
-            margin-top: 12px;
-            padding: 10px 12px 12px;
-            border-radius: 14px;
-            background: rgba(15,23,42,0.03);
-            border: 1px dashed rgba(148,163,184,0.8);
-            font-size: 13px;
-            color: #374151;
+        .hero-chip.bad span {
+            background: #ef4444;
         }
 
-        .hero-type-title {
-            font-weight: 600;
-            font-size: 14px;
-            margin-bottom: 6px;
+        .hero-chip:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 14px 28px rgba(15, 23, 42, 0.12);
+            background: rgba(15, 23, 42, 0.05);
+            border-color: rgba(148, 163, 184, 1);
         }
 
-        .hero-type-description p {
-            margin: 0 0 8px;
-        }
-
-        .hero-type-cta {
-            margin-top: 6px;
-        }
-
-        .hero-type-description.animate {
-            animation: fadeInUp 0.28s var(--ease-out);
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(8px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .hero-chip.active {
+            border-color: var(--accent);
+            background:
+                radial-gradient(circle at 0% 0%, rgba(249, 115, 22, 0.16) 0, transparent 55%),
+                #ffffff;
+            box-shadow: 0 18px 40px rgba(249, 115, 22, 0.35);
+            color: #111827;
         }
 
         .section-header {
@@ -814,48 +757,49 @@
             color: #4b5563;
         }
 
-       .telegram-button {
-    position: relative;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 8px 16px;
-    border-radius: 999px;
-    background: linear-gradient(135deg, var(--tg-main), var(--tg-main-dark));
-    color: #f9fafb;
-    font-weight: 600;
-    font-size: 14px;
-    text-decoration: none;
-    border: 1px solid rgba(12, 116, 167, 0.9);
-    box-shadow: 0 16px 38px rgba(14, 165, 233, 0.55);
-    transition:
-        transform 0.16s var(--ease-out),
-        box-shadow 0.16s var(--ease-out),
-        filter 0.18s var(--ease-out),
-        border-color 0.18s ease;
-}
+        /* Телеграм-кнопка — премиум */
+        .telegram-button {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8px 16px;
+            border-radius: 999px;
+            background: linear-gradient(135deg, var(--tg-main), var(--tg-main-dark));
+            color: #f9fafb;
+            font-weight: 600;
+            font-size: 14px;
+            text-decoration: none;
+            border: 1px solid rgba(12, 116, 167, 0.9);
+            box-shadow: 0 16px 38px rgba(14, 165, 233, 0.55);
+            transition:
+                transform 0.16s var(--ease-out),
+                box-shadow 0.16s var(--ease-out),
+                filter 0.18s var(--ease-out),
+                border-color 0.18s ease;
+        }
 
-.telegram-button::before {
-    content: "";
-    position: absolute;
-    inset: 1px 1px 8px;
-    border-radius: inherit;
-    background: linear-gradient(to top, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.04));
-    pointer-events: none;
-}
+        .telegram-button::before {
+            content: "";
+            position: absolute;
+            inset: 1px 1px 8px;
+            border-radius: inherit;
+            background: linear-gradient(to top, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.04));
+            pointer-events: none;
+        }
 
-.telegram-button:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 22px 50px rgba(14, 165, 233, 0.7);
-    filter: brightness(1.05);
-    border-color: rgba(12, 116, 167, 1);
-}
+        .telegram-button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 22px 50px rgba(14, 165, 233, 0.7);
+            filter: brightness(1.05);
+            border-color: rgba(12, 116, 167, 1);
+        }
 
-.telegram-button:active {
-    transform: translateY(0);
-    box-shadow: 0 12px 30px rgba(14, 165, 233, 0.7);
-    filter: brightness(0.99);
-}
+        .telegram-button:active {
+            transform: translateY(0);
+            box-shadow: 0 12px 30px rgba(14, 165, 233, 0.7);
+            filter: brightness(0.99);
+        }
 
         .telegram-note {
             margin-top: 10px;
@@ -1140,7 +1084,6 @@
         }
 
         /* Scroll animation */
-
         [data-animate] {
             opacity: 0;
             transform: translateY(24px);
@@ -1150,6 +1093,79 @@
         [data-animate].in-view {
             opacity: 1;
             transform: translateY(0);
+        }
+
+        /* Персонализация: inline-кнопка над основными кнопками */
+        .persona-inline {
+            margin-bottom: 14px;
+        }
+
+        .persona-inline .persona-trigger {
+            width: 100%;
+            max-width: 420px;
+            justify-content: flex-start;
+            font-size: 13px;
+        }
+
+        /* Персонализация: модалка выбора роли/боли */
+        .persona-step {
+            margin-bottom: 16px;
+        }
+
+        .persona-step-title {
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .persona-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 10px;
+            margin-top: 4px;
+        }
+
+        .persona-option {
+            border-radius: 16px;
+            padding: 10px 12px 9px;
+            border: 1px solid rgba(148,163,184,0.7);
+            background: #f9fafb;
+            text-align: left;
+            cursor: pointer;
+            font-size: 14px;
+            color: #111827;
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+            transition:
+                border-color 0.18s ease,
+                box-shadow 0.18s var(--ease-out),
+                background 0.18s ease,
+                transform 0.16s var(--ease-out);
+        }
+
+        .persona-option-title {
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .persona-option-desc {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .persona-option.selected {
+            border-color: var(--accent);
+            background: linear-gradient(to bottom right, rgba(249,115,22,0.07), #ffffff);
+            box-shadow: 0 14px 32px rgba(15,23,42,0.12);
+            transform: translateY(-1px);
+        }
+
+        .persona-summary {
+            margin-top: 4px;
         }
 
         @media (max-width: 900px) {
@@ -1256,6 +1272,16 @@
                             собирать вокруг себя ядро команды и перестать тратить бюджет и нервы на тех,
                             кто работает только «за деньги» или «под принуждением».
                         </p>
+
+                        <!-- Вставка: персонализация -->
+                        <div class="persona-inline" id="personaInlineControl" style="display:none;">
+                            <button type="button" class="btn-secondary persona-trigger" onclick="openPersonaModal(true)">
+                                <span id="personaInlineLabel">Настроить страницу под вашу роль</span>
+                            </button>
+                        </div>
+
+                        <p class="hero-persona" id="heroPersonaText"></p>
+
                         <div class="hero-actions">
                             <button class="btn-primary" onclick="openLeadModal('lead')">
                                 Записаться на программу «Теремок»
@@ -1269,30 +1295,30 @@
                             поможем подобрать удобный формат участия.
                         </div>
                     </div>
-                    <aside class="hero-card" data-animate>
+                    <aside class="hero-card" aria-hidden="true" data-animate>
                         <div class="hero-card-title">Мотивационный «срез» команды</div>
                         <div class="hero-card-grid">
-                            <button class="hero-chip bad" type="button" data-type="ptica">
+                            <div class="hero-chip bad">
                                 <span></span>
                                 Птицы — работают под принуждением
-                            </button>
-                            <button class="hero-chip bad" type="button" data-type="homiak">
+                            </div>
+                            <div class="hero-chip bad">
                                 <span></span>
                                 Хомяки — только деньги и выгода
-                            </button>
-                            <button class="hero-chip" type="button" data-type="profi">
+                            </div>
+                            <div class="hero-chip">
                                 <span></span>
                                 Профи — любят работу и качество
-                            </button>
-                            <button class="hero-chip" type="button" data-type="leader">
+                            </div>
+                            <div class="hero-chip">
                                 <span></span>
                                 Лидеры — тянут команду вверх
-                            </button>
+                            </div>
                         </div>
-                        <div class="hero-card-caption" id="heroCardCaption">
-                            Нажмите на типаж, чтобы увидеть, что с ним делать в вашей команде.
+                        <div class="hero-card-caption">
+                            На «Теремке» вы научитесь отличать эти типы по поведению, речевым маркерам и решениям
+                            — на реальных кейсах из вашей компании.
                         </div>
-                        <div class="hero-type-description" id="heroTypeDescription"></div>
                     </aside>
                 </div>
             </div>
@@ -1345,7 +1371,7 @@
                 <div class="section-header">
                     <div class="section-kicker">Кому будет полезно</div>
                     <h2>Для кого программа «Теремок»</h2>
-                    <p class="section-lead">
+                    <p class="section-lead" id="whoLead">
                         Программа создана для тех, кто отвечает за людей и результат,
                         а не только за «красивые отчёты» по HR.
                     </p>
@@ -1383,7 +1409,7 @@
                 <div class="section-header">
                     <div class="section-kicker">Результат</div>
                     <h2>Что вы получите после «Теремка»</h2>
-                    <p class="section-lead">
+                    <p class="section-lead" id="resultsLead">
                         Вместо ощущения «все вроде нормальные, но почему-то не летит»
                         у вас появляется карта команды и конкретные решения по людям.
                     </p>
@@ -1580,7 +1606,7 @@
                 <div class="section-header">
                     <div class="section-kicker">Заявка на участие</div>
                     <h2>Оставьте контакты — вышлем программу и обсудим участие</h2>
-                    <p class="section-lead">
+                    <p class="section-lead" id="registrationLead">
                         Заполните короткую заявку во всплывающем окне. Мы свяжемся с вами в ближайший рабочий день,
                         ответим на вопросы и предложим удобный формат участия в «Теремке».
                     </p>
@@ -1876,13 +1902,113 @@
     </div>
 </div>
 
+<!-- Модальное окно персонализации (роль + запрос) -->
+<div class="modal-backdrop" id="personaModal" aria-hidden="true">
+    <div class="modal-overlay" onclick="closePersonaModal()"></div>
+
+    <div class="modal-window" role="dialog" aria-modal="true" aria-labelledby="personaModalTitle">
+        <button class="modal-close" type="button" onclick="closePersonaModal()">×</button>
+
+        <h2 id="personaModalTitle">Подберём «Теремок» под вашу ситуацию</h2>
+        <p class="modal-subtitle">
+            Выберите, в какой роли вы сейчас заходите на страницу, и что больше всего хотите изменить в работе с людьми.
+            Это поможет настроить текст под вас.
+        </p>
+
+        <div class="persona-step" id="personaStepRole">
+            <div class="persona-step-title">Кто вы по роли</div>
+            <div class="persona-options">
+                <button type="button" class="persona-option" data-role="owner" onclick="selectPersonaRole('owner')">
+                    <div class="persona-option-title">Собственник / генеральный директор</div>
+                    <div class="persona-option-desc">Отвечаю за бизнес в целом, хочу понимать, на кого делать ставки.</div>
+                </button>
+                <button type="button" class="persona-option" data-role="head" onclick="selectPersonaRole('head')">
+                    <div class="persona-option-title">Руководитель отдела / филиала</div>
+                    <div class="persona-option-desc">Отвечаю за свой участок и результат команды.</div>
+                </button>
+                <button type="button" class="persona-option" data-role="hr" onclick="selectPersonaRole('hr')">
+                    <div class="persona-option-title">HR-директор / рекрутер</div>
+                    <div class="persona-option-desc">Отвечаю за найм, адаптацию и систему работы с людьми.</div>
+                </button>
+                <button type="button" class="persona-option" data-role="sales" onclick="selectPersonaRole('sales')">
+                    <div class="persona-option-title">Руководитель по продажам</div>
+                    <div class="persona-option-desc">Отвечаю за план, выручку и работу отдела продаж.</div>
+                </button>
+                <button type="button" class="persona-option" data-role="other" onclick="selectPersonaRole('other')">
+                    <div class="persona-option-title">Другая роль</div>
+                    <div class="persona-option-desc">Руководитель / специалист, влияющий на работу команды.</div>
+                </button>
+            </div>
+        </div>
+
+        <div class="persona-step" id="personaStepPain" style="display:none;">
+            <div class="persona-step-title">Что больше всего болит сейчас</div>
+            <div class="persona-options">
+                <button type="button" class="persona-option" data-pain="minusovye" onclick="selectPersonaPain('minusovye')">
+                    <div class="persona-option-title">«Минусовые» и пассажиры</div>
+                    <div class="persona-option-desc">Держу людей, к которым уже нет доверия, но увольнять страшно или некогда.</div>
+                </button>
+                <button type="button" class="persona-option" data-pain="hiring" onclick="selectPersonaPain('hiring')">
+                    <div class="persona-option-title">Ошибки в найме</div>
+                    <div class="persona-option-desc">Беру «красивых» на собеседовании, а через несколько месяцев не тянут.</div>
+                </button>
+                <button type="button" class="persona-option" data-pain="motivation" onclick="selectPersonaPain('motivation')">
+                    <div class="persona-option-title">Мотивация и вовлечённость</div>
+                    <div class="persona-option-desc">Люди работают только «за деньги» или под давлением, не держат уровень сами.</div>
+                </button>
+                <button type="button" class="persona-option" data-pain="leaders" onclick="selectPersonaPain('leaders')">
+                    <div class="persona-option-title">Управленческая команда</div>
+                    <div class="persona-option-desc">Нужно усилить ключевых руководителей и убрать зависимость от отдельных людей.</div>
+                </button>
+            </div>
+        </div>
+
+        <div id="personaSummary" class="persona-summary" style="display:none;">
+            <p class="modal-note" id="personaSummaryText"></p>
+            <button type="button" class="btn-primary btn-full" onclick="confirmPersonaSelection()">
+                Применить настройки и перейти к странице
+            </button>
+            <p class="modal-note">
+                Вы всегда сможете изменить настройки позже через кнопку вверху страницы.
+            </p>
+        </div>
+    </div>
+</div>
+
 <script>
 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwnQR15r9C6AwTp_eYY3RV6uNKu7FaYt0xSra776uZS70rifwMxLKpfDyW0Ls85f5EQ/exec";
 
 let leadData = null;
 let testSubmitted = false;
 
-// Открыть модал заявки
+/* Персонализация: глобальное состояние */
+let currentPersona = null;
+let personaSelection = { role: null, pain: null };
+
+const personaRoleLabels = {
+    owner: 'собственник или генеральный директор',
+    head: 'руководитель отдела или филиала',
+    hr: 'HR-директор или рекрутер',
+    sales: 'руководитель по продажам',
+    other: 'руководитель или специалист'
+};
+
+const personaRoleShortLabels = {
+    owner: 'Собственник / гендиректор',
+    head: 'Руководитель отдела / филиала',
+    hr: 'HR / рекрутер',
+    sales: 'Руководитель по продажам',
+    other: 'Руководитель / специалист'
+};
+
+const personaPainLabels = {
+    minusovye: 'перестать тянуть «минусовых» и пассажиров за счёт ядра команды',
+    hiring: 'перестать ошибаться в найме и брать «красивых, но слабых» людей',
+    motivation: 'перестроить мотивацию и вовлечённость, чтобы люди работали не только «за деньги»',
+    leaders: 'усилить управленческую команду и лидеров, на которых можно опираться'
+};
+
+/* Открыть модал заявки */
 function openLeadModal(source) {
     const modal = document.getElementById('leadModal');
     if (!modal) return;
@@ -1896,7 +2022,7 @@ function openLeadModal(source) {
     }
 }
 
-// Закрыть модал заявки
+/* Закрыть модал заявки */
 function closeLeadModal() {
     const modal = document.getElementById('leadModal');
     if (!modal) return;
@@ -1904,7 +2030,7 @@ function closeLeadModal() {
     document.body.style.overflow = '';
 }
 
-// Открыть модал с тестом
+/* Открыть модал с тестом */
 function openTestModal() {
     const modal = document.getElementById('testModal');
     if (!modal) return;
@@ -1936,7 +2062,7 @@ function openTestModal() {
     testSubmitted = false;
 }
 
-// Закрыть модал теста
+/* Закрыть модал теста */
 function closeTestModal() {
     const modal = document.getElementById('testModal');
     if (!modal) return;
@@ -1944,7 +2070,7 @@ function closeTestModal() {
     document.body.style.overflow = '';
 }
 
-// Обработка отправки формы заявки
+/* Обработка отправки формы заявки */
 function onLeadFormSubmit(e) {
     e.preventDefault();
 
@@ -1957,7 +2083,7 @@ function onLeadFormSubmit(e) {
     openTestModal();
 }
 
-// Логика мини-теста
+/* Логика мини-теста */
 function submitMiniTest() {
     if (testSubmitted) {
         return;
@@ -2030,7 +2156,7 @@ function submitMiniTest() {
     testSubmitted = true;
 }
 
-// Отправка данных в Google Script
+/* Отправка данных в Google Script */
 function sendToGoogleSheet(mainType, types, resultText) {
     const fd = new FormData();
 
@@ -2070,6 +2196,208 @@ function sendToGoogleSheet(mainType, types, resultText) {
     });
 }
 
+/* Персонализация: открытие модалки */
+function openPersonaModal(fromInline) {
+    const modal = document.getElementById('personaModal');
+    if (!modal) return;
+
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+
+    // восстановить выбор в интерфейсе, если уже был
+    const roleButtons = modal.querySelectorAll('.persona-option[data-role]');
+    roleButtons.forEach(btn => {
+        const role = btn.getAttribute('data-role');
+        btn.classList.toggle('selected', personaSelection.role === role);
+    });
+
+    const painButtons = modal.querySelectorAll('.persona-option[data-pain]');
+    painButtons.forEach(btn => {
+        const pain = btn.getAttribute('data-pain');
+        btn.classList.toggle('selected', personaSelection.pain === pain);
+    });
+
+    const stepPain = document.getElementById('personaStepPain');
+    const summary = document.getElementById('personaSummary');
+
+    if (personaSelection.role) {
+        if (stepPain) stepPain.style.display = '';
+    } else {
+        if (stepPain) stepPain.style.display = 'none';
+    }
+
+    if (personaSelection.role && personaSelection.pain) {
+        if (summary) summary.style.display = '';
+        updatePersonaSummary();
+    } else if (summary) {
+        summary.style.display = 'none';
+    }
+}
+
+/* Персонализация: закрыть модалку */
+function closePersonaModal() {
+    const modal = document.getElementById('personaModal');
+    if (!modal) return;
+    modal.classList.remove('open');
+    document.body.style.overflow = '';
+}
+
+/* Персонализация: выбор роли */
+function selectPersonaRole(role) {
+    personaSelection.role = role;
+
+    const modal = document.getElementById('personaModal');
+    if (modal) {
+        const roleButtons = modal.querySelectorAll('.persona-option[data-role]');
+        roleButtons.forEach(btn => {
+            const r = btn.getAttribute('data-role');
+            btn.classList.toggle('selected', r === role);
+        });
+
+        const stepPain = document.getElementById('personaStepPain');
+        if (stepPain) {
+            stepPain.style.display = '';
+        }
+    }
+
+    updatePersonaSummary();
+}
+
+/* Персонализация: выбор боли */
+function selectPersonaPain(pain) {
+    personaSelection.pain = pain;
+
+    const modal = document.getElementById('personaModal');
+    if (modal) {
+        const painButtons = modal.querySelectorAll('.persona-option[data-pain]');
+        painButtons.forEach(btn => {
+            const p = btn.getAttribute('data-pain');
+            btn.classList.toggle('selected', p === pain);
+        });
+
+        const summary = document.getElementById('personaSummary');
+        if (summary) {
+            summary.style.display = (personaSelection.role ? '' : 'none');
+        }
+    }
+
+    updatePersonaSummary();
+}
+
+/* Персонализация: текст-саммари в модалке */
+function updatePersonaSummary() {
+    const summaryTextEl = document.getElementById('personaSummaryText');
+    if (!summaryTextEl) return;
+
+    if (!personaSelection.role) {
+        summaryTextEl.textContent = 'Сначала выберите, в какой роли вы сейчас заходите на страницу.';
+        return;
+    }
+
+    const roleLabel = personaRoleLabels[personaSelection.role] || personaRoleLabels.other;
+    const painLabel = personaPainLabels[personaSelection.pain] || null;
+
+    let text = 'Вы заходите на страницу как ' + roleLabel + '.';
+    if (painLabel) {
+        text += ' Основной запрос — ' + painLabel + '.';
+    } else {
+        text += ' Сейчас вы хотите в целом навести порядок в работе с людьми.';
+    }
+    text += ' Мы настроим текст страницы под ваш контекст, чтобы вы сразу видели, как «Теремок» решает именно эти задачи.';
+    summaryTextEl.textContent = text;
+}
+
+/* Персонализация: подтверждение и применение */
+function confirmPersonaSelection() {
+    if (!personaSelection.role) {
+        updatePersonaSummary();
+        return;
+    }
+    setPersona(personaSelection.role, personaSelection.pain || null);
+    closePersonaModal();
+}
+
+/* Персонализация: применить к странице и сохранить */
+function setPersona(role, pain) {
+    currentPersona = { role: role, pain: pain || null };
+    try {
+        localStorage.setItem('teremokPersona', JSON.stringify(currentPersona));
+    } catch (e) {
+        console.warn('Не удалось сохранить персонализацию в localStorage', e);
+    }
+    applyPersona(currentPersona);
+    updatePersonaInlineControl(currentPersona);
+}
+
+/* Персонализация: изменение текстов на странице */
+function applyPersona(persona) {
+    if (!persona || !persona.role) return;
+
+    const roleLabel = personaRoleLabels[persona.role] || personaRoleLabels.other;
+    const painLabel = personaPainLabels[persona.pain] || null;
+
+    const heroPersonaEl = document.getElementById('heroPersonaText');
+    if (heroPersonaEl) {
+        let text = 'Вы сейчас на этой странице как ' + roleLabel + '.';
+        if (painLabel) {
+            text += ' Основной запрос — ' + painLabel + '.';
+        } else {
+            text += ' Важно навести порядок в команде и управленческих решениях по людям.';
+        }
+        text += ' «Теремок» помогает перевести это из ощущений в карту типажей и конкретные управленческие решения по сотрудникам.';
+        heroPersonaEl.textContent = text;
+    }
+
+    const whoLeadEl = document.getElementById('whoLead');
+    if (whoLeadEl) {
+        let text = 'Программа особенно полезна, когда ';
+        if (painLabel) {
+            text += painLabel + ', ';
+        } else {
+            text += 'вы отвечаете за людей и результат, ';
+        }
+        text += 'а вы работаете как ' + roleLabel + ' и хотите опираться не на интуицию, а на понятную модель.';
+        whoLeadEl.textContent = text;
+    }
+
+    const resultsLeadEl = document.getElementById('resultsLead');
+    if (resultsLeadEl) {
+        let text = 'После «Теремка» у вас появляется карта команды и решения по людям именно под ваш формат управления как ';
+        text += roleLabel + '.';
+        if (painLabel) {
+            text += ' Вы увидите, как решить задачу: ' + painLabel + ', не ломая систему и не теряя ключевых людей.';
+        }
+        resultsLeadEl.textContent = text;
+    }
+
+    const regLeadEl = document.getElementById('registrationLead');
+    if (regLeadEl) {
+        let text = 'Заполните короткую заявку, чтобы обсудить формат участия в «Теремке» под вашу ситуацию как ';
+        text += roleLabel;
+        if (painLabel) {
+            text += ', где ключевой запрос — ' + painLabel;
+        }
+        text += '.';
+        regLeadEl.textContent = text;
+    }
+}
+
+/* Персонализация: inline-кнопка в hero */
+function updatePersonaInlineControl(persona) {
+    const wrap = document.getElementById('personaInlineControl');
+    const labelEl = document.getElementById('personaInlineLabel');
+    if (!wrap || !labelEl) return;
+
+    if (!persona || !persona.role) {
+        wrap.style.display = 'none';
+        return;
+    }
+
+    const shortLabel = personaRoleShortLabels[persona.role] || 'ваша роль';
+    wrap.style.display = 'block';
+    labelEl.textContent = 'Сейчас страница настроена под: ' + shortLabel + '. Нажмите, чтобы изменить настройки.';
+}
+
 document.addEventListener('DOMContentLoaded', function () {
     const leadForm = document.getElementById('leadForm');
     if (leadForm) {
@@ -2088,6 +2416,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (e.key === 'Escape') {
             closeLeadModal();
             closeTestModal();
+            closePersonaModal();
         }
     });
 
@@ -2128,71 +2457,26 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // === Интерактивные типажи в hero-карте «Мотивационный срез команды» ===
-    const heroChips = document.querySelectorAll('.hero-card .hero-chip');
-    const heroTypeBox = document.getElementById('heroTypeDescription');
-    const heroCardCaption = document.getElementById('heroCardCaption');
-
-    const heroTypes = {
-        ptica: {
-            title: 'Птицы — работают под принуждением',
-            text: 'Такие сотрудники двигаются в основном за счёт внешнего контроля: напоминаний, дедлайнов, постоянных «пинков». Без жёсткого присутствия руководителя задачи легко «проседают». На «Теремке» разбираем, как ограничивать ущерб от Птиц и не тратить на них ресурс Профи и лидеров.'
-        },
-        homiak: {
-            title: 'Хомяки — только деньги и выгода',
-            text: 'Фокус на личной выгоде и деньгах. Пока система бонусов выгодна — работают, при изменении условий быстро «остывают» или уходят туда, где платят больше. На «Теремке» показываем, в каких ролях Хомяки допустимы, а где они делают бизнес заложником своих аппетитов.'
-        },
-        profi: {
-            title: 'Профи — любят работу и качество',
-            text: 'Держат фокус на задаче и результате, сами контролируют сроки и качество, часто тихо вытягивают на себе ключевые процессы и клиентов. На «Теремке» помогаем увидеть Профи как ядро команды и выстроить вокруг них правильную конфигурацию, чтобы они не выгорали.'
-        },
-        leader: {
-            title: 'Лидеры — тянут команду вверх',
-            text: 'Лидеры задают планку, тянут людей за собой и влияют на управленческие решения. Если ставка сделана не на тех, лидеры уводят команду в сторону. На «Теремке» учимся отличать надёжных лидеров от статусных и опираться на первых в развитии компании.'
+    // Инициализация персонализации: читаем сохранённые настройки, иначе показываем модалку
+    let savedPersona = null;
+    try {
+        const raw = localStorage.getItem('teremokPersona');
+        if (raw) {
+            savedPersona = JSON.parse(raw);
         }
-    };
-
-    function renderHeroType(typeKey, clickedChip) {
-        if (!heroTypeBox || !heroTypes[typeKey]) return;
-
-        heroChips.forEach(chip => chip.classList.remove('active'));
-        if (clickedChip) {
-            clickedChip.classList.add('active');
-        }
-
-        const data = heroTypes[typeKey];
-
-        if (heroCardCaption) {
-            heroCardCaption.textContent = data.title;
-        }
-
-        heroTypeBox.classList.remove('animate');
-        void heroTypeBox.offsetWidth;
-        heroTypeBox.classList.add('animate');
-
-        heroTypeBox.innerHTML =
-            '<div class="hero-type-title">' + data.title + '</div>' +
-            '<p>' + data.text + '</p>' +
-            '<div class="hero-type-cta">' +
-                '<button type="button" class="btn-primary" onclick="openLeadModal(\'lead\')">' +
-                    'Разобрать мою команду по «Теремку»' +
-                '</button>' +
-            '</div>';
+    } catch (e) {
+        console.warn('Ошибка чтения персонализации из localStorage', e);
     }
 
-    if (heroChips.length && heroTypeBox) {
-        heroChips.forEach(chip => {
-            chip.addEventListener('click', function () {
-                const typeKey = chip.getAttribute('data-type');
-                if (!typeKey) return;
-                renderHeroType(typeKey, chip);
-            });
-        });
-
-        const defaultChip = document.querySelector('.hero-card .hero-chip[data-type="profi"]');
-        if (defaultChip) {
-            renderHeroType('profi', defaultChip);
-        }
+    if (savedPersona && savedPersona.role) {
+        currentPersona = savedPersona;
+        personaSelection.role = savedPersona.role;
+        personaSelection.pain = savedPersona.pain || null;
+        applyPersona(savedPersona);
+        updatePersonaInlineControl(savedPersona);
+    } else {
+        // Нет сохранённой персонализации — открываем модалку при первом заходе
+        openPersonaModal(false);
     }
 });
 </script>
