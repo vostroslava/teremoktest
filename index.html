@@ -518,12 +518,6 @@
 
         /* Experts */
 
-        .experts-grid {
-            display: grid;
-            grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.9fr);
-            gap: 24px;
-        }
-
         .expert-name {
             font-weight: 600;
             font-size: 16px;
@@ -544,6 +538,10 @@
 
         .metrics-list li + li {
             margin-top: 3px;
+        }
+
+        .experts-list {
+            margin-top: 4px;
         }
 
         /* Form / registration */
@@ -627,6 +625,31 @@
 
         .required {
             color: var(--accent);
+        }
+
+        /* Согласие с политикой */
+
+        .consent-label {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .consent-label input[type="checkbox"] {
+            margin-top: 2px;
+        }
+
+        .link-button {
+            padding: 0;
+            margin: 0;
+            background: none;
+            border: none;
+            color: var(--accent);
+            cursor: pointer;
+            text-decoration: underline;
+            font: inherit;
         }
 
         footer {
@@ -751,6 +774,11 @@
             display: flex;
         }
 
+        /* политика поверх других модалок */
+        #privacyModal {
+            z-index: 120;
+        }
+
         .modal-overlay {
             position: absolute;
             inset: 0;
@@ -853,7 +881,30 @@
             text-align: center;
         }
 
+        /* Политика конфиденциальности — большое окно почти на весь экран */
+
+        .policy-window {
+            max-width: 1100px;
+            width: calc(100% - 24px);
+            height: calc(100vh - 24px);
+            max-height: none;
+            margin: 12px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .policy-frame {
+            flex: 1 1 auto;
+            width: 100%;
+            border: none;
+            border-radius: 12px;
+            background: #f9fafb;
+            margin-top: 8px;
+            min-height: 0;
+        }
+
         /* Event info card */
+
         .event-card {
             margin-bottom: 22px;
             border-radius: var(--radius-lg);
@@ -905,7 +956,36 @@
             color: var(--text-muted);
         }
 
+        .event-countdown {
+            margin-top: 12px;
+        }
+
+        .event-countdown-label {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 4px;
+        }
+
+        .event-countdown-bar {
+            position: relative;
+            width: 100%;
+            height: 6px;
+            border-radius: 999px;
+            background: rgba(148,163,184,0.25);
+            overflow: hidden;
+        }
+
+        .event-countdown-fill {
+            position: absolute;
+            inset: 0;
+            width: 0%;
+            background: linear-gradient(90deg, #f97316, #fb923c);
+            border-radius: 999px;
+            transition: width 0.4s var(--ease-out);
+        }
+
         /* Testimonials */
+
         .testimonials-list {
             display: flex;
             flex-direction: column;
@@ -1001,6 +1081,7 @@
         }
 
         /* Card hover */
+
         .card:hover {
             transform: translateY(-2px);
             box-shadow: 0 22px 55px rgba(15,23,42,0.12);
@@ -1008,6 +1089,7 @@
         }
 
         /* Test modal CTA button */
+
         .test-cta-button {
             margin-top: 10px;
         }
@@ -1025,68 +1107,9 @@
             transform: translateY(0);
         }
 
-        /* Privacy checkbox & link */
-
-        .checkbox-label {
-            display: flex;
-            align-items: flex-start;
-            gap: 8px;
-            font-size: 13px;
-            color: #374151;
-            cursor: pointer;
-        }
-
-        .checkbox-label input[type="checkbox"] {
-            margin-top: 3px;
-        }
-
-        .checkbox-text {
-            line-height: 1.4;
-        }
-
-        .link-button {
-            background: none;
-            border: none;
-            padding: 0;
-            margin: 0;
-            font: inherit;
-            color: #0f766e;
-            text-decoration: underline;
-            cursor: pointer;
-        }
-
-        .link-button:hover {
-            color: #115e59;
-        }
-
-        /* Privacy policy modal */
-
-        .policy-window {
-            max-width: 960px;
-            width: calc(100% - 32px);
-            max-height: calc(100vh - 32px);
-            display: flex;
-            flex-direction: column;
-        }
-
-        .policy-window h2 {
-            margin-bottom: 12px;
-        }
-
-        .policy-frame {
-            flex: 1 1 auto;
-            width: 100%;
-            border: none;
-            border-radius: 12px;
-            background: #f9fafb;
-            margin-top: 8px;
-            min-height: 0;
-        }
-
         @media (max-width: 900px) {
             .hero,
             .two-cols,
-            .experts-grid,
             .form-grid,
             .grid-3 {
                 grid-template-columns: minmax(0, 1fr);
@@ -1115,6 +1138,11 @@
 
             .form-wrapper {
                 padding: 20px 16px 20px;
+            }
+
+            .policy-window {
+                width: calc(100% - 16px);
+                height: calc(100vh - 16px);
             }
         }
 
@@ -1289,7 +1317,7 @@
                 <div class="section-header">
                     <div class="section-kicker">Кому будет полезно</div>
                     <h2>Для кого программа «Теремок»</h2>
-                    <p class="section-leад">
+                    <p class="section-lead">
                         Программа создана для тех, кто отвечает за людей и результат,
                         а не только за «красивые отчёты» по HR.
                     </p>
@@ -1468,7 +1496,7 @@
             </div>
         </section>
 
-        <!-- Experts -->
+        <!-- Experts as accordion -->
         <section class="section section-dark" id="experts">
             <div class="container" data-animate>
                 <div class="section-header">
@@ -1480,38 +1508,83 @@
                         «На кого из сотрудников делать ставки?».
                     </p>
                 </div>
-                <div class="experts-grid">
-                    <div class="card">
-                        <p class="expert-name">Наталья Космач</p>
-                        <p class="expert-role">
-                            Собственник, директор и бизнес-тренер компании «Сталкер-Медиа».
-                        </p>
-                        <p>
-                            Автор 17+ программ по найму, мотивации, управленческим компетенциям, продажам и переговорам.
-                            С 2017 года лично провела более 2300 интервью и диагностик ключевых сотрудников и кандидатов.
-                        </p>
-                        <p class="expert-name" style="margin-top:14px;">Андрей Гриневич</p>
-                        <p class="expert-role">
-                            Соучредитель и тренер «Сталкер-Медиа» с 2009 года.
-                        </p>
-                        <p>
-                            Главный консультант и аналитик по управлению человеческими ресурсами.
-                            Автор мотивационной модели «Теремок», «Шкалы профессионализма»,
-                            технологии «Матрица системности» и ряда опросников по оценке персонала.
-                            С 2015 года провёл более 2200 персональных консультаций.
-                        </p>
+
+                <div class="testimonials-list experts-list">
+                    <div class="testimonial-item">
+                        <button class="testimonial-header" type="button">
+                            <div>
+                                <div class="testimonial-tag">Автор модели</div>
+                                <div class="testimonial-title">Андрей Гриневич</div>
+                                <div class="testimonial-meta">
+                                    Соучредитель и тренер «Сталкер-Медиа» с 2009 года
+                                </div>
+                            </div>
+                            <span class="testimonial-toggle-icon" aria-hidden="true">+</span>
+                        </button>
+                        <div class="testimonial-body">
+                            <p class="expert-role">
+                                Главный консультант и аналитик по управлению человеческими ресурсами.
+                            </p>
+                            <p>
+                                Автор мотивационной модели «Теремок», «Шкалы профессионализма»,
+                                технологии «Матрица системности» и ряда опросников по оценке персонала.
+                            </p>
+                            <p>
+                                С 2015 года провёл более 2200 персональных консультаций для собственников и руководителей.
+                                Помогает принимать кадровые решения не «по ощущению», а на основе системной диагностики
+                                мотивации и потенциала сотрудников.
+                            </p>
+                        </div>
                     </div>
-                    <div class="card">
-                        <h3>«Сталкер-Медиа» в цифрах</h3>
-                        <ul class="metrics-list">
-                            <li>770+ обучающих программ и тренингов для бизнеса;</li>
-                            <li>7000+ руководителей и сотрудников, прошедших обучение;</li>
-                            <li>4500+ аудитов персонала и консультаций по потенциалу и развитию;</li>
-                            <li>клиенты в Беларуси, России и других странах.</li>
-                        </ul>
-                        <div class="highlight">
-                            Коротко: мы много лет профессионально работаем с управленческими решениями по людям —
-                            кого выращивать, кого продвигать, кого отпускать.
+
+                    <div class="testimonial-item">
+                        <button class="testimonial-header" type="button">
+                            <div>
+                                <div class="testimonial-tag">Ведущий программы</div>
+                                <div class="testimonial-title">Наталья Космач</div>
+                                <div class="testimonial-meta">
+                                    Собственник, директор и бизнес-тренер компании «Сталкер-Медиа»
+                                </div>
+                            </div>
+                            <span class="testimonial-toggle-icon" aria-hidden="true">+</span>
+                        </button>
+                        <div class="testimonial-body">
+                            <p class="expert-role">
+                                Автор более 17 обучающих программ по найму, мотивации, управленческим компетенциям, продажам и переговорам.
+                            </p>
+                            <p>
+                                С 2017 года лично провела более 2300 интервью и диагностик ключевых сотрудников и кандидатов.
+                                Специализируется на управленческих решениях по людям: подбор, развитие, продвижение, разделение с сотрудниками.
+                            </p>
+                            <p>
+                                На «Теремке» Наталья ведёт живой практикум, помогает участникам разложить своих сотрудников по типажам
+                                и перевести результат в конкретные управленческие действия.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-item">
+                        <button class="testimonial-header" type="button">
+                            <div>
+                                <div class="testimonial-tag">Консалтинговая компания</div>
+                                <div class="testimonial-title">«Сталкер-Медиа» в цифрах</div>
+                                <div class="testimonial-meta">
+                                    Консалтинг и обучение для бизнеса с 2009 года
+                                </div>
+                            </div>
+                            <span class="testimonial-toggle-icon" aria-hidden="true">+</span>
+                        </button>
+                        <div class="testimonial-body">
+                            <ul class="metrics-list">
+                                <li>770+ обучающих программ и тренингов для бизнеса;</li>
+                                <li>7000+ руководителей и сотрудников, прошедших обучение;</li>
+                                <li>4500+ аудитов персонала и консультаций по потенциалу и развитию;</li>
+                                <li>клиенты в Беларуси, России и других странах.</li>
+                            </ul>
+                            <p class="highlight">
+                                Коротко: мы много лет профессионально работаем с управленческими решениями по людям —
+                                кого выращивать, кого продвигать, кого отпускать.
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -1548,7 +1621,22 @@
                                 <strong>590 BYN за 1 участника</strong>
                             </div>
                         </div>
-                        <p class="event-note">Места в группе ограничены: работаем в формате живого практикума с разбором ваших кейсов.</p>
+                        <p class="event-note">
+                            Места в группе ограничены: работаем в формате живого практикума с разбором ваших кейсов.
+                        </p>
+                        <div class="event-countdown">
+                            <div class="event-countdown-label">
+                                До начала ближайшего потока осталось:
+                                <span id="eventCountdownText">идёт расчёт времени…</span>
+                            </div>
+                            <div class="event-countdown-bar"
+                                 role="progressbar"
+                                 aria-label="Время до начала мероприятия"
+                                 aria-valuemin="0"
+                                 aria-valuemax="100">
+                                <div class="event-countdown-fill" id="eventCountdownFill"></div>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="form-grid">
@@ -1586,10 +1674,7 @@
                                     </a>
                                 </div>
                             </div>
-                            <p class="telegram-note">
-                                После заявки и мини-теста вы также можете запросить у нас короткое видео с пояснением модели —
-                                просто напишите в Telegram «Хочу видео по Теремку».
-                            </p>
+                            <!-- Здесь текст про видео убран: напоминание про видео остаётся только после прохождения теста -->
                         </div>
                     </div>
                 </div>
@@ -1601,26 +1686,12 @@
         <div class="footer-inner">
             <small>© «Сталкер-Медиа». Программа «Теремок» — мотивационная модель для управления командой. Офлайн-практикум в Минске.</small>
             <small>
+                <a href="javascript:void(0)" onclick="openPrivacyModal()">Политика конфиденциальности</a>
+                &nbsp;·&nbsp;
                 <a href="#top">Наверх</a>
             </small>
         </div>
     </footer>
-</div>
-
-<!-- Модальное окно с политикой конфиденциальности -->
-<div class="modal-backdrop" id="privacyModal" aria-hidden="true">
-    <div class="modal-overlay" onclick="closePrivacyModal()"></div>
-
-    <div class="modal-window policy-window" role="dialog" aria-modal="true" aria-labelledby="privacyModalTitle">
-        <button class="modal-close" type="button" onclick="closePrivacyModal()">×</button>
-
-        <h2 id="privacyModalTitle">Политика конфиденциальности</h2>
-        <p class="modal-subtitle">
-            Ниже открывается полный текст политики конфиденциальности из файла <code>privacy-policy.html</code>.
-        </p>
-
-        <iframe class="policy-frame" src="privacy-policy.html" title="Политика конфиденциальности"></iframe>
-    </div>
 </div>
 
 <!-- Модальное окно заявки -->
@@ -1699,19 +1770,13 @@
             </div>
 
             <div class="field-group">
-                <label class="checkbox-label">
-                    <input type="checkbox" id="privacyConsent" name="privacyConsent" required>
-                    <span class="checkbox-text">
-                        Я даю согласие на обработку моих персональных данных
-                        и ознакомился(лась) с
-                        <button type="button" class="link-button" onclick="openPrivacyModal()">
-                            политикой конфиденциальности
-                        </button>.
+                <label class="consent-label">
+                    <input type="checkbox" id="privacyConsent" required>
+                    <span>
+                        Я ознакомлен(а) и согласен(на) с
+                        <button type="button" class="link-button" onclick="openPrivacyModal()">Политикой конфиденциальности</button>.
                     </span>
                 </label>
-                <div class="field-hint">
-                    Без согласия на обработку персональных данных мы не сможем принять заявку.
-                </div>
             </div>
 
             <button type="submit" class="btn-primary btn-full">
@@ -1855,11 +1920,34 @@
     </div>
 </div>
 
+<!-- Модальное окно с политикой конфиденциальности -->
+<div class="modal-backdrop" id="privacyModal" aria-hidden="true">
+    <div class="modal-overlay" onclick="closePrivacyModal()"></div>
+
+    <div class="modal-window policy-window" role="dialog" aria-modal="true" aria-labelledby="privacyModalTitle">
+        <button class="modal-close" type="button" onclick="closePrivacyModal()">×</button>
+
+        <h2 id="privacyModalTitle">Политика конфиденциальности</h2>
+
+        <iframe class="policy-frame" src="privacy-policy.html" title="Политика конфиденциальности"></iframe>
+    </div>
+</div>
+
 <script>
 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwnQR15r9C6AwTp_eYY3RV6uNKu7FaYt0xSra776uZS70rifwMxLKpfDyW0Ls85f5EQ/exec";
 
 let leadData = null;
 let testSubmitted = false;
+
+// Управление скроллом страницы в зависимости от открытых модалок
+function adjustBodyScroll() {
+    const lead = document.getElementById('leadModal');
+    const test = document.getElementById('testModal');
+    const privacy = document.getElementById('privacyModal');
+
+    const anyOpen = [lead, test, privacy].some(m => m && m.classList.contains('open'));
+    document.body.style.overflow = anyOpen ? 'hidden' : '';
+}
 
 // Открыть модал заявки
 function openLeadModal(source) {
@@ -1867,12 +1955,13 @@ function openLeadModal(source) {
     if (!modal) return;
 
     modal.classList.add('open');
-    document.body.style.overflow = 'hidden';
 
     const banner = document.getElementById('testAccessBanner');
     if (banner) {
         banner.style.display = (source === 'test') ? 'block' : 'none';
     }
+
+    adjustBodyScroll();
 }
 
 // Закрыть модал заявки
@@ -1880,7 +1969,7 @@ function closeLeadModal() {
     const modal = document.getElementById('leadModal');
     if (!modal) return;
     modal.classList.remove('open');
-    document.body.style.overflow = '';
+    adjustBodyScroll();
 }
 
 // Открыть модал с тестом
@@ -1889,7 +1978,6 @@ function openTestModal() {
     if (!modal) return;
 
     modal.classList.add('open');
-    document.body.style.overflow = 'hidden';
 
     const resultEl = document.getElementById('testResult');
     const nextStepEl = document.getElementById('testNextStep');
@@ -1913,6 +2001,7 @@ function openTestModal() {
     }
 
     testSubmitted = false;
+    adjustBodyScroll();
 }
 
 // Закрыть модал теста
@@ -1920,25 +2009,23 @@ function closeTestModal() {
     const modal = document.getElementById('testModal');
     if (!modal) return;
     modal.classList.remove('open');
-    document.body.style.overflow = '';
+    adjustBodyScroll();
 }
 
 // Открыть модал политики конфиденциальности
 function openPrivacyModal() {
     const modal = document.getElementById('privacyModal');
     if (!modal) return;
-
     modal.classList.add('open');
-    document.body.style.overflow = 'hidden';
+    adjustBodyScroll();
 }
 
 // Закрыть модал политики конфиденциальности
 function closePrivacyModal() {
     const modal = document.getElementById('privacyModal');
     if (!modal) return;
-
     modal.classList.remove('open');
-    document.body.style.overflow = '';
+    adjustBodyScroll();
 }
 
 // Обработка отправки формы заявки
@@ -2067,6 +2154,74 @@ function sendToGoogleSheet(mainType, types, resultText) {
     });
 }
 
+// Инициализация полоски отсчёта времени до мероприятия
+function initEventCountdown() {
+    const textEl = document.getElementById('eventCountdownText');
+    const barEl = document.getElementById('eventCountdownFill');
+    if (!textEl || !barEl) return;
+
+    // 20 ноября 2025, 10:00 — локальное время
+    const eventStart = new Date(2025, 10, 20, 10, 0, 0);
+    const windowMs = 30 * 24 * 60 * 60 * 1000; // 30 дней до события как "полная шкала"
+
+    function formatUnit(value, forms) {
+        const v = Math.abs(value) % 100;
+        const v1 = v % 10;
+        if (v > 10 && v < 20) return value + ' ' + forms[2];
+        if (v1 > 1 && v1 < 5) return value + ' ' + forms[1];
+        if (v1 === 1) return value + ' ' + forms[0];
+        return value + ' ' + forms[2];
+    }
+
+    function updateCountdown() {
+        const now = new Date();
+        let diff = eventStart - now;
+
+        if (diff <= 0) {
+            textEl.textContent = 'мероприятие уже началось или прошло';
+            barEl.style.width = '100%';
+            barEl.setAttribute('aria-valuenow', '100');
+            return;
+        }
+
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        diff -= days * 1000 * 60 * 60 * 24;
+        const hours = Math.floor(diff / (1000 * 60 * 60));
+        diff -= hours * 1000 * 60 * 60;
+        const minutes = Math.floor(diff / (1000 * 60));
+
+        let parts = [];
+        if (days > 0) {
+            parts.push(formatUnit(days, ['день', 'дня', 'дней']));
+        }
+        if (hours > 0) {
+            parts.push(formatUnit(hours, ['час', 'часа', 'часов']));
+        }
+        if (days === 0 && hours === 0 && minutes > 0) {
+            parts.push(formatUnit(minutes, ['минута', 'минуты', 'минут']));
+        }
+
+        textEl.textContent = parts.length ? parts.join(' ') : 'меньше минуты';
+
+        let remainingForWindow = eventStart - now;
+        if (remainingForWindow > windowMs) {
+            remainingForWindow = windowMs;
+        }
+        if (remainingForWindow < 0) {
+            remainingForWindow = 0;
+        }
+
+        const percent = 100 - (remainingForWindow / windowMs) * 100;
+        const clamped = Math.max(0, Math.min(100, percent));
+
+        barEl.style.width = clamped.toFixed(0) + '%';
+        barEl.setAttribute('aria-valuenow', clamped.toFixed(0));
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 60000);
+}
+
 document.addEventListener('DOMContentLoaded', function () {
     const leadForm = document.getElementById('leadForm');
     if (leadForm) {
@@ -2082,10 +2237,27 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape') {
-            closeLeadModal();
-            closeTestModal();
+        if (e.key !== 'Escape') return;
+
+        const privacy = document.getElementById('privacyModal');
+        const test    = document.getElementById('testModal');
+        const lead    = document.getElementById('leadModal');
+
+        // Сначала закрываем верхнее окно политики, если оно открыто
+        if (privacy && privacy.classList.contains('open')) {
             closePrivacyModal();
+            return;
+        }
+
+        // Потом — окно с тестом
+        if (test && test.classList.contains('open')) {
+            closeTestModal();
+            return;
+        }
+
+        // И только потом — окно регистрации
+        if (lead && lead.classList.contains('open')) {
+            closeLeadModal();
         }
     });
 
@@ -2105,7 +2277,7 @@ document.addEventListener('DOMContentLoaded', function () {
         animated.forEach(el => el.classList.add('in-view'));
     }
 
-    // Testimonials accordion
+    // Testimonials & experts accordion
     const testimonialHeaders = document.querySelectorAll('.testimonial-header');
     testimonialHeaders.forEach(header => {
         header.addEventListener('click', function () {
@@ -2125,6 +2297,9 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     });
+
+    // Инициализируем отсчёт до мероприятия
+    initEventCountdown();
 });
 </script>
 
