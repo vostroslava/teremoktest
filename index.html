@@ -1077,6 +1077,126 @@
                 flex-direction: column;
             }
         }
+        .page-footer {
+  margin-top: 40px;
+  padding: 20px 16px 28px;
+  border-top: 1px solid rgba(148, 163, 184, 0.35);
+  background: radial-gradient(circle at 0 0, rgba(248, 250, 252, 0.04), transparent 55%),
+              radial-gradient(circle at 100% 100%, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 1));
+}
+
+.page-footer-inner {
+  max-width: 1040px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+@media (min-width: 640px) {
+  .page-footer-inner {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+.page-footer-text {
+  font-size: 12px;
+  color: #9ca3af;
+}
+
+.footer-link-button {
+  border: none;
+  background: transparent;
+  padding: 0;
+  font-size: 13px;
+  color: #e5e7eb;
+  cursor: pointer;
+  position: relative;
+}
+
+.footer-link-button::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, #f97316, #fb923c);
+  opacity: 0.7;
+  transform-origin: left;
+  transform: scaleX(0.8);
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.footer-link-button:hover::after {
+  transform: scaleX(1);
+  opacity: 1;
+}
+
+/* Модальное окно */
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.75);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+  padding: 16px;
+}
+
+.modal-backdrop.is-open {
+  display: flex;
+}
+
+.modal-dialog {
+  background: rgba(15, 23, 42, 0.98);
+  border-radius: 20px;
+  max-width: 960px;
+  width: 100%;
+  max-height: 90vh;
+  box-shadow:
+    0 24px 60px rgba(15, 23, 42, 0.7),
+    0 0 0 1px rgba(148, 163, 184, 0.4);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-frame {
+  border: none;
+  width: 100%;
+  flex: 1 1 auto;
+  background: #020617;
+}
+
+.modal-close {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  border: none;
+  background: rgba(15, 23, 42, 0.9);
+  color: #e5e7eb;
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-close:hover {
+  background: rgba(15, 23, 42, 1);
+}
+
     </style>
 </head>
 <body>
@@ -2017,7 +2137,76 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 });
+    // --- Политика конфиденциальности: модальное окно ---
+(function () {
+  const openBtn = document.getElementById('open-privacy');
+  const modal = document.getElementById('privacy-modal');
+  const closeBtn = document.getElementById('close-privacy');
+
+  if (!openBtn || !modal || !closeBtn) return;
+
+  const openModal = () => {
+    modal.classList.add('is-open');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  };
+
+  const closeModal = () => {
+    modal.classList.remove('is-open');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  };
+
+  openBtn.addEventListener('click', openModal);
+  closeBtn.addEventListener('click', closeModal);
+
+  modal.addEventListener('click', (event) => {
+    if (event.target === modal) {
+      closeModal();
+    }
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && modal.classList.contains('is-open')) {
+      closeModal();
+    }
+  });
+})();
+
 </script>
+<footer class="page-footer">
+  <div class="page-footer-inner">
+    <span class="page-footer-text">
+      © ООО «Сталкер-Медиа» — тренинг «Теремок»
+    </span>
+    <button
+      type="button"
+      class="footer-link-button"
+      id="open-privacy"
+    >
+      Политика конфиденциальности
+    </button>
+  </div>
+</footer>
+
+<!-- Модальное окно с политикой конфиденциальности -->
+<div class="modal-backdrop" id="privacy-modal" aria-hidden="true">
+  <div class="modal-dialog" role="dialog" aria-modal="true" aria-label="Политика конфиденциальности">
+    <button
+      type="button"
+      class="modal-close"
+      id="close-privacy"
+      aria-label="Закрыть окно"
+    >
+      ×
+    </button>
+    <iframe
+      src="privacy-policy.html"
+      class="modal-frame"
+      loading="lazy"
+    ></iframe>
+  </div>
+</div>
 
 </body>
 </html>
