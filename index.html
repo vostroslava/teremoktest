@@ -1,2212 +1,1298 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <title>Теремок — мотивационная модель для команды</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Живой офлайн-практикум «Теремок» для собственников, руководителей и HR: как увидеть Птиц, Хомяков, Лис и Профи в команде и перестать тянуть минусовых сотрудников.">
-    <style>
-        :root {
-            --bg: #f3f4f6;
-            --bg-alt: #ffffff;
-            --card: #ffffff;
-            --accent: #f97316;
-            --accent-soft: rgba(249,115,22,0.08);
-            --text-main: #0f172a;
-            --text-muted: #6b7280;
-            --border-subtle: #e5e7eb;
-            --shadow-soft: 0 18px 40px rgba(15,23,42,0.06);
-            --shadow-strong: 0 26px 60px rgba(15,23,42,0.12);
-            --radius-lg: 22px;
-            --radius-md: 16px;
-            --ease-out: cubic-bezier(0.22, 0.61, 0.36, 1);
-            --tg-main: #0ea5e9;
-            --tg-main-dark: #0284c7;
-        }
-
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-            background:
-                radial-gradient(circle at top left, #e5e7eb 0, transparent 52%),
-                radial-gradient(circle at bottom right, #e2e8f0 0, transparent 55%),
-                var(--bg);
-            color: var(--text-main);
-            line-height: 1.6;
-        }
-
-        .page-wrap {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-
-        /* Header & nav */
-
-        header {
-            position: sticky;
-            top: 0;
-            z-index: 50;
-            backdrop-filter: blur(14px);
-            background: linear-gradient(to bottom, rgba(249,250,251,0.98), rgba(249,250,251,0.95), transparent);
-            border-bottom: 1px solid rgba(148,163,184,0.25);
-        }
-
-        .nav {
-            max-width: 1080px;
-            margin: 0 auto;
-            padding: 14px 20px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 16px;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .logo-mark {
-            width: 42px;
-            height: 42px;
-            border-radius: 14px;
-            background: rgba(255,255,255,0.75);
-            backdrop-filter: blur(10px);
-            padding: 6px;
-            box-shadow:
-                0 4px 12px rgba(15,23,42,0.15),
-                inset 0 0 0 1px rgba(255,255,255,0.8);
-        }
-
-        .logo-mark img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            display: block;
-        }
-
-        .logo-text-primary {
-            font-weight: 700;
-            font-size: 16px;
-            letter-spacing: 0.04em;
-            color: #0f172a;
-        }
-
-        .logo-text-secondary {
-            font-size: 12px;
-            color: #6b7280;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 16px;
-            align-items: center;
-        }
-
-        .nav-links a {
-            font-size: 14px;
-            color: var(--text-muted);
-            text-decoration: none;
-            padding: 6px 10px;
-            border-radius: 999px;
-            transition: color 0.15s ease, background-color 0.15s ease, transform 0.15s ease;
-        }
-
-        .nav-links a:hover {
-            color: #111827;
-            background-color: rgba(148,163,184,0.16);
-            transform: translateY(-1px);
-        }
-
-        .nav-cta {
-            padding: 8px 16px;
-            border-radius: 999px;
-            background: linear-gradient(135deg, #f97316, #fb923c);
-            color: #111827;
-            font-weight: 600;
-            font-size: 14px;
-            border: none;
-            cursor: pointer;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            box-shadow: 0 14px 34px rgba(249,115,22,0.35);
-            transition: transform 0.18s var(--ease-out), box-shadow 0.18s var(--ease-out), filter 0.18s var(--ease-out);
-        }
-
-        .nav-cta span {
-            font-size: 12px;
-            opacity: 0.9;
-        }
-
-        .nav-cta:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 20px 45px rgba(249,115,22,0.45);
-            filter: brightness(1.03);
-        }
-
-        main {
-            flex: 1;
-        }
-
-        .section {
-            padding: 56px 20px;
-        }
-
-        .section-dark {
-            background:
-                radial-gradient(circle at top right, rgba(249,115,22,0.12) 0, transparent 60%),
-                #f9fafb;
-        }
-
-        .section-alt {
-            background:
-                radial-gradient(circle at bottom left, rgba(59,130,246,0.10) 0, transparent 60%),
-                #ffffff;
-        }
-
-        .container {
-            max-width: 1080px;
-            margin: 0 auto;
-        }
-
-        /* Hero */
-
-        .hero {
-            display: grid;
-            grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
-            gap: 32px;
-            align-items: center;
-        }
-
-        .hero-brand-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 6px 12px;
-            border-radius: 999px;
-            background: rgba(255,255,255,0.95);
-            border: 1px solid rgba(148,163,184,0.7);
-            box-shadow: 0 10px 24px rgba(15,23,42,0.12);
-            margin-bottom: 10px;
-        }
-
-        .hero-brand-badge img {
-            width: 22px;
-            height: 22px;
-            display: block;
-            object-fit: contain;
-        }
-
-        .hero-brand-badge span {
-            font-size: 12px;
-            font-weight: 500;
-            color: #4b5563;
-            letter-spacing: 0.04em;
-            text-transform: uppercase;
-        }
-
-        .hero-kicker {
-            font-size: 12px;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            color: var(--accent);
-            font-weight: 600;
-            margin-bottom: 10px;
-        }
-
-        h1 {
-            font-size: clamp(28px, 4vw, 36px);
-            margin: 0 0 12px;
-            letter-spacing: 0.02em;
-        }
-
-        .hero-subtitle {
-            font-size: 18px;
-            color: var(--text-muted);
-            max-width: 520px;
-            margin-bottom: 14px;
-        }
-
-        .hero-text {
-            font-size: 16px;
-            color: #4b5563;
-            max-width: 520px;
-            margin-bottom: 22px;
-        }
-
-        .hero-actions {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-            align-items: center;
-            margin-bottom: 18px;
-        }
-
-        .btn-primary {
-            padding: 12px 22px;
-            border-radius: 999px;
-            border: none;
-            cursor: pointer;
-            background: linear-gradient(135deg, #f97316, #fb923c);
-            color: #111827;
-            font-weight: 600;
-            font-size: 15px;
-            box-shadow: 0 16px 40px rgba(249,115,22,0.35);
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-            transition: transform 0.18s var(--ease-out), box-shadow 0.18s var(--ease-out), filter 0.18s var(--ease-out);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 22px 55px rgba(249,115,22,0.45);
-            filter: brightness(1.02);
-        }
-
-        .btn-secondary {
-            padding: 11px 18px;
-            border-radius: 999px;
-            border: 1px solid rgba(148,163,184,0.8);
-            background: rgba(255,255,255,0.9);
-            color: #111827;
-            font-size: 15px;
-            cursor: pointer;
-            backdrop-filter: blur(6px);
-            transition: background-color 0.18s var(--ease-out), box-shadow 0.18s var(--ease-out), transform 0.18s var(--ease-out);
-        }
-
-        .btn-secondary:hover {
-            background-color: #ffffff;
-            box-shadow: 0 14px 30px rgba(15,23,42,0.12);
-            transform: translateY(-1px);
-        }
-
-        .hero-note {
-            font-size: 14px;
-            color: var(--text-muted);
-        }
-
-        .hero-card {
-            border-radius: var(--radius-lg);
-            padding: 20px 18px;
-            background:
-                radial-gradient(circle at top left, rgba(249,250,251,0.9) 0, transparent 55%),
-                #ffffff;
-            border: 1px solid rgba(148,163,184,0.35);
-            box-shadow: var(--shadow-strong);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero-card::before {
-            content: "";
-            position: absolute;
-            inset: -30%;
-            background:
-                radial-gradient(circle at 0% 0%, rgba(249,115,22,0.08) 0, transparent 55%),
-                radial-gradient(circle at 100% 100%, rgba(59,130,246,0.06) 0, transparent 55%);
-            opacity: 0;
-            animation: heroGlow 6s ease-in-out infinite;
-            pointer-events: none;
-        }
-
-        @keyframes heroGlow {
-            0%   { opacity: 0; transform: translate3d(-10px, 10px, 0); }
-            25%  { opacity: 1; transform: translate3d(0, 0, 0); }
-            75%  { opacity: 0.7; transform: translate3d(10px, -10px, 0); }
-            100% { opacity: 0; transform: translate3d(0, 0, 0); }
-        }
-
-        .hero-card-title {
-            font-size: 13px;
-            text-transform: uppercase;
-            letter-spacing: 0.16em;
-            color: var(--text-muted);
-            margin-bottom: 10px;
-        }
-
-        /* Новый блок типажей в hero-карточке */
-
-        .hero-types {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .hero-type {
-            display: flex;
-            gap: 10px;
-            padding: 10px 12px;
-            border-radius: 14px;
-            background: rgba(249,250,251,0.96);
-            border: 1px solid rgba(148,163,184,0.7);
-            box-shadow: 0 10px 24px rgba(15,23,42,0.06);
-        }
-
-        .hero-type-badge {
-            flex: 0 0 auto;
-            padding: 6px 10px;
-            border-radius: 999px;
-            font-size: 11px;
-            font-weight: 600;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, rgba(249,115,22,0.14), rgba(251,146,60,0.24));
-            color: #9a3412;
-        }
-
-        .hero-type-text {
-            font-size: 13px;
-            color: #374151;
-        }
-
-        .hero-type-bad .hero-type-badge {
-            background: linear-gradient(135deg, rgba(248,113,113,0.16), rgba(239,68,68,0.28));
-            color: #991b1b;
-        }
-
-        .hero-type-good .hero-type-badge {
-            background: linear-gradient(135deg, rgba(22,163,74,0.16), rgba(34,197,94,0.3));
-            color: #166534;
-        }
-
-        /* Старые стили сетки и chip оставляем на всякий случай (не используются) */
-
-        .hero-card-grid {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 10px;
-        }
-
-        .hero-chip {
-            border-radius: 999px;
-            font-size: 13px;
-            padding: 6px 10px;
-            background: #f9fafb;
-            border: 1px solid rgba(148,163,184,0.7);
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .hero-chip span {
-            width: 8px;
-            height: 8px;
-            border-radius: 999px;
-            background: #22c55e;
-        }
-
-        .hero-chip.bad span {
-            background: #ef4444;
-        }
-
-        .hero-card-caption {
-            margin-top: 12px;
-            font-size: 13px;
-            color: var(--text-muted);
-        }
-
-        .section-header {
-            max-width: 720px;
-            margin-bottom: 24px;
-        }
-
-        .section-kicker {
-            font-size: 11px;
-            letter-spacing: 0.16em;
-            text-transform: uppercase;
-            color: var(--accent);
-            margin-bottom: 6px;
-            font-weight: 600;
-        }
-
-        h2 {
-            font-size: 22px;
-            margin: 0 0 10px;
-        }
-
-        .section-lead {
-            font-size: 16px;
-            color: var(--text-muted);
-        }
-
-        .two-cols {
-            display: grid;
-            grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-            gap: 28px;
-        }
-
-        .card {
-            border-radius: var(--radius-md);
-            padding: 20px 20px 18px;
-            background: #ffffff;
-            border: 1px solid var(--border-subtle);
-            box-shadow: var(--shadow-soft);
-            transition: transform 0.18s var(--ease-out), box-shadow 0.18s var(--ease-out), border-color 0.18s ease;
-        }
-
-        .card h3 {
-            margin: 0 0 10px;
-            font-size: 18px;
-        }
-
-        .card p {
-            margin: 0 0 10px;
-            font-size: 16px;
-            color: #374151;
-        }
-
-        .card ul {
-            margin: 0;
-            padding-left: 18px;
-            font-size: 15px;
-            color: #4b5563;
-        }
-
-        .card ul li + li {
-            margin-top: 4px;
-        }
-
-        .pill-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 6px;
-        }
-
-        .pill {
-            font-size: 14px;
-            padding: 6px 10px;
-            border-radius: 999px;
-            background: #f9fafb;
-            border: 1px solid rgba(148,163,184,0.7);
-            color: var(--text-muted);
-        }
-
-        .grid-3 {
-            display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 18px;
-        }
-
-        .highlight {
-            background: linear-gradient(to right, var(--accent-soft), transparent);
-            border-left: 2px solid var(--accent);
-            padding: 10px 12px;
-            border-radius: 12px;
-            font-size: 14px;
-            color: #4b5563;
-            margin-top: 8px;
-        }
-
-        /* Experts */
-
-        .experts-grid {
-            display: grid;
-            grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.9fr);
-            gap: 24px;
-        }
-
-        .expert-name {
-            font-weight: 600;
-            font-size: 16px;
-        }
-
-        .expert-role {
-            font-size: 15px;
-            color: var(--text-muted);
-            margin-bottom: 6px;
-        }
-
-        .metrics-list {
-            font-size: 15px;
-            color: #374151;
-            margin: 8px 0 0;
-            padding-left: 16px;
-        }
-
-        .metrics-list li + li {
-            margin-top: 3px;
-        }
-
-        /* Form / registration */
-
-        .form-wrapper {
-            border-radius: var(--radius-lg);
-            padding: 24px 22px 22px;
-            background:
-                radial-gradient(circle at top left, rgba(248,250,252,0.7) 0, transparent 55%),
-                #ffffff;
-            border: 1px solid rgba(148,163,184,0.5);
-            box-shadow: var(--shadow-strong);
-        }
-
-        .form-grid {
-            display: grid;
-            grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
-            gap: 24px;
-        }
-
-        form {
-            display: grid;
-            gap: 12px;
-        }
-
-        label {
-            font-size: 15px;
-            color: var(--text-main);
-            display: block;
-            margin-bottom: 4px;
-        }
-
-        .field-group {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-        }
-
-        .input,
-        .select,
-        textarea {
-            width: 100%;
-            padding: 9px 11px;
-            border-radius: 12px;
-            border: 1px solid rgba(148,163,184,0.75);
-            background: rgba(255,255,255,0.9);
-            color: var(--text-main);
-            font-size: 15px;
-            outline: none;
-            transition: border-color 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
-        }
-
-        .input:focus,
-        .select:focus,
-        textarea:focus {
-            border-color: var(--accent);
-            box-shadow: 0 0 0 1px rgba(249,115,22,0.35);
-            background-color: #ffffff;
-        }
-
-        textarea {
-            resize: vertical;
-            min-height: 90px;
-        }
-
-        .field-hint {
-            font-size: 13px;
-            color: var(--text-muted);
-        }
-
-        .form-note {
-            font-size: 14px;
-            color: var(--text-muted);
-            margin-top: 10px;
-        }
-
-        .form-secondary {
-            font-size: 14px;
-            color: var(--text-muted);
-        }
-
-        .required {
-            color: var(--accent);
-        }
-
-        footer {
-            border-top: 1px solid rgba(148,163,184,0.35);
-            padding: 16px 20px 22px;
-            background: #f9fafb;
-        }
-
-        .footer-inner {
-            max-width: 1080px;
-            margin: 0 auto;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            align-items: baseline;
-            justify-content: space-between;
-        }
-
-        .footer-inner small {
-            font-size: 11px;
-            color: var(--text-muted);
-        }
-
-        .footer-inner a {
-            color: var(--text-muted);
-            font-size: 11px;
-            text-decoration: none;
-        }
-
-        .footer-inner a:hover {
-            color: #111827;
-            text-decoration: underline;
-        }
-
-        /* Telegram card */
-
-        .telegram-card {
-            display: flex;
-            gap: 14px;
-            padding: 14px 16px;
-            border-radius: var(--radius-lg);
-            background:
-                radial-gradient(circle at top left, rgba(56,189,248,0.16) 0, transparent 55%),
-                #f9fafb;
-            border: 1px solid rgba(56,189,248,0.45);
-            box-shadow: 0 18px 40px rgba(15,23,42,0.08);
-        }
-
-        .telegram-icon {
-            flex: 0 0 40px;
-            width: 40px;
-            height: 40px;
-            border-radius: 999px;
-            background: linear-gradient(135deg, var(--tg-main), var(--tg-main-dark));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #f9fafb;
-            box-shadow: 0 14px 30px rgba(14,165,233,0.55);
-        }
-
-        .telegram-icon svg {
-            width: 22px;
-            height: 22px;
-            display: block;
-        }
-
-        .telegram-title {
-            font-size: 14px;
-            font-weight: 600;
-            color: #0f172a;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            margin-bottom: 4px;
-        }
-
-        .telegram-content p {
-            margin: 0 0 8px;
-            font-size: 14px;
-            color: #4b5563;
-        }
-
-        .telegram-button {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 8px 14px;
-            border-radius: 999px;
-            background: var(--tg-main);
-            color: #f9fafb;
-            font-weight: 600;
-            font-size: 14px;
-            text-decoration: none;
-            box-shadow: 0 14px 30px rgba(14,165,233,0.45);
-            transition: transform 0.18s var(--ease-out), box-shadow 0.18s var(--ease-out), filter 0.18s var(--ease-out);
-        }
-
-        .telegram-button:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 20px 45px rgba(14,165,233,0.6);
-            filter: brightness(1.06);
-        }
-
-        .telegram-note {
-            margin-top: 10px;
-            font-size: 13px;
-            color: var(--text-muted);
-        }
-
-        /* Modal base */
-
-        .modal-backdrop {
-            position: fixed;
-            inset: 0;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            z-index: 100;
-        }
-
-        .modal-backdrop.open {
-            display: flex;
-        }
-
-        .modal-overlay {
-            position: absolute;
-            inset: 0;
-            background: rgba(15,23,42,0.25);
-            backdrop-filter: blur(8px);
-        }
-
-        .modal-window {
-            position: relative;
-            max-width: 640px;
-            width: 100%;
-            margin: 16px;
-            padding: 24px 22px 22px;
-            border-radius: var(--radius-lg);
-            background:
-                radial-gradient(circle at top left, rgba(249,250,251,0.9) 0, transparent 55%),
-                #ffffff;
-            border: 1px solid rgba(148,163,184,0.7);
-            box-shadow: var(--shadow-strong);
-            z-index: 101;
-            max-height: 90vh;
-            overflow-y: auto;
-        }
-
-        .modal-window h2 {
-            margin: 0 0 8px;
-            font-size: 20px;
-        }
-
-        .modal-subtitle {
-            font-size: 14px;
-            color: var(--text-muted);
-            margin: 0 0 16px;
-        }
-
-        .modal-close {
-            position: absolute;
-            top: 10px;
-            right: 12px;
-            width: 28px;
-            height: 28px;
-            border-radius: 999px;
-            border: 1px solid rgba(148,163,184,0.5);
-            background: rgba(255,255,255,0.9);
-            color: #4b5563;
-            font-size: 18px;
-            line-height: 1;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .btn-full {
-            width: 100%;
-            justify-content: center;
-            text-align: center;
-        }
-
-        .modal-note {
-            font-size: 13px;
-            color: var(--text-muted);
-            margin-top: 10px;
-        }
-
-        .modal-result {
-            font-size: 16px;
-            color: var(--text-main);
-            margin-top: 14px;
-        }
-
-        .test-question {
-            margin-bottom: 14px;
-            font-size: 14px;
-        }
-
-        .test-question p {
-            margin: 0 0 6px;
-            font-weight: 500;
-        }
-
-        .test-question label {
-            display: block;
-            font-size: 13px;
-            color: #374151;
-            margin-bottom: 4px;
-        }
-
-        .test-access-banner {
-            margin-bottom: 12px;
-            padding: 10px 12px;
-            border-radius: 12px;
-            background: rgba(249,115,22,0.16);
-            border: 1px solid rgba(249,115,22,0.7);
-            font-size: 13px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            color: #9a3412;
-            text-align: center;
-        }
-
-        /* Event info card */
-        .event-card {
-            margin-bottom: 22px;
-            border-radius: var(--radius-lg);
-            padding: 16px 18px 14px;
-            background:
-                radial-gradient(circle at top left, rgba(249,250,251,0.95) 0, transparent 55%),
-                linear-gradient(135deg, rgba(249,115,22,0.06), rgba(59,130,246,0.04));
-            border: 1px solid rgba(148,163,184,0.5);
-            box-shadow: var(--shadow-soft);
-        }
-
-        .event-label {
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 0.16em;
-            color: var(--accent);
-            font-weight: 600;
-            margin-bottom: 4px;
-        }
-
-        .event-title {
-            font-size: 17px;
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
-
-        .event-details {
-            display: grid;
-            gap: 8px;
-            margin-bottom: 6px;
-        }
-
-        .event-detail-row span {
-            display: block;
-            font-size: 12px;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            color: var(--text-muted);
-            margin-bottom: 2px;
-        }
-
-        .event-detail-row strong {
-            font-size: 14px;
-            color: var(--text-main);
-        }
-
-        .event-note {
-            font-size: 13px;
-            color: var(--text-muted);
-        }
-
-        /* Testimonials */
-        .testimonials-list {
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
-        }
-
-        .testimonial-item {
-            border-radius: var(--radius-md);
-            border: 1px solid var(--border-subtle);
-            background: #ffffff;
-            box-shadow: var(--shadow-soft);
-            overflow: hidden;
-            transition: box-shadow 0.2s var(--ease-out), border-color 0.2s ease;
-        }
-
-        .testimonial-item.open {
-            box-shadow: 0 20px 50px rgba(15,23,42,0.12);
-            border-color: rgba(249,115,22,0.6);
-        }
-
-        .testimonial-header {
-            width: 100%;
-            padding: 14px 16px;
-            background: linear-gradient(to right, rgba(249,115,22,0.06), rgba(15,23,42,0.01));
-            border: none;
-            display: flex;
-            align-items: flex-start;
-            justify-content: space-between;
-            gap: 10px;
-            cursor: pointer;
-        }
-
-        .testimonial-header:focus-visible {
-            outline: 2px solid var(--accent);
-            outline-offset: 2px;
-        }
-
-        .testimonial-tag {
-            font-size: 12px;
-            text-transform: uppercase;
-            letter-spacing: 0.12em;
-            color: var(--accent);
-            margin-bottom: 4px;
-            font-weight: 600;
-        }
-
-        .testimonial-title {
-            font-size: 16px;
-            font-weight: 600;
-            margin-bottom: 4px;
-        }
-
-        .testimonial-meta {
-            font-size: 13px;
-            color: var(--text-muted);
-        }
-
-        .testimonial-toggle-icon {
-            font-size: 18px;
-            line-height: 1;
-            color: var(--text-muted);
-            transition: transform 0.2s var(--ease-out), color 0.2s ease;
-        }
-
-        .testimonial-item.open .testimonial-toggle-icon {
-            transform: rotate(45deg);
-            color: var(--accent);
-        }
-
-        .testimonial-body {
-            max-height: 0;
-            opacity: 0;
-            overflow: hidden;
-            padding: 0 16px;
-            font-size: 14px;
-            color: #374151;
-            transition: max-height 0.35s var(--ease-out), opacity 0.35s var(--ease-out), padding-top 0.2s ease, padding-bottom 0.2s ease;
-        }
-
-        .testimonial-item.open .testimonial-body {
-            max-height: 600px;
-            opacity: 1;
-            padding-top: 8px;
-            padding-bottom: 14px;
-        }
-
-        .testimonial-body p {
-            margin: 0 0 8px;
-        }
-
-        .testimonial-body p:last-child {
-            margin-bottom: 0;
-        }
-
-        /* Card hover */
-        .card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 22px 55px rgba(15,23,42,0.12);
-            border-color: rgba(148,163,184,0.9);
-        }
-
-        /* Test modal CTA button */
-        .test-cta-button {
-            margin-top: 10px;
-        }
-
-        /* Scroll animation */
-
-        [data-animate] {
-            opacity: 0;
-            transform: translateY(24px);
-            transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
-        }
-
-        [data-animate].in-view {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        @media (max-width: 900px) {
-            .hero,
-            .two-cols,
-            .experts-grid,
-            .form-grid,
-            .grid-3 {
-                grid-template-columns: minmax(0, 1fr);
-            }
-
-            .hero {
-                gap: 24px;
-            }
-
-            header {
-                position: static;
-                background: rgba(249,250,251,0.98);
-            }
-
-            .nav {
-                padding-inline: 16px;
-            }
-
-            .nav-links {
-                display: none;
-            }
-
-            .section {
-                padding: 40px 16px;
-            }
-
-            .form-wrapper {
-                padding: 20px 16px 20px;
-            }
-        }
-
-        @media (max-width: 520px) {
-            .hero-actions {
-                flex-direction: column;
-                align-items: stretch;
-            }
-
-            .btn-primary,
-            .btn-secondary {
-                width: 100%;
-                justify-content: center;
-                text-align: center;
-            }
-
-            .telegram-card {
-                flex-direction: column;
-            }
-        }
-        .page-footer {
-  margin-top: 40px;
-  padding: 20px 16px 28px;
-  border-top: 1px solid rgba(148, 163, 184, 0.35);
-  background: radial-gradient(circle at 0 0, rgba(248, 250, 252, 0.04), transparent 55%),
-              radial-gradient(circle at 100% 100%, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 1));
-}
-
-.page-footer-inner {
-  max-width: 1040px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  align-items: flex-start;
-  justify-content: space-between;
-}
-
-@media (min-width: 640px) {
-  .page-footer-inner {
-    flex-direction: row;
-    align-items: center;
-  }
-}
-
-.page-footer-text {
-  font-size: 12px;
-  color: #9ca3af;
-}
-
-.footer-link-button {
-  border: none;
-  background: transparent;
-  padding: 0;
-  font-size: 13px;
-  color: #e5e7eb;
-  cursor: pointer;
-  position: relative;
-}
-
-.footer-link-button::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -2px;
-  width: 100%;
-  height: 1px;
-  background: linear-gradient(90deg, #f97316, #fb923c);
-  opacity: 0.7;
-  transform-origin: left;
-  transform: scaleX(0.8);
-  transition: transform 0.2s ease, opacity 0.2s ease;
-}
-
-.footer-link-button:hover::after {
-  transform: scaleX(1);
-  opacity: 1;
-}
-
-/* Модальное окно */
-
-.modal-backdrop {
-  position: fixed;
-  inset: 0;
-  background: rgba(15, 23, 42, 0.75);
-  display: none;
-  align-items: center;
-  justify-content: center;
-  z-index: 50;
-  padding: 16px;
-}
-
-.modal-backdrop.is-open {
-  display: flex;
-}
-
-.modal-dialog {
-  background: rgba(15, 23, 42, 0.98);
-  border-radius: 20px;
-  max-width: 960px;
-  width: 100%;
-  max-height: 90vh;
-  box-shadow:
-    0 24px 60px rgba(15, 23, 42, 0.7),
-    0 0 0 1px rgba(148, 163, 184, 0.4);
-  position: relative;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-}
-
-.modal-frame {
-  border: none;
-  width: 100%;
-  flex: 1 1 auto;
-  background: #020617;
-}
-
-.modal-close {
-  position: absolute;
-  top: 10px;
-  right: 12px;
-  width: 32px;
-  height: 32px;
-  border-radius: 999px;
-  border: none;
-  background: rgba(15, 23, 42, 0.9);
-  color: #e5e7eb;
-  font-size: 20px;
-  line-height: 1;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.modal-close:hover {
-  background: rgba(15, 23, 42, 1);
-}
-
-    </style>
+  <meta charset="UTF-8" />
+  <title>«Теремок» — офлайн-тренинг по типажам сотрудников</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Офлайн-тренинг «Теремок» для руководителей, HR и собственников: чёткие типажи вместо размытых впечатлений о людях. Узнайте, кто делает выручку, а кто только создаёт её видимость." />
+  <style>
+    :root {
+      --bg-color: #020617;
+      --card-bg: rgba(15, 23, 42, 0.98);
+      --card-border: rgba(148, 163, 184, 0.35);
+      --text-main: #e5e7eb;
+      --text-muted: #9ca3af;
+      --accent: #f97316;
+      --accent-soft: #fb923c;
+      --danger: #f97373;
+      --radius-xl: 24px;
+      --radius-lg: 18px;
+      --radius-pill: 999px;
+      --shadow-soft: 0 24px 60px rgba(15, 23, 42, 0.85);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      min-height: 100%;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 0% 0%, rgba(15, 23, 42, 0.9), transparent 55%),
+        radial-gradient(circle at 100% 0%, rgba(30, 64, 175, 0.7), transparent 55%),
+        radial-gradient(circle at 100% 100%, rgba(8, 47, 73, 0.8), transparent 55%),
+        radial-gradient(circle at 0% 100%, rgba(15, 23, 42, 1), rgba(15, 23, 42, 1));
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    main {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 24px 16px 40px;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .logo-block {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-mark {
+      width: 32px;
+      height: 32px;
+      border-radius: 12px;
+      background: radial-gradient(circle at 30% 0%, #f97316, #0f172a);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      font-weight: 700;
+      color: #f9fafb;
+      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.8);
+    }
+
+    .logo-text-main {
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: #e5e7eb;
+    }
+
+    .logo-text-sub {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: var(--radius-pill);
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .badge-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 0%, var(--accent-soft), var(--accent));
+    }
+
+    .badge-strong {
+      color: #fefce8;
+      font-weight: 500;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+      gap: 24px;
+      align-items: flex-start;
+      margin-bottom: 36px;
+    }
+
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .hero-title {
+      font-size: clamp(26px, 3.1vw, 34px);
+      line-height: 1.15;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      margin: 0 0 14px;
+    }
+
+    .hero-highlight {
+      background: linear-gradient(90deg, #f97316, #fb923c);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: 15px;
+      line-height: 1.5;
+      color: var(--text-muted);
+      margin: 0 0 20px;
+    }
+
+    .hero-subtitle strong {
+      color: #e5e7eb;
+      font-weight: 500;
+    }
+
+    .hero-bullets {
+      margin: 0 0 22px;
+      padding: 0;
+      list-style: none;
+    }
+
+    .hero-bullets li {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 14px;
+      color: #d1d5db;
+      margin-bottom: 8px;
+    }
+
+    .hero-bullets li::before {
+      content: "";
+      margin-top: 6px;
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #f97316, #fb923c);
+      flex-shrink: 0;
+    }
+
+    .hero-note {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .hero-note strong {
+      color: #e5e7eb;
+      font-weight: 500;
+    }
+
+    .hero-note a {
+      color: var(--accent-soft);
+      text-decoration: none;
+    }
+
+    .hero-note a:hover {
+      text-decoration: underline;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--card-border);
+      box-shadow: var(--shadow-soft);
+      padding: 18px 18px 16px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 0 0, rgba(249, 115, 22, 0.11), transparent 55%),
+        radial-gradient(circle at 100% 100%, rgba(15, 23, 42, 0.92), transparent 60%);
+      opacity: 0.9;
+      pointer-events: none;
+    }
+
+    .card-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .card-title {
+      font-size: 16px;
+      font-weight: 600;
+      margin: 0 0 10px;
+    }
+
+    .card-subtitle {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin: 0 0 16px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    @media (min-width: 640px) {
+      .form-grid.two-col {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .field-label {
+      font-size: 12px;
+      color: #cbd5f5;
+    }
+
+    .field-label span {
+      color: var(--accent-soft);
+    }
+
+    .field-input,
+    .field-select,
+    .field-textarea {
+      width: 100%;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      background: rgba(15, 23, 42, 0.9);
+      color: #e5e7eb;
+      font-size: 13px;
+      padding: 7px 12px;
+      outline: none;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+    }
+
+    .field-textarea {
+      border-radius: 14px;
+      min-height: 44px;
+      resize: vertical;
+      padding-top: 7px;
+      padding-bottom: 7px;
+    }
+
+    .field-input::placeholder,
+    .field-textarea::placeholder {
+      color: rgba(148, 163, 184, 0.8);
+    }
+
+    .field-select {
+      appearance: none;
+      background-image: linear-gradient(45deg, transparent 50%, #9ca3af 50%),
+        linear-gradient(135deg, #9ca3af 50%, transparent 50%);
+      background-position: calc(100% - 14px) 12px, calc(100% - 8px) 12px;
+      background-size: 6px 6px, 6px 6px;
+      background-repeat: no-repeat;
+    }
+
+    .field-input:focus,
+    .field-select:focus,
+    .field-textarea:focus {
+      border-color: var(--accent-soft);
+      box-shadow: 0 0 0 1px rgba(249, 115, 22, 0.5);
+    }
+
+    .field-helper {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .checkbox-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      margin: 2px 0 10px;
+    }
+
+    .checkbox-row input[type="checkbox"] {
+      margin-top: 2px;
+      width: 14px;
+      height: 14px;
+      border-radius: 4px;
+      border: 1px solid rgba(148, 163, 184, 0.8);
+      background: rgba(15, 23, 42, 0.9);
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .checkbox-label {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .checkbox-label a {
+      color: var(--accent-soft);
+      text-decoration: none;
+    }
+
+    .checkbox-label a:hover {
+      text-decoration: underline;
+    }
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      margin-bottom: 6px;
+    }
+
+    .button {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 9px 18px;
+      border-radius: var(--radius-pill);
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      border: none;
+      outline: none;
+      text-decoration: none;
+      transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease,
+        border-color 0.12s ease, color 0.12s ease;
+      white-space: nowrap;
+    }
+
+    .button-primary {
+      background: linear-gradient(135deg, #f97316, #fb923c);
+      color: #0f172a;
+      box-shadow:
+        0 16px 40px rgba(15, 23, 42, 0.9),
+        0 0 0 1px rgba(248, 250, 252, 0.18);
+    }
+
+    .button-primary:hover {
+      transform: translateY(-1px);
+      box-shadow:
+        0 20px 50px rgba(15, 23, 42, 0.95),
+        0 0 0 1px rgba(248, 250, 252, 0.22);
+      background: linear-gradient(135deg, #fb923c, #f97316);
+    }
+
+    .button-primary:active {
+      transform: translateY(0);
+      box-shadow:
+        0 8px 24px rgba(15, 23, 42, 0.85),
+        0 0 0 1px rgba(248, 250, 252, 0.18);
+    }
+
+    .button-secondary {
+      background: rgba(15, 23, 42, 0.9);
+      color: #e5e7eb;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+    }
+
+    .button-secondary:hover {
+      background: rgba(15, 23, 42, 0.96);
+      border-color: rgba(249, 115, 22, 0.7);
+      box-shadow: 0 8px 28px rgba(15, 23, 42, 0.9);
+      transform: translateY(-1px);
+    }
+
+    .button-secondary:active {
+      transform: translateY(0);
+      box-shadow: 0 4px 16px rgba(15, 23, 42, 0.85);
+    }
+
+    .button-icon {
+      font-size: 14px;
+    }
+
+    .form-footnote {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .form-footnote strong {
+      color: #e5e7eb;
+      font-weight: 500;
+    }
+
+    .error-text {
+      font-size: 11px;
+      color: var(--danger);
+      margin-top: 4px;
+      display: none;
+    }
+
+    .error-text.is-visible {
+      display: block;
+    }
+
+    .lead-success {
+      display: none;
+      padding: 8px 10px;
+      border-radius: 12px;
+      background: rgba(22, 163, 74, 0.12);
+      border: 1px solid rgba(34, 197, 94, 0.4);
+      font-size: 12px;
+      color: #bbf7d0;
+      margin-top: 4px;
+    }
+
+    .lead-success.is-visible {
+      display: block;
+    }
+
+    .lead-form.is-hidden {
+      display: none;
+    }
+
+    .section {
+      margin-bottom: 32px;
+    }
+
+    .section-header {
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-size: 18px;
+      font-weight: 600;
+      margin: 0 0 6px;
+    }
+
+    .section-subtitle {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin: 0;
+    }
+
+    .audience-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    @media (max-width: 900px) {
+      .audience-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 640px) {
+      .audience-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .audience-card {
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      background: radial-gradient(circle at 0 0, rgba(249, 115, 22, 0.08), transparent 55%),
+        rgba(15, 23, 42, 0.98);
+      padding: 10px 12px;
+      font-size: 13px;
+      color: #d1d5db;
+    }
+
+    .audience-title {
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+
+    .audience-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 2px 8px;
+      margin-bottom: 6px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .audience-tag-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #f97316, #fb923c);
+    }
+
+    .test-section {
+      display: none;
+      margin-bottom: 28px;
+    }
+
+    .test-section.is-visible {
+      display: block;
+    }
+
+    .test-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    @media (max-width: 900px) {
+      .test-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 520px) {
+      .test-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .test-card {
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      background: rgba(15, 23, 42, 0.96);
+      padding: 10px 10px 9px;
+      cursor: pointer;
+      font-size: 13px;
+      transition: border-color 0.12s ease, box-shadow 0.12s ease, transform 0.12s ease,
+        background 0.12s ease;
+    }
+
+    .test-card:hover {
+      border-color: rgba(249, 115, 22, 0.9);
+      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.9);
+      transform: translateY(-1px);
+      background: radial-gradient(circle at 0 0, rgba(249, 115, 22, 0.1), transparent 60%),
+        rgba(15, 23, 42, 0.98);
+    }
+
+    .test-card-type {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #e5e7eb;
+      margin-bottom: 2px;
+    }
+
+    .test-card-label {
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+
+    .test-card-hint {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .test-result-wrapper {
+      margin-top: 12px;
+      padding: 10px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      background: rgba(15, 23, 42, 0.96);
+      font-size: 12px;
+      color: #e5e7eb;
+      display: none;
+    }
+
+    .test-result-wrapper.is-visible {
+      display: block;
+    }
+
+    .test-result-title {
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+
+    .telegram-section {
+      margin-bottom: 26px;
+    }
+
+    .telegram-card {
+      border-radius: var(--radius-xl);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      background:
+        radial-gradient(circle at 0 0, rgba(56, 189, 248, 0.16), transparent 55%),
+        rgba(15, 23, 42, 0.98);
+      padding: 14px 14px 13px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+      justify-content: space-between;
+    }
+
+    .telegram-text-main {
+      font-size: 13px;
+      color: #e5e7eb;
+      margin-bottom: 4px;
+    }
+
+    .telegram-text-sub {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .telegram-right {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      align-items: flex-end;
+    }
+
+    @media (max-width: 640px) {
+      .telegram-card {
+        align-items: flex-start;
+      }
+
+      .telegram-right {
+        align-items: flex-start;
+      }
+    }
+
+    .telegram-hint {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .telegram-icon {
+      font-size: 15px;
+    }
+
+    .page-footer {
+      margin-top: 40px;
+      padding: 20px 16px 28px;
+      border-top: 1px solid rgba(148, 163, 184, 0.35);
+      background:
+        radial-gradient(circle at 0 0, rgba(248, 250, 252, 0.04), transparent 55%),
+        radial-gradient(circle at 100% 100%, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 1));
+    }
+
+    .page-footer-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      align-items: flex-start;
+      justify-content: space-between;
+    }
+
+    @media (min-width: 640px) {
+      .page-footer-inner {
+        flex-direction: row;
+        align-items: center;
+      }
+    }
+
+    .page-footer-text {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .footer-link-button {
+      border: none;
+      background: transparent;
+      padding: 0;
+      font-size: 13px;
+      color: #e5e7eb;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .footer-link-button::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -2px;
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, #f97316, #fb923c);
+      opacity: 0.7;
+      transform-origin: left;
+      transform: scaleX(0.8);
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    .footer-link-button:hover::after {
+      transform: scaleX(1);
+      opacity: 1;
+    }
+
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.75);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 50;
+      padding: 16px;
+    }
+
+    .modal-backdrop.is-open {
+      display: flex;
+    }
+
+    .modal-dialog {
+      background: rgba(15, 23, 42, 0.98);
+      border-radius: 20px;
+      max-width: 960px;
+      width: 100%;
+      max-height: 90vh;
+      box-shadow:
+        0 24px 60px rgba(15, 23, 42, 0.7),
+        0 0 0 1px rgba(148, 163, 184, 0.4);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .modal-frame {
+      border: none;
+      width: 100%;
+      flex: 1 1 auto;
+      background: #020617;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 10px;
+      right: 12px;
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      border: none;
+      background: rgba(15, 23, 42, 0.9);
+      color: #e5e7eb;
+      font-size: 20px;
+      line-height: 1;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-close:hover {
+      background: rgba(15, 23, 42, 1);
+    }
+  </style>
 </head>
 <body>
-<div class="page-wrap">
+  <main>
     <header>
-        <div class="nav">
-            <div class="logo">
-                <div class="logo-mark">
-                    <img src="assets/logo-teremok.jpg" alt="Теремок логотип">
-                </div>
-                <div class="logo-labels">
-                    <div class="logo-text-primary">Теремок</div>
-                    <div class="logo-text-secondary">мотивационная модель команды</div>
-                </div>
-            </div>
-
-            <div class="nav-links">
-                <a href="#about">О программе</a>
-                <a href="#who">Для кого</a>
-                <a href="#results">Что получите</a>
-                <a href="#testimonials">Отзывы</a>
-                <a href="#experts">Авторы</a>
-                <a href="#registration">Формат</a>
-                <a href="javascript:void(0)" class="nav-cta" onclick="openLeadModal('lead')">
-                    Записаться
-                    <span>5–7 минут на заявку</span>
-                </a>
-            </div>
+      <div class="logo-block">
+        <div class="logo-mark">Т</div>
+        <div>
+          <div class="logo-text-main">Теремок</div>
+          <div class="logo-text-sub">Система мотивационных типажей сотрудников</div>
         </div>
+      </div>
     </header>
 
-    <main>
-        <!-- Hero -->
-        <section class="section section-dark" id="top">
-            <div class="container">
-                <div class="hero" data-animate>
-                    <div>
-                        <div class="hero-brand-badge">
-                            <span>Авторская модель «Теремок»</span>
-                        </div>
-
-                        <div class="hero-kicker">Живой офлайн-практикум в Минске для собственников, руководителей и HR</div>
-                        <h1>«Теремок»: Птицы, Хомяки, Лисы и Профи в вашей команде</h1>
-                        <p class="hero-subtitle">
-                            Помогаем увидеть, кто в вашей компании работает под принуждением, кто — только «за деньги»,
-                            а кто действительно держит на себе клиентов, процессы и результат.
-                        </p>
-                        <p class="hero-text">
-                            На офлайн-практикуме вы разбираете своих сотрудников через понятные метафоры Птиц, Хомяков,
-                            Лис и Профи, составляете карту команды и принимаете управленческие решения по людям,
-                            а не по ощущениям и «интуиции о человеке».
-                        </p>
-                        <div class="hero-actions">
-                            <button class="btn-primary" onclick="openLeadModal('lead')">
-                                Забронировать офлайн-место на «Теремке»
-                            </button>
-                            <button class="btn-secondary" onclick="openLeadModal('test')">
-                                Пройти мини-тест по одному сотруднику
-                            </button>
-                        </div>
-                        <div class="hero-note">
-                            Оставьте контакты — свяжемся в ближайший рабочий день, подтвердим участие в живом практикуме
-                            и после заявки откроем доступ к мини-тесту по выбранному сотруднику.
-                        </div>
-                    </div>
-                    <aside class="hero-card" aria-hidden="true" data-animate>
-                        <div class="hero-card-title">Мотивационный «срез» вашей команды</div>
-                        <ul class="hero-types">
-                            <li class="hero-type hero-type-bad">
-                                <div class="hero-type-badge">Птицы</div>
-                                <div class="hero-type-text">
-                                    Работают под принуждением, оживают только под контролем и дедлайнами.
-                                    Если их много, руководитель живёт в режиме вечных напоминаний вместо развития бизнеса.
-                                </div>
-                            </li>
-                            <li class="hero-type hero-type-bad">
-                                <div class="hero-type-badge">Хомяки</div>
-                                <div class="hero-type-text">
-                                    Ставят в центр деньги и личную выгоду. Пока система оплаты выгодна — работают,
-                                    но легко «пересаживаются» туда, где платят больше, а не где важна команда и результат.
-                                </div>
-                            </li>
-                            <li class="hero-type hero-type-bad">
-                                <div class="hero-type-badge">Лисы</div>
-                                <div class="hero-type-text">
-                                    Строят карьеру на статусе и влиянии. Красиво выглядят на совещаниях,
-                                    но реальный вклад в общий результат нестабилен и сильно зависит от личной выгоды.
-                                </div>
-                            </li>
-                            <li class="hero-type hero-type-good">
-                                <div class="hero-type-badge">Профи и лидеры</div>
-                                <div class="hero-type-text">
-                                    Держат клиентов, сложные задачи и репутацию компании. Часто тихо выгорают,
-                                    пока остальные создают видимость бурной деятельности.
-                                </div>
-                            </li>
-                        </ul>
-                        <div class="hero-card-caption">
-                            На «Теремке» вы накладываете эту модель на свою команду, выделяете ядро Профи и лидеров,
-                            видите риски по Птицам, Хомякам и Лисам и принимаете решения по людям на реальных кейсах
-                            из вашего бизнеса.
-                        </div>
-                    </aside>
-                </div>
-            </div>
-        </section>
-
-        <!-- About -->
-        <section class="section section-alt" id="about">
-            <div class="container" data-animate>
-                <div class="section-header">
-                    <div class="section-kicker">О программе</div>
-                    <h2>Что такое мотивационная модель «Теремок»</h2>
-                    <p class="section-lead">
-                        «Теремок» — авторская модель, которая помогает увидеть,
-                        что на самом деле движет вашими сотрудниками и как они ведут себя в команде.
-                        Не абстрактная «мотивация», а живые типажи с понятным поведением.
-                    </p>
-                </div>
-                <div class="two-cols">
-                    <div class="card">
-                        <h3>Чёткие типажи вместо размытых впечатлений о людях</h3>
-                        <p>
-                            В модели «Теремок» мы работаем с узнаваемыми образами:
-                        </p>
-                        <ul>
-                            <li>те, кто перелетают с места на место и работают только под контролем (Птицы);</li>
-                            <li>те, кто сфокусирован исключительно на деньгах и личной выгоде (Хомяки, Лисы);</li>
-                            <li>те, кто делает по совести, любит свою работу и развивает компанию (Профи, Альфа- и Бета-лидеры).</li>
-                        </ul>
-                        <div class="highlight">
-                            На занятиях вы разбираете реальные случаи и узнаёте типажи по речевым формулировкам,
-                            реакциям в конфликте, отношению к клиенту и ответственности.
-                        </div>
-                    </div>
-                    <div class="card">
-                        <h3>Что вы учитесь делать на практике</h3>
-                        <ul>
-                            <li>отличать типы сотрудников в живых интервью, совещаниях и переписке;</li>
-                            <li>видеть, кто тянет команду вверх, а кто потребляет ресурс и бюджет;</li>
-                            <li>принимать управленческие решения по каждому типу: где вкладываться, где ограничивать, а где прощаться;</li>
-                            <li>выстраивать мотивацию с учётом «Шкалы» — от принуждения и «только деньги» к «нравится работа» и «важна идея».</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Who it's for -->
-        <section class="section section-dark" id="who">
-            <div class="container" data-animate>
-                <div class="section-header">
-                    <div class="section-kicker">Кому будет полезно</div>
-                    <h2>Для кого программа «Теремок»</h2>
-                    <p class="section-lead">
-                        Программа создана для тех, кто отвечает за людей и результат,
-                        а не только за «красивые отчёты» по HR.
-                    </p>
-                </div>
-                <div class="two-cols">
-                    <div class="card">
-                        <h3>Руководители и собственники</h3>
-                        <ul>
-                            <li>Собственники и генеральные директора, которые хотят понимать реальный потенциал команды.</li>
-                            <li>Руководители отделов и филиалов, уставшие тащить на себе «тяжёлых» сотрудников.</li>
-                            <li>Руководители по продажам, коммерческие директора и руководители клиентского сервиса, которым важно видеть, кто реально делает выручку, а кто только создаёт видимость работы.</li>
-                        </ul>
-                    </div>
-                    <div class="card">
-                        <h3>HR, рекрутеры и внутренние тренеры</h3>
-                        <ul>
-                            <li>HR-директора, выстраивающие систему оценки, мотивации и развития сотрудников.</li>
-                            <li>Рекрутеры, которым важно отличать Птиц и Хомяков от Профи и будущих лидеров ещё на этапе отбора.</li>
-                            <li>Корпоративные тренеры, работающие с вовлечённостью, ответственностью и управленческой культурой.</li>
-                        </ul>
-                        <div class="pill-list">
-                            <div class="pill">B2B-компании</div>
-                            <div class="pill">Отделы продаж и сервиса</div>
-                            <div class="pill">Производство и логистика</div>
-                            <div class="pill">Сеть филиалов</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Results -->
-        <section class="section section-alt" id="results">
-            <div class="container" data-animate>
-                <div class="section-header">
-                    <div class="section-kicker">Результат</div>
-                    <h2>Что вы получите после «Теремка»</h2>
-                    <p class="section-lead">
-                        Вместо ощущения «все вроде нормальные, но почему-то не летит»
-                        у вас появляется карта команды и конкретные решения по людям.
-                    </p>
-                </div>
-                <div class="grid-3">
-                    <div class="card">
-                        <h3>Карта команды по «Теремку»</h3>
-                        <p>
-                            Вы составите понятную схему: кто в каком типе мотивации,
-                            где ядро, а где риск для результата и репутации.
-                        </p>
-                        <ul>
-                            <li>Птицы, Хомяки, Лисы, Профи, Волки, Медведи;</li>
-                            <li>кто тянет, кто тормозит, кто «сидит тихо»;</li>
-                            <li>на кого делать ставки в ближайший год.</li>
-                        </ul>
-                    </div>
-                    <div class="card">
-                        <h3>Алгоритмы управления типажами</h3>
-                        <p>
-                            Для каждого типа вы получите чёткие ориентиры:
-                        </p>
-                        <ul>
-                            <li>как ставить задачи и контролировать;</li>
-                            <li>что усиливает мотивацию, а что ломает;</li>
-                            <li>когда вкладываться, а когда ограничивать и прощаться.</li>
-                        </ul>
-                    </div>
-                    <div class="card">
-                        <h3>Решения для бизнеса</h3>
-                        <p>
-                            «Теремок» ложится в кадровые решения, а не в общую философию:
-                        </p>
-                        <ul>
-                            <li>кого продвигать и усиливать;</li>
-                            <li>как менять систему мотивации и ответственности;</li>
-                            <li>какие управленческие привычки руководителей стоит пересмотреть.</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Testimonials -->
-        <section class="section section-alt" id="testimonials">
-            <div class="container" data-animate>
-                <div class="section-header">
-                    <div class="section-kicker">Опыт клиентов</div>
-                    <h2>Отзывы руководителей и HR после «Теремка»</h2>
-                    <p class="section-lead">
-                        Реальные кейсы о том, как «Теремок» помогает по-другому смотреть на сотрудников,
-                        переставать тянуть «минусовых» и принимать решения не по ощущениям, а по понятной системе типажей.
-                    </p>
-                </div>
-
-                <div class="testimonials-list">
-                    <div class="testimonial-item">
-                        <button class="testimonial-header" type="button">
-                            <div>
-                                <div class="testimonial-tag">Отдел продаж</div>
-                                <div class="testimonial-title">«Перестали тянуть за собой минусовых»</div>
-                                <div class="testimonial-meta">
-                                    Руководитель отдела продаж, b2b-компания в сфере поставок оборудования (команда 18 человек)
-                                </div>
-                            </div>
-                            <span class="testimonial-toggle-icon" aria-hidden="true">+</span>
-                        </button>
-                        <div class="testimonial-body">
-                            <p>
-                                «До “Теремка” у меня было ощущение, что я всё время кого-то дотаскиваю. В отчётах все выглядели
-                                “нормально”: кто-то делает план, кто-то чуть не дотягивает, но глобально отличить, кто реально
-                                вытягивает отдел, а кто просто создаёт видимость работы, было сложно.
-                            </p>
-                            <p>
-                                После практикума мы вместе с тренером разложили сотрудников по типажам “Теремка”. Вдруг стало очевидно,
-                                кто у нас Птицы, кто Хомяки, а кто Профи. Мы убрали фокус со спасения минусовых и сделали ставку
-                                на ядро — Профи и сильных Лидеров. За три месяца я убрал двоих хронических “подсаженных на контроль”
-                                и перераспределил мотивацию. План отдела начали выполнять без постоянного “ручного управления”
-                                и переработок по вечерам.»
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="testimonial-item">
-                        <button class="testimonial-header" type="button">
-                            <div>
-                                <div class="testimonial-tag">Собственник бизнеса</div>
-                                <div class="testimonial-title">«Появились аргументы, а не ощущение “не мой человек”»</div>
-                                <div class="testimonial-meta">
-                                    Собственник сети сервисных компаний, 65+ сотрудников, несколько филиалов
-                                </div>
-                            </div>
-                            <span class="testimonial-toggle-icon" aria-hidden="true">+</span>
-                        </button>
-                        <div class="testimonial-body">
-                            <p>
-                                «До “Теремка” я часто говорил фразу “что-то не то с этим человеком”, но на совещаниях это звучало
-                                как субъективщина. HR оперировал красивыми словами про вовлечённость, а я в итоге держал в штате людей,
-                                к которым не было доверия, просто потому что не мог нормально объяснить, почему они мне не подходят.
-                            </p>
-                            <p>
-                                После программы у нас появился общий язык: Птицы, Хомяки, Лисы, Профи. Мы прогнали ключевых
-                                руководителей и сотрудников через “Шкалу мотивации” и “Теремок”, увидели, кто реально за результат,
-                                а кто — за статус и деньги “любой ценой”. Часть решений, которые я год откладывал, приняли за две недели:
-                                с кем-то расстались, кому-то поменяли зону ответственности. Команда управления стала понятнее
-                                и предсказуемее, исчезло чувство, что бизнес — заложник настроения отдельных людей.»
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="testimonial-item">
-                        <button class="testimonial-header" type="button">
-                            <div>
-                                <div class="testimonial-tag">HR-директор</div>
-                                <div class="testimonial-title">«Наконец-то перестали брать “красавчиков”, которые потом не тянут»</div>
-                                <div class="testimonial-meta">
-                                    HR-директор производственной компании, 220 сотрудников
-                                </div>
-                            </div>
-                            <span class="testimonial-toggle-icon" aria-hidden="true">+</span>
-                        </button>
-                        <div class="testimonial-body">
-                            <p>
-                                «До “Теремка” у нас были приличные воронки найма, но через 3–6 месяцев часть новых людей “сдувалась”.
-                                На собеседованиях кандидаты выглядели отлично: уверенные, разговорчивые, с правильными формулировками.
-                                А в деле оказывалось, что работать надо постоянно подгонять.
-                            </p>
-                            <p>
-                                После обучения мы встроили типажи “Теремка” прямо в интервью: стали целенаправленно отслеживать
-                                речевые маркеры Птиц, Хомяков и Лис. Перестали очаровываться только харизмой и статусной подачей.
-                                За полгода доля “не дотягивающих” новичков заметно снизилась, а количество Профи в ключевых ролях выросло.
-                                Руководители наконец-то увидели разницу между “приятным собеседником” и человеком, у которого
-                                реально есть внутренняя мотивация работать.»
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Experts -->
-        <section class="section section-dark" id="experts">
-            <div class="container" data-animate>
-                <div class="section-header">
-                    <div class="section-kicker">Кому можно доверять</div>
-                    <h2>Кто стоит за «Теремком»</h2>
-                    <p class="section-lead">
-                        Модель и программа разработаны и ведутся командой консалтинговой компании «Сталкер-Медиа»,
-                        которая с 2009 года профессионально отвечает на вопрос:
-                        «На кого из сотрудников делать ставки?».
-                    </p>
-                </div>
-                <div class="experts-grid">
-                    <div class="card">
-                        <p class="expert-name">Наталья Космач</p>
-                        <p class="expert-role">
-                            Собственник, директор и бизнес-тренер компании «Сталкер-Медиа».
-                        </p>
-                        <p>
-                            Автор 17+ программ по найму, мотивации, управленческим компетенциям, продажам и переговорам.
-                            С 2017 года лично провела более 2300 интервью и диагностик ключевых сотрудников и кандидатов.
-                        </p>
-                        <p class="expert-name" style="margin-top:14px;">Андрей Гриневич</p>
-                        <p class="expert-role">
-                            Соучредитель и тренер «Сталкер-Медиа» с 2009 года.
-                        </p>
-                        <p>
-                            Главный консультант и аналитик по управлению человеческими ресурсами.
-                            Автор мотивационной модели «Теремок», «Шкалы профессионализма»,
-                            технологии «Матрица системности» и ряда опросников по оценке персонала.
-                            С 2015 года провёл более 2200 персональных консультаций.
-                        </p>
-                    </div>
-                    <div class="card">
-                        <h3>«Сталкер-Медиа» в цифрах</h3>
-                        <ul class="metrics-list">
-                            <li>770+ обучающих программ и тренингов для бизнеса;</li>
-                            <li>7000+ руководителей и сотрудников, прошедших обучение;</li>
-                            <li>4500+ аудитов персонала и консультаций по потенциалу и развитию;</li>
-                            <li>клиенты в Беларуси, России и других странах.</li>
-                        </ul>
-                        <div class="highlight">
-                            Коротко: мы много лет профессионально работаем с управленческими решениями по людям —
-                            кого выращивать, кого продвигать, кого отпускать.
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Registration / CTA -->
-        <section class="section section-alt" id="registration">
-            <div class="container" data-animate>
-                <div class="section-header">
-                    <div class="section-kicker">Заявка на участие</div>
-                    <h2>Оставьте контакты — забронируем офлайн-участие и обсудим детали</h2>
-                    <p class="section-lead">
-                        Заполните короткую заявку во всплывающем окне. Мы свяжемся с вами в ближайший рабочий день,
-                        уточним ситуацию по вашей команде и подтвердим участие в ближайшем офлайн-потоке программы «Теремок».
-                    </p>
-                </div>
-                <div class="form-wrapper">
-
-                    <div class="event-card" data-animate>
-                        <div class="event-label">Ближайший поток программы</div>
-                        <div class="event-title">Минск, 20 ноября 2025</div>
-                        <div class="event-details">
-                            <div class="event-detail-row">
-                                <span>Дата и время</span>
-                                <strong>20 ноября 2025, 10:00–18:00</strong>
-                            </div>
-                            <div class="event-detail-row">
-                                <span>Место проведения</span>
-                                <strong>г. Минск, ул. Сурганова, 57Б, офис 143</strong>
-                            </div>
-                            <div class="event-detail-row">
-                                <span>Стоимость участия</span>
-                                <strong>590 BYN за 1 участника</strong>
-                            </div>
-                        </div>
-                        <p class="event-note">Места в группе ограничены: работаем в формате живого практикума с разбором ваших кейсов.</p>
-                    </div>
-
-                    <div class="form-grid">
-                        <div>
-                            <p class="form-secondary">
-                                Нажмите на кнопку ниже, чтобы открыть форму заявки. Мы спросим только то, что действительно
-                                нужно для предметного разговора: кто вы, какая команда и как с вами связаться.
-                            </p>
-                            <button type="button" class="btn-primary btn-full" onclick="openLeadModal('lead')">
-                                Открыть форму заявки
-                            </button>
-                            <p class="form-note">
-                                После отправки заявки:
-                            </p>
-                            <ul class="metrics-list">
-                                <li>мы свяжемся в ближайший рабочий день, уточним вашу ситуацию по людям и подтвердим офлайн-участие в «Теремке»;</li>
-                                <li>на сайте автоматически откроется мини-тест по одному сотруднику — чтобы вы почувствовали, как работает модель.</li>
-                            </ul>
-                        </div>
-                        <div class="form-secondary">
-                            <div class="telegram-card">
-                                <div class="telegram-icon" aria-hidden="true">
-                                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M21.5 4.2c.3-.97-.58-1.84-1.54-1.5L3.3 9.1c-.71.26-.77 1.24-.1 1.6l4.5 2.34 2.1 4.77c.3.68 1.26.71 1.6.05l2.02-3.82 4.24 2.2c.83.43 1.83-.03 2.06-.93l1.78-7.91Z" fill="currentColor"/>
-                                    </svg>
-                                </div>
-                                <div class="telegram-content">
-                                    <div class="telegram-title">Написать в&nbsp;Telegram</div>
-                                    <p>
-                                        Если вам удобнее обсудить запрос в переписке, напишите нам сообщение
-                                        с пометкой «Теремок».
-                                    </p>
-                                    <a class="telegram-button" href="https://t.me/stalkermedia1" target="_blank" rel="noopener noreferrer">
-                                        @stalkermedia1
-                                    </a>
-                                </div>
-                            </div>
-                            <p class="telegram-note">
-                                После заявки и мини-теста вы также можете запросить у нас короткое видео с пояснением модели —
-                                просто напишите в Telegram «Хочу видео по Теремку».
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <div class="footer-inner">
-            <small>© «Сталкер-Медиа». Программа «Теремок» — мотивационная модель для управления командой. Офлайн-практикум в Минске.</small>
-            <small>
-                <a href="#top">Наверх</a>
-            </small>
-        </div>
-    </footer>
-</div>
-
-<!-- Модальное окно заявки -->
-<div class="modal-backdrop" id="leadModal" aria-hidden="true">
-    <div class="modal-overlay" onclick="closeLeadModal()"></div>
-
-    <div class="modal-window" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-        <button class="modal-close" type="button" onclick="closeLeadModal()">×</button>
-
-        <div id="testAccessBanner" class="test-access-banner" style="display:none;">
-            ТЕСТ ДОСТУПЕН ТОЛЬКО ПОСЛЕ РЕГИСТРАЦИИ
+    <section class="hero">
+      <div>
+        <div class="badge-row">
+          <div class="badge">
+            <span class="badge-dot"></span>
+            <span class="badge-strong">Офлайн-тренинг</span>
+            <span>в Минске</span>
+          </div>
+          <div class="badge">
+            <span class="badge-dot"></span>
+            <span>Для руководителей, HR и собственников</span>
+          </div>
         </div>
 
-        <h2 id="modalTitle">Заявка на офлайн-программу «Теремок»</h2>
-        <p class="modal-subtitle">
-            Оставьте контакты и кратко опишите вашу команду. Мы свяжемся в ближайший рабочий день,
-            подтвердим участие в живом практикуме в Минске и зададим несколько вопросов о ваших сотрудниках.
-            После отправки заявки на сайте автоматически откроется мини-тест по одному сотруднику.
+        <h1 class="hero-title">
+          <span class="hero-highlight">Чёткие типажи</span> вместо размытых впечатлений о людях
+        </h1>
+
+        <p class="hero-subtitle">
+          «Теремок» помогает увидеть, <strong>кто в команде реально делает выручку, а кто только создаёт видимость работы</strong>.
+          Вместо ощущения «что-то не так» вы получаете понятные типажи сотрудников и конкретные решения по каждому.
         </p>
 
-        <form id="leadForm">
-            <div class="field-group">
-                <label for="name">Имя <span class="required">*</span></label>
-                <input class="input" type="text" id="name" name="name" placeholder="Как к вам обращаться" required>
-            </div>
+        <ul class="hero-bullets">
+          <li>Разложите команду по понятной системе типажей и уберёте хаос в управлении людьми.</li>
+          <li>Увидите, почему одни «горит и тянет», а другие тормозят процессы и демотивируют остальных.</li>
+          <li>Поймёте, где у вас «Птицы», «Профи», «Хомяки», «Лисы» и кого стоит развивать, а кого — честно отпускать.</li>
+        </ul>
 
-            <div class="field-group">
-                <label for="role">Ваша роль <span class="required">*</span></label>
-                <select class="select" id="role" name="role" required>
-                    <option value="" disabled selected>Выберите вариант</option>
+        <p class="hero-note">
+          <strong>Формат:</strong> однодневный офлайн-тренинг. Никаких онлайн-записей и рассылок с материалами — только живая работа
+          с вашей реальной командой. После заявки вы сможете пройти короткий тест и получить персональные рекомендации.
+        </p>
+      </div>
+
+      <div>
+        <div class="card">
+          <div class="card-inner">
+            <h2 class="card-title">Шаг 1. Оставьте заявку на офлайн-участие</h2>
+            <p class="card-subtitle">
+              Мы свяжемся, чтобы уточнить состав команды, формат и даты. Телефон нужен, чтобы можно было нормально поговорить, а не переписываться бесконечно.
+            </p>
+
+            <form id="lead-form" class="lead-form" novalidate>
+              <div class="form-grid two-col">
+                <div class="field">
+                  <label class="field-label" for="lead-name">Имя <span>*</span></label>
+                  <input
+                    id="lead-name"
+                    name="name"
+                    type="text"
+                    class="field-input"
+                    placeholder="Как к вам обращаться"
+                    autocomplete="name"
+                    required
+                  />
+                </div>
+                <div class="field">
+                  <label class="field-label" for="lead-phone">Телефон <span>*</span></label>
+                  <input
+                    id="lead-phone"
+                    name="phone"
+                    type="tel"
+                    class="field-input"
+                    placeholder="+375 (__) ___-__-__"
+                    autocomplete="tel"
+                    required
+                  />
+                  <div class="field-helper">Только для связи по тренингу, без спама и рассылок.</div>
+                </div>
+              </div>
+
+              <div class="form-grid two-col">
+                <div class="field">
+                  <label class="field-label" for="lead-role">Роль в компании <span>*</span></label>
+                  <select id="lead-role" name="role" class="field-select" required>
+                    <option value="">Выберите вариант</option>
                     <option value="owner">Собственник / генеральный директор</option>
-                    <option value="head">Руководитель отдела / филиала</option>
-                    <option value="hr">HR / рекрутер</option>
-                    <option value="sales">Руководитель отдела продаж</option>
-                    <option value="other">Другое</option>
-                </select>
-            </div>
-
-            <div class="field-group">
-                <label for="company">Компания</label>
-                <input class="input" type="text" id="company" name="company" placeholder="Название компании">
-            </div>
-
-            <div class="field-group">
-                <label for="team_size">Размер команды</label>
-                <input class="input" type="text" id="team_size" name="team_size" placeholder="Например: 25 человек, отдел продаж 8 человек">
-            </div>
-
-            <div class="field-group">
-                <label for="phone">Телефон <span class="required">*</span></label>
-                <input class="input" type="tel" id="phone" name="phone" placeholder="+375 (__) ___-__-__" required>
-                <div class="field-hint">
-                    Номер нужен, чтобы связаться с вами в удобном мессенджере и подтвердить офлайн-участие.
+                    <option value="sales-head">Руководитель отдела продаж / коммерческий директор</option>
+                    <option value="service-head">Руководитель клиентского сервиса / операционного блока</option>
+                    <option value="hr">HR-директор / HRBP / HR-менеджер</option>
+                    <option value="other">Другая управленческая роль</option>
+                  </select>
                 </div>
+                <div class="field">
+                  <label class="field-label" for="lead-company">Компания</label>
+                  <input
+                    id="lead-company"
+                    name="company"
+                    type="text"
+                    class="field-input"
+                    placeholder="Название или бренд"
+                    autocomplete="organization"
+                  />
+                </div>
+              </div>
+
+              <div class="form-grid two-col">
+                <div class="field">
+                  <label class="field-label" for="lead-team-size">Сколько людей в команде</label>
+                  <select id="lead-team-size" name="team_size" class="field-select">
+                    <option value="">Выберите диапазон</option>
+                    <option value="1-5">1–5 человек</option>
+                    <option value="6-15">6–15 человек</option>
+                    <option value="16-40">16–40 человек</option>
+                    <option value="41-100">41–100 человек</option>
+                    <option value="100+">Более 100 человек</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label class="field-label" for="lead-city">Город</label>
+                  <input
+                    id="lead-city"
+                    name="city"
+                    type="text"
+                    class="field-input"
+                    placeholder="Например, Минск"
+                    autocomplete="address-level2"
+                  />
+                </div>
+              </div>
+
+              <div class="field">
+                <label class="field-label" for="lead-comment">Что сейчас «болит» в команде</label>
+                <textarea
+                  id="lead-comment"
+                  name="comment"
+                  class="field-textarea"
+                  placeholder="Коротко: что хотите изменить, кого в команде больше всего не понимаете"
+                ></textarea>
+              </div>
+
+              <div class="checkbox-row">
+                <input id="lead-consent" name="consent" type="checkbox" required />
+                <label class="checkbox-label" for="lead-consent">
+                  Я согласен(а) на обработку персональных данных и ознакомлен(а) с
+                  <a href="javascript:void(0);" id="open-privacy-inline">Политикой конфиденциальности</a>.
+                </label>
+              </div>
+
+              <div class="error-text" id="lead-error">
+                Пожалуйста, заполните обязательные поля и отметьте согласие на обработку данных.
+              </div>
+
+              <div class="button-row">
+                <button type="submit" class="button button-primary">
+                  <span class="button-icon">📞</span>
+                  <span>Оставить заявку на офлайн-участие</span>
+                </button>
+              </div>
+
+              <div class="form-footnote">
+                <strong>После заявки</strong> мы свяжемся с вами голосом, уточним запрос и предложим удобную дату тренинга.
+              </div>
+            </form>
+
+            <div id="lead-success" class="lead-success">
+              Заявка отправлена. Спасибо! Мы свяжемся с вами по указанному телефону. А пока — короткий тест про вашу команду ниже.
             </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-            <div class="field-group">
-                <label for="messenger">Удобный мессенджер</label>
-                <select class="select" id="messenger" name="messenger">
-                    <option value="" disabled selected>Выберите вариант</option>
-                    <option value="telegram">Telegram</option>
-                    <option value="whatsapp">WhatsApp</option>
-                    <option value="viber">Viber</option>
-                    <option value="other">Другое</option>
-                </select>
-            </div>
-
-            <div class="field-group">
-                <label for="email">E-mail</label>
-                <input class="input" type="email" id="email" name="email" placeholder="при необходимости отправки деталей по участию">
-            </div>
-
-            <div class="field-group">
-                <label for="request">Ваш запрос (кратко)</label>
-                <textarea id="request" name="request" placeholder="С чем хотите поработать на «Теремке» — команда, вовлечённость, подбор, управленческие решения и т.п."></textarea>
-            </div>
-
-            <button type="submit" class="btn-primary btn-full">
-                Отправить заявку и перейти к мини-тесту
-            </button>
-
-            <p class="form-note">
-                Мы не рассылаем спам и не передаём контакты третьим лицам.
-                Свяжемся только по поводу офлайн-программы «Теремок».
-            </p>
-        </form>
-    </div>
-</div>
-
-<!-- Модальное окно с мини-тестом -->
-<div class="modal-backdrop" id="testModal" aria-hidden="true">
-    <div class="modal-overlay" onclick="closeTestModal()"></div>
-
-    <div class="modal-window" role="dialog" aria-modal="true" aria-labelledby="testModalTitle">
-        <button class="modal-close" type="button" onclick="closeTestModal()">×</button>
-
-        <h2 id="testModalTitle">Мини-тест по одному сотруднику</h2>
-        <p class="modal-subtitle">
-            Выберите одного конкретного сотрудника и отвечайте, как он ведёт себя чаще всего.
-            Это упрощённый мини-тест: по результатам вы увидите, к какому типажу «Теремка» он ближе.
-            На офлайн-программе мы работаем уже со всей вашей командой.
+    <section class="section">
+      <div class="section-header">
+        <h2 class="section-title">Кому нужен «Теремок»</h2>
+        <p class="section-subtitle">
+          Там, где люди — ключевой ресурс, типажи и мотивация важнее регламентов.
         </p>
+      </div>
 
-        <form id="miniTestForm">
-            <!-- ВОПРОС 1 -->
-            <div class="test-question">
-                <p>1. Как он обычно реагирует на новую задачу?</p>
-                <label><input type="radio" name="q1" value="ptica"> Тянет время, ждет напоминаний, сам не уточняет детали.</label>
-                <label><input type="radio" name="q1" value="homiak"> Сначала спрашивает, что получит лично он (бонус, процент и т.п.).</label>
-                <label><input type="radio" name="q1" value="lisa"> Интересуется, кто увидит результат, как это выглядит для руководства.</label>
-                <label><input type="radio" name="q1" value="profi"> Уточняет детали, сроки, критерии качества и спокойно берётся за дело.</label>
-                <label><input type="radio" name="q1" value="none"> Трудно сказать / ведёт себя по-разному.</label>
-            </div>
+      <div class="audience-grid">
+        <div class="audience-card">
+          <div class="audience-tag">
+            <span class="audience-tag-dot"></span>
+            <span>Продажи и выручка</span>
+          </div>
+          <div class="audience-title">Руководители по продажам</div>
+          <div class="audience-text">
+            Руководители по продажам, коммерческие директора и руководители клиентского сервиса, которым важно видеть,
+            кто реально делает выручку, а кто только создаёт видимость работы.
+          </div>
+        </div>
 
-            <!-- ВОПРОС 2 -->
-            <div class="test-question">
-                <p>2. Как он ведёт себя под контролем?</p>
-                <label><input type="radio" name="q2" value="ptica"> Начинает шевелиться только при жёстком контроле и дедлайнах.</label>
-                <label><input type="radio" name="q2" value="homiak"> Делает ровно столько, сколько оплачивается, не больше.</label>
-                <label><input type="radio" name="q2" value="lisa"> Активизируется, когда есть шанс показать себя «наверху».</label>
-                <label><input type="radio" name="q2" value="profi"> Контроль воспринимает нормально, держит стабильное качество.</label>
-                <label><input type="radio" name="q2" value="none"> Нельзя выделить один вариант, всё очень ситуативно.</label>
-            </div>
+        <div class="audience-card">
+          <div class="audience-tag">
+            <span class="audience-tag-dot"></span>
+            <span>HR и люди</span>
+          </div>
+          <div class="audience-title">HR-руководители и HRBP</div>
+          <div class="audience-text">
+            HR-директора, HR-бизнес-партнёры и HR-менеджеры, которые хотят говорить с руководителями о людях на понятном
+            языке типажей, а не «мягких» впечатлений.
+          </div>
+        </div>
 
-            <!-- ВОПРОС 3 -->
-            <div class="test-question">
-                <p>3. Как он ведёт себя в конфликте с клиентом или коллегой?</p>
-                <label><input type="radio" name="q3" value="ptica"> Уходит от ответственности, переводит стрелки, старается спрятаться.</label>
-                <label><input type="radio" name="q3" value="homiak"> В первую очередь защищает свои интересы и деньги.</label>
-                <label><input type="radio" name="q3" value="lisa"> Думает о том, как ситуация повлияет на его статус и репутацию.</label>
-                <label><input type="radio" name="q3" value="profi"> Смотрит на ситуацию через призму работы и результата для компании.</label>
-                <label><input type="radio" name="q3" value="none"> Ведёт себя по-разному, общего паттерна нет.</label>
-            </div>
+        <div class="audience-card">
+          <div class="audience-tag">
+            <span class="audience-tag-dot"></span>
+            <span>Отбор и найм</span>
+          </div>
+          <div class="audience-title">Рекрутеры</div>
+          <div class="audience-text">
+            Рекрутеры, которым важно отличать Птиц и Хомяков от Профи и будущих лидеров ещё на этапе отбора.
+          </div>
+        </div>
+      </div>
+    </section>
 
-            <!-- ВОПРОС 4 -->
-            <div class="test-question">
-                <p>4. Как он относится к обучению и изменениям?</p>
-                <label><input type="radio" name="q4" value="ptica"> Избегает, откладывает, соглашается только под давлением.</label>
-                <label><input type="radio" name="q4" value="homiak"> Готов учиться, если это прямо влияет на его доход.</label>
-                <label><input type="radio" name="q4" value="lisa"> Учится, если это усиливает его позицию и влияние.</label>
-                <label><input type="radio" name="q4" value="profi"> Видит в обучении инструмент для результата и задаёт вопросы по сути.</label>
-                <label><input type="radio" name="q4" value="none"> Однозначного отношения нет, всё зависит от ситуации.</label>
-            </div>
+    <section id="team-test" class="section test-section">
+      <div class="section-header">
+        <h2 class="section-title">Шаг 2. Короткий тест про вашу команду</h2>
+        <p class="section-subtitle">
+          Небольшой «термометр» перед созвоном. Выберите, кто сильнее всего «застрял» у вас в голове.
+        </p>
+      </div>
 
-            <!-- ВОПРОС 5 -->
-            <div class="test-question">
-                <p>5. Как он говорит о работе в целом?</p>
-                <label><input type="radio" name="q5" value="ptica"> Чаще жалуется, говорит про усталость, «слишком много требуют».</label>
-                <label><input type="radio" name="q5" value="homiak"> Делает акцент на зарплате, премиях, «выгоде».</label>
-                <label><input type="radio" name="q5" value="lisa"> Больше про статус, позиции, «кто кому подчиняется».</label>
-                <label><input type="radio" name="q5" value="profi"> Обсуждает задачи, клиентов, качество, профессиональный рост.</label>
-                <label><input type="radio" name="q5" value="none"> Трудно выделить один преобладающий мотив.</label>
-            </div>
+      <div class="test-grid">
+        <button type="button" class="test-card" data-archetype="hamster">
+          <div class="test-card-type">Типаж</div>
+          <div class="test-card-label">«Хомяк»</div>
+          <div class="test-card-hint">
+            Любит деньги, бонусы и стабильность, но не всегда тянет системную работу.
+          </div>
+        </button>
 
-            <!-- ВОПРОС 6 -->
-            <div class="test-question">
-                <p>6. Как он реагирует на дополнительную ответственность?</p>
-                <label><input type="radio" name="q6" value="ptica"> Старается избежать, ищет, кому бы передать.</label>
-                <label><input type="radio" name="q6" value="homiak"> Считает, сколько за это заплатят, и от этого зависит согласие.</label>
-                <label><input type="radio" name="q6" value="lisa"> Оценивает, даст ли это больше влияния и статуса.</label>
-                <label><input type="radio" name="q6" value="profi"> Смотрит, насколько это логично для процесса и результата, и берёт, если видит смысл.</label>
-                <label><input type="radio" name="q6" value="none"> Реакция очень разная, нет устойчивой модели.</label>
-            </div>
+        <button type="button" class="test-card" data-archetype="fox">
+          <div class="test-card-type">Типаж</div>
+          <div class="test-card-label">«Лиса»</div>
+          <div class="test-card-hint">
+            Амбициозна, умеет понравиться, хорошо продаёт себя — но не всегда результат.
+          </div>
+        </button>
 
-            <!-- ВОПРОС 7 -->
-            <div class="test-question">
-                <p>7. Как он ведёт себя, когда руководитель «отпускает» контроль?</p>
-                <label><input type="radio" name="q7" value="ptica"> Расслабляется, теряет темп, начинаются задержки.</label>
-                <label><input type="radio" name="q7" value="homiak"> Делает минимальный объём, старается особо не напрягаться.</label>
-                <label><input type="radio" name="q7" value="lisa"> Подстраивает картинку так, чтобы выглядеть хорошо при минимуме усилий.</label>
-                <label><input type="radio" name="q7" value="profi"> Держит стабильный уровень, сам контролирует качество.</label>
-                <label><input type="radio" name="q7" value="none"> Поведение сильно зависит от конкретного периода.</label>
-            </div>
+        <button type="button" class="test-card" data-archetype="bird">
+          <div class="test-card-type">Типаж</div>
+          <div class="test-card-label">«Птица»</div>
+          <div class="test-card-hint">
+            Горит идеей, много двигается, заводит людей, но не любит рутину и отчёты.
+          </div>
+        </button>
 
-            <!-- ВОПРОС 8 -->
-            <div class="test-question">
-                <p>8. Как он относится к клиентам и внутренним «заказчикам»?</p>
-                <label><input type="radio" name="q8" value="ptica"> Старается поскорее «отделаться», избегает сложных случаев.</label>
-                <label><input type="radio" name="q8" value="homiak"> В первую очередь думает о том, что выгодно ему лично.</label>
-                <label><input type="radio" name="q8" value="lisa"> Важно, как клиент/заказчик влияет на его статус и связи.</label>
-                <label><input type="radio" name="q8" value="profi"> Смотрит на качество сервиса и долгосрочный результат для компании.</label>
-                <label><input type="radio" name="q8" value="none"> От клиента к клиенту — по-разному, общей линии нет.</label>
-            </div>
+        <button type="button" class="test-card" data-archetype="pro">
+          <div class="test-card-type">Типаж</div>
+          <div class="test-card-label">«Профи / Лидер»</div>
+          <div class="test-card-hint">
+            Тащит результат, держит слово, умеет выстраивать систему и тянуть других за собой.
+          </div>
+        </button>
+      </div>
 
-            <button type="submit" class="btn-primary btn-full">
-                Получить результат
-            </button>
+      <div id="test-result-wrapper" class="test-result-wrapper">
+        <div class="test-result-title" id="test-result-title"></div>
+        <div id="test-result"></div>
+      </div>
+    </section>
 
-            <p id="testResult" class="modal-result"></p>
-            <p id="testNextStep" class="modal-note" style="display:none;">
-                Сейчас вы видите картину по одному человеку. На программе «Теремок» мы собираем карту всей команды,
-                разбираем риски и точки роста и даём управленческие решения по людям.
-            </p>
+    <section class="telegram-section">
+      <div class="telegram-card">
+        <div>
+          <div class="telegram-text-main">
+            Хотите пример видеоразбора «Теремка» под команду, похожую на вашу?
+          </div>
+          <div class="telegram-text-sub">
+            Напишите в Telegram фразу «хочу видео про Теремок» — пришлём короткий кейс и пример разбора типажей.
+          </div>
+        </div>
+        <div class="telegram-right">
+          <a
+            href="https://t.me/ВАШ_АККАУНТ"
+            class="button button-secondary"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span class="telegram-icon">✈️</span>
+            <span>Написать в Telegram</span>
+          </a>
+          <div class="telegram-hint">
+            Ссылку можно изменить на рабочий аккаунт команды.
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
 
-            <div id="testTelegramBlock" class="telegram-card" style="display:none; margin-top:12px;">
-                <div class="telegram-icon" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M21.5 4.2c.3-.97-.58-1.84-1.54-1.5L3.3 9.1c-.71.26-.77 1.24-.1 1.6l4.5 2.34 2.1 4.77c.3.68 1.26.71 1.6.05l2.02-3.82 4.24 2.2c.83.43 1.83-.03 2.06-.93l1.78-7.91Z" fill="currentColor"/>
-                    </svg>
-                </div>
-                <div class="telegram-content">
-                    <div class="telegram-title">Видео про модель «Теремок»</div>
-                    <p>
-                        Если после заявки и мини-теста хотите получить короткое видео с пояснением модели «Теремок» и примерами типажей,
-                        напишите нам в Telegram фразу «Хочу видео по Теремку».
-                    </p>
-                    <a class="telegram-button" href="https://t.me/stalkermedia1" target="_blank" rel="noopener noreferrer">
-                        @stalkermedia1
-                    </a>
-                </div>
-            </div>
-            <p id="testTelegramNote" class="telegram-note" style="display:none;">
-                Вы можете пройти мини-тест ещё раз по другим сотрудникам, чтобы собрать предварительный «срез» по команде.
-            </p>
-        </form>
+  <footer class="page-footer">
+    <div class="page-footer-inner">
+      <span class="page-footer-text">
+        © ООО «Сталкер-Медиа» — тренинг «Теремок». Все права защищены.
+      </span>
+      <button
+        type="button"
+        class="footer-link-button"
+        id="open-privacy"
+      >
+        Политика конфиденциальности
+      </button>
     </div>
-</div>
+  </footer>
 
-<script>
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwnQR15r9C6AwTp_eYY3RV6uNKu7FaYt0xSra776uZS70rifwMxLKpfDyW0Ls85f5EQ/exec";
+  <!-- Модальное окно с политикой конфиденциальности -->
+  <div class="modal-backdrop" id="privacy-modal" aria-hidden="true">
+    <div class="modal-dialog" role="dialog" aria-modal="true" aria-label="Политика конфиденциальности">
+      <button
+        type="button"
+        class="modal-close"
+        id="close-privacy"
+        aria-label="Закрыть окно"
+      >
+        ×
+      </button>
+      <iframe
+        src="privacy-policy.html"
+        class="modal-frame"
+        loading="lazy"
+      ></iframe>
+    </div>
+  </div>
 
-let leadData = null;
-let testSubmitted = false;
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const form = document.getElementById("lead-form");
+      const error = document.getElementById("lead-error");
+      const success = document.getElementById("lead-success");
+      const testSection = document.getElementById("team-test");
 
-// Открыть модал заявки
-function openLeadModal(source) {
-    const modal = document.getElementById('leadModal');
-    if (!modal) return;
+      function validateForm() {
+        if (!form) return false;
 
-    modal.classList.add('open');
-    document.body.style.overflow = 'hidden';
+        const requiredFields = [
+          document.getElementById("lead-name"),
+          document.getElementById("lead-phone"),
+          document.getElementById("lead-role"),
+          document.getElementById("lead-consent")
+        ];
 
-    const banner = document.getElementById('testAccessBanner');
-    if (banner) {
-        banner.style.display = (source === 'test') ? 'block' : 'none';
-    }
-}
+        let isValid = true;
 
-// Закрыть модал заявки
-function closeLeadModal() {
-    const modal = document.getElementById('leadModal');
-    if (!modal) return;
-    modal.classList.remove('open');
-    document.body.style.overflow = '';
-}
+        requiredFields.forEach(function (field) {
+          if (!field) return;
 
-// Открыть модал с тестом
-function openTestModal() {
-    const modal = document.getElementById('testModal');
-    if (!modal) return;
-
-    modal.classList.add('open');
-    document.body.style.overflow = 'hidden';
-
-    const resultEl = document.getElementById('testResult');
-    const nextStepEl = document.getElementById('testNextStep');
-    const tgBlock = document.getElementById('testTelegramBlock');
-    const tgNote = document.getElementById('testTelegramNote');
-
-    if (resultEl) resultEl.textContent = '';
-    if (nextStepEl) nextStepEl.style.display = 'none';
-    if (tgBlock) tgBlock.style.display = 'none';
-    if (tgNote) tgNote.style.display = 'none';
-
-    const testForm = document.getElementById('miniTestForm');
-    if (testForm) {
-        testForm.reset();
-    }
-
-    const submitBtn = document.querySelector('#miniTestForm button[type="submit"]');
-    if (submitBtn) {
-        submitBtn.disabled = false;
-        submitBtn.textContent = 'Получить результат';
-    }
-
-    testSubmitted = false;
-}
-
-// Закрыть модал теста
-function closeTestModal() {
-    const modal = document.getElementById('testModal');
-    if (!modal) return;
-    modal.classList.remove('open');
-    document.body.style.overflow = '';
-}
-
-// Обработка отправки формы заявки
-function onLeadFormSubmit(e) {
-    e.preventDefault();
-
-    const form = e.target;
-    const formData = new FormData(form);
-    leadData = Object.fromEntries(formData.entries());
-
-    // после регистрации открываем тест
-    closeLeadModal();
-    openTestModal();
-}
-
-// Логика мини-теста
-function submitMiniTest() {
-    if (testSubmitted) {
-        return;
-    }
-
-    const types = { ptica: 0, homiak: 0, lisa: 0, profi: 0 };
-    const questions = ['q1','q2','q3','q4','q5','q6','q7','q8'];
-
-    for (const q of questions) {
-        const checked = document.querySelector('input[name="' + q + '"]:checked');
-        if (checked && types.hasOwnProperty(checked.value)) {
-            types[checked.value]++;
-        }
-    }
-
-    let mainType = null;
-    let maxScore = -1;
-    for (const key in types) {
-        if (types[key] > maxScore) {
-            maxScore = types[key];
-            mainType = key;
-        }
-    }
-
-    const typeNames = {
-        ptica: 'Птица',
-        homiak: 'Хомяк',
-        lisa: 'Лиса',
-        profi: 'Профи'
-    };
-
-    const typeDescriptions = {
-        ptica: 'Он работает в основном под принуждением и быстро «проседает», если ослабить контроль. Инициативу почти не проявляет, задачи тянет до последнего, в конфликтных ситуациях уходит от ответственности. При большом количестве таких людей отдел перегружается напоминаниями и «подталкиваниями» вместо результата. На программе «Теремок» мы показываем, как выстроить систему, где Птицы не забирают ресурс у Профи и лидеров, и принимаем решения по таким сотрудникам в контексте всей команды.',
-        homiak: 'Для него в фокусе прежде всего деньги и личная выгода. Пока система бонусов выгодна, он работает, но при малейшем изменении условий может резко «остыть» или начать искать, где платят больше. В клиентах и задачах чаще видит источник дохода, а не ответственность за результат. На «Теремке» мы разбираем, в каких ролях Хомяки допустимы, где они опасны и как не строить систему так, чтобы бизнес стал заложником их аппетитов.',
-        lisa: 'Для него важнее статус, влияние и личная позиция, чем стабильный рабочий результат. Он тонко чувствует, «кто решает», стремится быть ближе к руководству, хорошо выглядит на совещаниях и в переписке, но реальный вклад в общую работу может быть нестабилен. В управленческой команде избыток таких людей создаёт интриги и ощущение хаоса. На программе «Теремок» мы разбираем, как встроить Лис в систему так, чтобы использовать их сильные стороны, не отдавая им ключевой контроль за результатом.',
-        profi: 'Он делает по совести, опирается на задачу, качество и результат компании. Берёт ответственность, стабильно держит уровень, сам следит за сроками и деталями, не перекладывает ошибки на других. Часто именно на таких людях тихо держатся ключевые процессы и клиентские отношения, из-за чего они рискуют выгореть. На «Теремке» мы помогаем увидеть ядро из Профи и лидеров в вашей команде, разгрузить их от лишнего и выстроить вокруг них правильную конфигурацию команды.'
-    };
-
-    const typeName = typeNames[mainType] || 'этот типаж';
-    const description = typeDescriptions[mainType] || '';
-    const resultText = 'По вашим ответам этот сотрудник ближе всего к типажу «' + typeName + '». ' + description;
-
-    const resultEl = document.getElementById('testResult');
-    if (resultEl) {
-        resultEl.innerHTML = resultText;
-    }
-
-    const nextStepEl = document.getElementById('testNextStep');
-    if (nextStepEl) {
-        nextStepEl.style.display = 'block';
-    }
-
-    const tgBlock = document.getElementById('testTelegramBlock');
-    if (tgBlock) {
-        tgBlock.style.display = 'flex';
-    }
-
-    const tgNote = document.getElementById('testTelegramNote');
-    if (tgNote) {
-        tgNote.style.display = 'block';
-    }
-
-    const submitBtn = document.querySelector('#miniTestForm button[type="submit"]');
-    if (submitBtn) {
-        submitBtn.disabled = true;
-        submitBtn.textContent = 'Результат получен';
-    }
-
-    sendToGoogleSheet(mainType, types, resultText);
-    testSubmitted = true;
-}
-
-// Отправка данных в Google Script
-function sendToGoogleSheet(mainType, types, resultText) {
-    const fd = new FormData();
-
-    if (leadData) {
-        fd.append('name',       leadData.name       || '');
-        fd.append('role',       leadData.role       || '');
-        fd.append('company',    leadData.company    || '');
-        fd.append('team_size',  leadData.team_size  || '');
-        fd.append('phone',      leadData.phone      || '');
-        fd.append('messenger',  leadData.messenger  || '');
-        fd.append('email',      leadData.email      || '');
-        fd.append('request',    leadData.request    || '');
-    } else {
-        fd.append('name',      '');
-        fd.append('role',      '');
-        fd.append('company',   '');
-        fd.append('team_size', '');
-        fd.append('phone',     '');
-        fd.append('messenger', '');
-        fd.append('email',     '');
-        fd.append('request',   '');
-    }
-
-    fd.append('test_main_type', mainType    || '');
-    fd.append('test_main_text', resultText  || '');
-    fd.append('test_ptica',     types.ptica || 0);
-    fd.append('test_homiak',    types.homiak|| 0);
-    fd.append('test_lisa',      types.lisa  || 0);
-    fd.append('test_profi',     types.profi || 0);
-
-    fetch(SCRIPT_URL, {
-        method: 'POST',
-        body: fd,
-        mode: 'no-cors'
-    }).catch(function (err) {
-        console.error('Ошибка отправки в Google Script', err);
-    });
-}
-
-document.addEventListener('DOMContentLoaded', function () {
-    const leadForm = document.getElementById('leadForm');
-    if (leadForm) {
-        leadForm.addEventListener('submit', onLeadFormSubmit);
-    }
-
-    const miniTestForm = document.getElementById('miniTestForm');
-    if (miniTestForm) {
-        miniTestForm.addEventListener('submit', function (e) {
-            e.preventDefault();
-            submitMiniTest();
-        });
-    }
-
-    document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape') {
-            closeLeadModal();
-            closeTestModal();
-        }
-    });
-
-    const animated = document.querySelectorAll('[data-animate]');
-    if ('IntersectionObserver' in window && animated.length > 0) {
-        const observer = new IntersectionObserver((entries, obs) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('in-view');
-                    obs.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.2 });
-
-        animated.forEach(el => observer.observe(el));
-    } else {
-        animated.forEach(el => el.classList.add('in-view'));
-    }
-
-    // Testimonials accordion
-    const testimonialHeaders = document.querySelectorAll('.testimonial-header');
-    testimonialHeaders.forEach(header => {
-        header.addEventListener('click', function () {
-            const item = header.closest('.testimonial-item');
-            const isOpen = item.classList.contains('open');
-
-            document.querySelectorAll('.testimonial-item.open').forEach(other => {
-                if (other !== item) {
-                    other.classList.remove('open');
-                }
-            });
-
-            if (!isOpen) {
-                item.classList.add('open');
-            } else {
-                item.classList.remove('open');
+          if (field.type === "checkbox") {
+            if (!field.checked) {
+              isValid = false;
             }
+          } else {
+            if (!field.value || !field.value.trim()) {
+              isValid = false;
+            }
+          }
         });
+
+        return isValid;
+      }
+
+      if (form) {
+        form.addEventListener("submit", function (event) {
+          event.preventDefault();
+
+          if (!validateForm()) {
+            if (error) {
+              error.classList.add("is-visible");
+            }
+            return;
+          }
+
+          if (error) {
+            error.classList.remove("is-visible");
+          }
+
+          // Здесь можно подключить реальную отправку (fetch к CRM/форме)
+          // Сейчас — просто имитация отправки и показ следующего шага.
+          form.classList.add("is-hidden");
+          if (success) {
+            success.classList.add("is-visible");
+          }
+          if (testSection) {
+            testSection.classList.add("is-visible");
+            setTimeout(function () {
+              testSection.scrollIntoView({ behavior: "smooth", block: "start" });
+            }, 200);
+          }
+        });
+      }
+
+      const testCards = document.querySelectorAll(".test-card");
+      const testResultWrapper = document.getElementById("test-result-wrapper");
+      const testResultTitle = document.getElementById("test-result-title");
+      const testResult = document.getElementById("test-result");
+
+      const archetypeCopy = {
+        hamster: {
+          title: "У вас фокус на «Хомяке». Что это значит:",
+          text:
+            "Человек сильно завязан на деньги, бонусы и личную выгоду. Если система прозрачна и предсказуема — будет терпимо работать. " +
+            "Если правила плавают, зарплата «гуляет» и критерии успеха неочевидны — быстро теряет мотивацию и начинает «экономить силы». " +
+            "На тренинге разберём, где таких людей выгодно держать, а где они блокируют рост выручки."
+        },
+        fox: {
+          title: "Похоже, в голове сейчас «Лиса». На что обратить внимание:",
+          text:
+            "Лиса умеет понравиться, производит впечатление и хорошо продаёт себя руководству. На деле результат может быть нестабилен: " +
+            "много энергии уходит на статус, связи и демонстрацию активности. Важно отделить реальный вклад от «шоу». " +
+            "На «Теремке» вы получите инструменты, как работать с такими людьми экологично и честно."
+        },
+        bird: {
+          title: "Перед глазами «Птица». Как с ней жить:",
+          text:
+            "Птица — это идеи, движение и энергия. Она заводит команду, легко берётся за новое, но не любит рутину и отчёты. " +
+            "Если не выстроена система, Птицы быстро «перегорают» и тянут за собой хаос. " +
+            "На тренинге разберём, как встроить таких людей так, чтобы они усиливали бизнес, а не разрушали процессы."
+        },
+        pro: {
+          title: "Вы думаете о «Профи / Лидере». Это ваш опорный типаж:",
+          text:
+            "Такие люди держат результат, берут ответственность и умеют выстраивать систему вокруг себя. " +
+            "Часто именно через них и стоит развивать команду — но при этом важно не перегрузить и не «сжечь». " +
+            "На «Теремке» вы увидите, кого можно вырастить в лидеров и как опираться на сильных без выгорания."
+        }
+      };
+
+      if (testCards && testCards.length > 0) {
+        testCards.forEach(function (card) {
+          card.addEventListener("click", function () {
+            const type = card.getAttribute("data-archetype");
+            const data = archetypeCopy[type];
+
+            if (!data || !testResultWrapper || !testResultTitle || !testResult) return;
+
+            testResultTitle.textContent = data.title;
+            testResult.textContent = data.text;
+            testResultWrapper.classList.add("is-visible");
+          });
+        });
+      }
+
+      // --- Политика конфиденциальности: модальное окно ---
+      const openBtn = document.getElementById("open-privacy");
+      const openInline = document.getElementById("open-privacy-inline");
+      const modal = document.getElementById("privacy-modal");
+      const closeBtn = document.getElementById("close-privacy");
+
+      if (modal && closeBtn) {
+        const openModal = function () {
+          modal.classList.add("is-open");
+          modal.setAttribute("aria-hidden", "false");
+          document.body.style.overflow = "hidden";
+        };
+
+        const closeModal = function () {
+          modal.classList.remove("is-open");
+          modal.setAttribute("aria-hidden", "true");
+          document.body.style.overflow = "";
+        };
+
+        if (openBtn) {
+          openBtn.addEventListener("click", openModal);
+        }
+
+        if (openInline) {
+          openInline.addEventListener("click", function (event) {
+            event.preventDefault();
+            openModal();
+          });
+        }
+
+        closeBtn.addEventListener("click", closeModal);
+
+        modal.addEventListener("click", function (event) {
+          if (event.target === modal) {
+            closeModal();
+          }
+        });
+
+        document.addEventListener("keydown", function (event) {
+          if (event.key === "Escape" && modal.classList.contains("is-open")) {
+            closeModal();
+          }
+        });
+      }
     });
-});
-    // --- Политика конфиденциальности: модальное окно ---
-(function () {
-  const openBtn = document.getElementById('open-privacy');
-  const modal = document.getElementById('privacy-modal');
-  const closeBtn = document.getElementById('close-privacy');
-
-  if (!openBtn || !modal || !closeBtn) return;
-
-  const openModal = () => {
-    modal.classList.add('is-open');
-    modal.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
-  };
-
-  const closeModal = () => {
-    modal.classList.remove('is-open');
-    modal.setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = '';
-  };
-
-  openBtn.addEventListener('click', openModal);
-  closeBtn.addEventListener('click', closeModal);
-
-  modal.addEventListener('click', (event) => {
-    if (event.target === modal) {
-      closeModal();
-    }
-  });
-
-  document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape' && modal.classList.contains('is-open')) {
-      closeModal();
-    }
-  });
-})();
-
-</script>
-<footer class="page-footer">
-  <div class="page-footer-inner">
-    <span class="page-footer-text">
-      © ООО «Сталкер-Медиа» — тренинг «Теремок»
-    </span>
-    <button
-      type="button"
-      class="footer-link-button"
-      id="open-privacy"
-    >
-      Политика конфиденциальности
-    </button>
-  </div>
-</footer>
-
-<!-- Модальное окно с политикой конфиденциальности -->
-<div class="modal-backdrop" id="privacy-modal" aria-hidden="true">
-  <div class="modal-dialog" role="dialog" aria-modal="true" aria-label="Политика конфиденциальности">
-    <button
-      type="button"
-      class="modal-close"
-      id="close-privacy"
-      aria-label="Закрыть окно"
-    >
-      ×
-    </button>
-    <iframe
-      src="privacy-policy.html"
-      class="modal-frame"
-      loading="lazy"
-    ></iframe>
-  </div>
-</div>
-
+  </script>
 </body>
 </html>
