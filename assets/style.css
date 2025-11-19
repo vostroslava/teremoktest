@@ -950,16 +950,23 @@
         }
 
         .event-countdown {
-            margin-top: 12px;
-        }
+    margin-top: 12px;
+}
 
-        .event-countdown-label {
-            font-size: 13px;
-            color: var(--text-muted);
-            margin-bottom: 4px;
-        }
+.event-countdown-label {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 4px;
+}
 
-        .event-countdown-bar {
+.event-countdown-next {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-top: 6px;
+}
+
+.event-countdown-bar {
+
             position: relative;
             width: 100%;
             height: 6px;
