@@ -4,7 +4,7 @@ const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwnQR15r9C6AwTp_eYY3
 let leadData = null;
 let testSubmitted = false;
 
-// Управление скроллом страницы в зависимости от открытых модалок
+// Управление скроллом страницы в зависимости от открытых модал
 function adjustBodyScroll() {
     const lead = document.getElementById('leadModal');
     const test = document.getElementById('testModal');
