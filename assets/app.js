@@ -225,8 +225,8 @@ function initEventCountdown() {
     const barEl = document.getElementById('eventCountdownFill');
     if (!textEl || !barEl) return;
 
-    // 20 ноября 2025, 10:00 — локальное время
-    const eventStart = new Date(2025, 10, 20, 10, 0, 0);
+    // 18 декабря 2025, 10:00 — локальное время
+    const eventStart = new Date(2025, 11, 18, 10, 0, 0);
     const windowMs = 30 * 24 * 60 * 60 * 1000; // 30 дней до события как "полная шкала"
 
     function formatUnit(value, forms) {
