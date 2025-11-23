@@ -1,8 +1,50 @@
 
+
 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwnQR15r9C6AwTp_eYY3RV6uNKu7FaYt0xSra776uZS70rifwMxLKpfDyW0Ls85f5EQ/exec";
 
 let leadData = null;
 let testSubmitted = false;
+
+// ===== MOBILE MENU =====
+function toggleMobileMenu() {
+    const navLinks = document.querySelector('.nav-links');
+    const overlay = document.querySelector('.nav-overlay');
+    const btn = document.querySelector('.mobile-menu-btn');
+
+    const isOpen = navLinks.classList.contains('open');
+
+    if (isOpen) {
+        closeMobileMenu();
+    } else {
+        openMobileMenu();
+    }
+}
+
+function openMobileMenu() {
+    const navLinks = document.querySelector('.nav-links');
+    const overlay = document.querySelector('.nav-overlay');
+    const btn = document.querySelector('.mobile-menu-btn');
+
+    navLinks.classList.add('open');
+    overlay.classList.add('open');
+    btn.classList.add('open');
+    btn.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeMobileMenu() {
+    const navLinks = document.querySelector('.nav-links');
+    const overlay = document.querySelector('.nav-overlay');
+    const btn = document.querySelector('.mobile-menu-btn');
+
+    navLinks.classList.remove('open');
+    overlay.classList.remove('open');
+    btn.classList.remove('open');
+    btn.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+}
+// ===== END MOBILE MENU =====
+
 
 // Управление скроллом страницы в зависимости от открытых модал
 function adjustBodyScroll() {
@@ -100,12 +142,25 @@ function onLeadFormSubmit(e) {
     e.preventDefault();
 
     const form = e.target;
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const originalText = submitBtn.textContent;
+
+    // Показываем индикатор загрузки
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Отправка...';
+
     const formData = new FormData(form);
     leadData = Object.fromEntries(formData.entries());
 
-    // после регистрации открываем тест
-    closeLeadModal();
-    openTestModal();
+    // Небольшая задержка для пользовательского опыта
+    setTimeout(() => {
+        submitBtn.textContent = originalText;
+        submitBtn.disabled = false;
+
+        // после регистрации открываем тест
+        closeLeadModal();
+        openTestModal();
+    }, 500);
 }
 
 // Логика Test 2.0
@@ -525,12 +580,30 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Interactive Cards Modal Logic
     document.querySelectorAll('.level-card').forEach(card => {
+        // Click handler
         card.addEventListener('click', function (e) {
-            // Allow clicking on the card itself or its children
             const modalId = this.getAttribute('data-modal');
             if (modalId) {
                 openModal(modalId);
             }
+        });
+
+        // Keyboard handler for accessibility
+        card.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                const modalId = this.getAttribute('data-modal');
+                if (modalId) {
+                    openModal(modalId);
+                }
+            }
+        });
+    });
+
+    // Close mobile menu when clicking on navigation links
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', function () {
+            closeMobileMenu();
         });
     });
 });

@@ -12,12 +12,15 @@
 </head>
 
 <body>
+    <!-- Skip to content link for accessibility -->
+    <a href="#main" class="skip-link">Перейти к основному содержанию</a>
+
     <div class="page-wrap">
         <header>
             <div class="nav">
                 <div class="logo">
                     <div class="logo-mark">
-                        <img src="assets/logo-teremok.jpg" alt="Теремок логотип">
+                        <img src="assets/logo-teremok.jpg" alt="Теремок логотип" loading="lazy">
                     </div>
                     <div class="logo-labels">
                         <div class="logo-text-primary">Теремок</div>
@@ -37,10 +40,21 @@
                         <span>5–7 минут на заявку</span>
                     </a>
                 </div>
+
+                <!-- Mobile Menu Button -->
+                <button class="mobile-menu-btn" aria-label="Открыть меню навигации" aria-expanded="false"
+                    onclick="toggleMobileMenu()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
             </div>
         </header>
 
-        <main>
+        <!-- Mobile Menu Overlay -->
+        <div class="nav-overlay" onclick="closeMobileMenu()"></div>
+
+        <main id="main">
             <!-- Hero -->
             <section class="section section-dark" id="top">
                 <div class="container">
@@ -137,7 +151,8 @@
                     </div>
                     <div class="levels-grid">
                         <!-- Птицы -->
-                        <div class="level-card bird-level" data-modal="modal-bird" data-animate>
+                        <div class="level-card bird-level" data-modal="modal-bird" data-animate tabindex="0"
+                            role="button" aria-label="Подробнее о типаже Птицы">
                             <div class="card-icon">🐦</div>
                             <h3>Птицы</h3>
                             <div class="level-subtitle">Мотивация: Принуждение</div>
@@ -151,7 +166,8 @@
                         </div>
 
                         <!-- Хомяки -->
-                        <div class="level-card hamster-level" data-modal="modal-hamster" data-animate>
+                        <div class="level-card hamster-level" data-modal="modal-hamster" data-animate tabindex="0"
+                            role="button" aria-label="Подробнее о типаже Хомяки">
                             <div class="card-icon">🐹</div>
                             <h3>Хомяки</h3>
                             <div class="level-subtitle">Мотивация: Выгода</div>
@@ -165,7 +181,8 @@
                         </div>
 
                         <!-- Лисы -->
-                        <div class="level-card fox-level" data-modal="modal-fox" data-animate>
+                        <div class="level-card fox-level" data-modal="modal-fox" data-animate tabindex="0" role="button"
+                            aria-label="Подробнее о типаже Лисы">
                             <div class="card-icon">🦊</div>
                             <h3>Лисы</h3>
                             <div class="level-subtitle">Мотивация: Статус</div>
@@ -179,7 +196,8 @@
                         </div>
 
                         <!-- Профи -->
-                        <div class="level-card pro-level" data-modal="modal-profi" data-animate>
+                        <div class="level-card pro-level" data-modal="modal-profi" data-animate tabindex="0"
+                            role="button" aria-label="Подробнее о типаже Профи">
                             <div class="card-icon">🦁</div>
                             <h3>Профи</h3>
                             <div class="level-subtitle">Мотивация: Результат</div>
@@ -193,7 +211,8 @@
                         </div>
 
                         <!-- Лидеры -->
-                        <div class="level-card leader-level" data-modal="modal-leader" data-animate>
+                        <div class="level-card leader-level" data-modal="modal-leader" data-animate tabindex="0"
+                            role="button" aria-label="Подробнее о типаже Лидеры">
                             <div class="card-icon">🦅</div>
                             <h3>Лидеры</h3>
                             <div class="level-subtitle">Мотивация: Идея</div>
