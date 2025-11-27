@@ -8,6 +8,22 @@
     <meta name="description"
         content="Живой офлайн-практикум «Теремок» для собственников, руководителей и HR: как увидеть Птиц, Хомяков, Лис и Профи в команде и перестать тянуть минусовых сотрудников.">
 
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://teremok.by/">
+    <meta property="og:title" content="Теремок — мотивационная модель для команды">
+    <meta property="og:description"
+        content="Живой офлайн-практикум в Минске. Узнайте, кто в вашей команде: Птицы, Хомяки, Лисы или Профи.">
+    <meta property="og:image" content="assets/teremok-tower-v2.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://teremok.by/">
+    <meta property="twitter:title" content="Теремок — мотивационная модель для команды">
+    <meta property="twitter:description"
+        content="Живой офлайн-практикум в Минске. Узнайте, кто в вашей команде: Птицы, Хомяки, Лисы или Профи.">
+    <meta property="twitter:image" content="assets/teremok-tower-v2.jpg">
+
     <link rel="stylesheet" href="assets/style-dark.css">
 </head>
 
@@ -93,45 +109,61 @@
 
                         </div>
                         <div class="hero-visual-svg" data-animate>
-                            <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
-                                <defs>
-                                    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
-                                        <stop offset="0%" style="stop-color:#8b5cf6;stop-opacity:1" />
-                                        <stop offset="100%" style="stop-color:#ec4899;stop-opacity:1" />
-                                    </linearGradient>
-                                    <filter id="glow">
-                                        <feGaussianBlur stdDeviation="10" result="coloredBlur" />
-                                        <feMerge>
-                                            <feMergeNode in="coloredBlur" />
-                                            <feMergeNode in="SourceGraphic" />
-                                        </feMerge>
-                                    </filter>
-                                </defs>
-                                <circle cx="250" cy="250" r="200" fill="url(#grad1)" opacity="0.2"
-                                    filter="url(#glow)" />
-                                <circle cx="250" cy="250" r="150" fill="none" stroke="url(#grad1)" stroke-width="2"
-                                    stroke-dasharray="10 5" opacity="0.5">
-                                    <animateTransform attributeName="transform" type="rotate" from="0 250 250"
-                                        to="360 250 250" dur="20s" repeatCount="indefinite" />
-                                </circle>
-                                <g transform="translate(250, 250)">
-                                    <circle cx="0" cy="-120" r="40" fill="rgba(255,255,255,0.1)"
-                                        stroke="rgba(255,255,255,0.2)" stroke-width="1">
-                                        <animate attributeName="cy" values="-120;-130;-120" dur="4s"
-                                            repeatCount="indefinite" />
-                                    </circle>
-                                    <circle cx="100" cy="60" r="30" fill="rgba(255,255,255,0.1)"
-                                        stroke="rgba(255,255,255,0.2)" stroke-width="1">
-                                        <animate attributeName="cy" values="60;70;60" dur="5s"
-                                            repeatCount="indefinite" />
-                                    </circle>
-                                    <circle cx="-100" cy="60" r="35" fill="rgba(255,255,255,0.1)"
-                                        stroke="rgba(255,255,255,0.2)" stroke-width="1">
-                                        <animate attributeName="cy" values="60;50;60" dur="6s"
-                                            repeatCount="indefinite" />
-                                    </circle>
-                                </g>
-                            </svg>
+                            <div class="teremok-container">
+                                <div class="teremok-wrapper">
+                                    <img src="assets/teremok-tower-v2.jpg" alt="Teremok Tower" class="teremok-image">
+
+                                    <!-- Interactive Zones -->
+
+
+
+                                    <!-- Level 4: Profi (Top Window) -->
+                                    <div class="teremok-zone zone-profi" data-modal="modal-profi" role="button"
+                                        tabindex="0">
+                                        <div class="zone-content">
+                                            <span class="zone-icon">🦁</span>
+                                            <span class="zone-label">Профи</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Level 3: Fox (Middle Window) -->
+                                    <div class="teremok-zone zone-fox" data-modal="modal-fox" role="button"
+                                        tabindex="0">
+                                        <div class="zone-content">
+                                            <span class="zone-icon">🦊</span>
+                                            <span class="zone-label">Лиса</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Level 2: Hamster (Lower Window) -->
+                                    <div class="teremok-zone zone-hamster" data-modal="modal-hamster" role="button"
+                                        tabindex="0">
+                                        <div class="zone-content">
+                                            <span class="zone-icon">🐹</span>
+                                            <span class="zone-label">Хомяк</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Level 1: Bird (Bottom Left) -->
+                                    <div class="teremok-zone zone-bird" data-modal="modal-bird" role="button"
+                                        tabindex="0">
+                                        <div class="zone-content">
+                                            <span class="zone-icon">🐦</span>
+                                            <span class="zone-label">Птица</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Level 1: Toxic (Bottom Right) -->
+                                    <div class="teremok-zone zone-rat" data-modal="modal-rat" role="button"
+                                        tabindex="0">
+                                        <div class="zone-content">
+                                            <span class="zone-icon">🐀</span>
+                                            <span class="zone-label">Токсик</span>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -210,18 +242,32 @@
 
                         </div>
 
-                        <!-- Лидеры -->
-                        <div class="level-card leader-level" data-modal="modal-leader" data-animate tabindex="0"
-                            role="button" aria-label="Подробнее о типаже Лидеры">
-                            <div class="card-icon">🦅</div>
-                            <h3>Лидеры</h3>
-                            <div class="level-subtitle">Мотивация: Идея</div>
+                        <!-- Wolf -->
+                        <div class="level-card wolf-level" data-modal="modal-wolf" data-animate tabindex="0"
+                            role="button" aria-label="Подробнее о типаже Волк">
+                            <div class="card-icon">🐺</div>
+                            <h3>Волк</h3>
+                            <div class="level-subtitle">Мотивация: Власть</div>
                             <ul class="level-traits">
-                                <li>Развивают бизнес как свой</li>
-                                <li>Ведут за собой команду</li>
-                                <li>Генерируют прорывные решения</li>
+                                <li>Собирает свою стаю</li>
+                                <li>Продвигает корыстные цели</li>
+                                <li>Диктует свои условия</li>
                             </ul>
-                            <div class="level-motive">Движущая сила: Смысл и миссия</div>
+                            <div class="level-motive">Движущая сила: Контроль и доминирование</div>
+                        </div>
+
+                        <!-- Bear -->
+                        <div class="level-card bear-level" data-modal="modal-bear" data-animate tabindex="0"
+                            role="button" aria-label="Подробнее о типаже Медведь">
+                            <div class="card-icon">🐻</div>
+                            <h3>Медведь</h3>
+                            <div class="level-subtitle">Мотивация: Независимость</div>
+                            <ul class="level-traits">
+                                <li>Исключение из правил</li>
+                                <li>Опытный, но неуправляемый</li>
+                                <li>Игнорирует нововведения</li>
+                            </ul>
+                            <div class="level-motive">Движущая сила: Собственная значимость</div>
                         </div>
                     </div>
                 </div>

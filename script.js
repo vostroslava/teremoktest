@@ -47,21 +47,123 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
     // Modal open/close handlers
-    const modalTriggers = document.querySelectorAll('.level-card[data-modal]');
+    const modalTriggers = document.querySelectorAll('.level-card[data-modal], .teremok-zone[data-modal]');
     modalTriggers.forEach(card => {
         const modalId = card.getAttribute('data-modal');
         const modal = document.getElementById(modalId);
         if (modal) {
             card.addEventListener('click', () => {
-                modal.classList.add('show');
+                modal.classList.add('open');
+                document.body.style.overflow = 'hidden';
             });
         }
     });
-    const modalCloses = document.querySelectorAll('.modal .close');
+
+    const modalCloses = document.querySelectorAll('.modal-close, .modal-overlay');
     modalCloses.forEach(btn => {
-        const modal = btn.closest('.modal');
         btn.addEventListener('click', () => {
-            modal.classList.remove('show');
+            const modal = btn.closest('.modal-backdrop');
+            if (modal) {
+                modal.classList.remove('open');
+                document.body.style.overflow = '';
+            }
         });
     });
+
+    // Countdown Timer
+    const countdownText = document.getElementById('eventCountdownText');
+    const countdownFill = document.getElementById('eventCountdownFill');
+    
+    if (countdownText && countdownFill) {
+        const targetDate = new Date('2025-12-18T10:00:00').getTime();
+        const startDate = new Date('2025-11-01T00:00:00').getTime(); // Assumed campaign start
+        const totalDuration = targetDate - startDate;
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            if (distance < 0) {
+                countdownText.innerText = "Регистрация закрыта";
+                countdownFill.style.width = "100%";
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+
+            countdownText.innerText = `${days} дн. ${hours} ч. ${minutes} мин.`;
+
+            // Calculate progress bar width (inverse logic: fills up as time passes)
+            const timePassed = now - startDate;
+            let percentage = (timePassed / totalDuration) * 100;
+            percentage = Math.max(0, Math.min(100, percentage));
+            
+            countdownFill.style.width = `${percentage}%`;
+        }
+
+        updateCountdown();
+        setInterval(updateCountdown, 60000); // Update every minute
+    }
 });
+
+// Mobile Menu Functions
+function toggleMobileMenu() {
+    const navLinks = document.querySelector('.nav-links');
+    const overlay = document.querySelector('.nav-overlay');
+    const btn = document.querySelector('.mobile-menu-btn');
+    
+    if (navLinks.classList.contains('active')) {
+        closeMobileMenu();
+    } else {
+        navLinks.classList.add('active');
+        overlay.classList.add('active');
+        btn.setAttribute('aria-expanded', 'true');
+        document.body.style.overflow = 'hidden';
+    }
+}
+
+function closeMobileMenu() {
+    const navLinks = document.querySelector('.nav-links');
+    const overlay = document.querySelector('.nav-overlay');
+    const btn = document.querySelector('.mobile-menu-btn');
+    
+    navLinks.classList.remove('active');
+    overlay.classList.remove('active');
+    btn.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+}
+
+// Global Modal Functions for Buttons
+function openLeadModal(type) {
+    const modal = document.getElementById('leadModal');
+    if (modal) {
+        modal.classList.add('open');
+        document.body.style.overflow = 'hidden';
+        
+        // You could handle 'type' here to customize the modal if needed
+        // e.g., select a specific option in the dropdown
+    }
+}
+
+function closeLeadModal() {
+    const modal = document.getElementById('leadModal');
+    if (modal) {
+        modal.classList.remove('open');
+        document.body.style.overflow = '';
+    }
+}
+
+function openPrivacyModal() {
+    // Placeholder for privacy modal if it exists, or redirect
+    window.location.href = 'privacy-policy.html';
+}
+
+function closeTestModal() {
+     const modal = document.getElementById('testModal');
+    if (modal) {
+        modal.classList.remove('open');
+        document.body.style.overflow = '';
+    }
+}
