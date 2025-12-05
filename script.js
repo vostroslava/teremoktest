@@ -3,6 +3,8 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
+            e.stopPropagation(); // Не даём клику провалиться на overlay
+
             const targetId = this.getAttribute('href');
             const targetElement = document.querySelector(targetId);
 
@@ -12,12 +14,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     closeMobileMenu();
                 }
 
-                // Small delay to let menu close, then scroll
+                // Delay to let menu close, then scroll
                 setTimeout(() => {
                     targetElement.scrollIntoView({
                         behavior: 'smooth'
                     });
-                }, 100);
+                }, 300);
             }
         });
     });
