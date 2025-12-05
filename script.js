@@ -9,17 +9,21 @@ document.addEventListener('DOMContentLoaded', () => {
             const targetElement = document.querySelector(targetId);
 
             if (targetElement) {
-                // 1. Сначала закрываем меню
-                if (typeof closeMobileMenu === 'function') {
-                    closeMobileMenu();
+                // Закрываем меню
+                const navLinks = document.querySelector('.nav-links');
+                const btn = document.querySelector('.mobile-menu-btn');
+                if (navLinks && navLinks.classList.contains('open')) {
+                    navLinks.classList.remove('open');
+                    if (btn) btn.classList.remove('open');
+                    document.body.style.overflow = '';
                 }
 
-                // 2. Потом через задержку делаем скролл
+                // Небольшая задержка, потом скролл
                 setTimeout(() => {
                     targetElement.scrollIntoView({
                         behavior: 'smooth'
                     });
-                }, 400); // Задержка чтобы меню успело закрыться
+                }, 350);
             }
         });
     });
