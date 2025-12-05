@@ -175,7 +175,10 @@
     .nav-links a {
         font-size: 1.1rem;
         padding: 0.75rem 0;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        color: #fff !important;
+        opacity: 1 !important;
+        display: block;
     }
 
     .nav-links a:last-child {
