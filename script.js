@@ -9,17 +9,17 @@ document.addEventListener('DOMContentLoaded', () => {
             const targetElement = document.querySelector(targetId);
 
             if (targetElement) {
-                // Close mobile menu first if open
-                if (typeof closeMobileMenu === 'function') {
-                    closeMobileMenu();
-                }
+                // Сначала скролл
+                targetElement.scrollIntoView({
+                    behavior: 'smooth'
+                });
 
-                // Delay to let menu close, then scroll
+                // Потом закрываем меню после завершения скролла
                 setTimeout(() => {
-                    targetElement.scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                }, 300);
+                    if (typeof closeMobileMenu === 'function') {
+                        closeMobileMenu();
+                    }
+                }, 800); // Задержка для завершения анимации скролла
             }
         });
     });
